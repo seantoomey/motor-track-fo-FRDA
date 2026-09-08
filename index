@@ -1,1 +1,173 @@
-index.html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>MotorTrack | FRDA Monitoring Research</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <header>
+        <nav>
+            <div class="logo">MotorTrack</div>
+
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="test.html">Weekly Test</a>
+                <a href="results.html">Results</a>
+                <a href="progress.html">Progress</a>
+            </div>
+        </nav>
+    </header>
+
+
+    <!-- Main content -->
+    <main>
+
+        <!-- Welcome section -->
+        <section class="hero">
+
+            <div class="hero-text">
+
+                <p class="small-title">FRIEDREICH'S ATAXIA RESEARCH PROJECT</p>
+
+                <h1>
+                    One minute.<br>
+                    Every week.
+                </h1>
+
+                <p class="description">
+                    MotorTrack is a research prototype designed to investigate
+                    whether short, regular digital motor tests can identify
+                    changes in motor performance over time.
+                </p>
+
+                <a href="test.html" class="start-button">
+                    Start Weekly Test
+                </a>
+
+            </div>
+
+        </section>
+
+
+        <!-- How it works -->
+        <section class="how-it-works">
+
+            <h2>How MotorTrack works</h2>
+
+            <div class="cards">
+
+                <div class="card">
+                    <div class="number">01</div>
+                    <h3>Take the test</h3>
+                    <p>
+                        Complete a series of short motor and reaction tests
+                        lasting approximately one minute.
+                    </p>
+                </div>
+
+                <div class="card">
+                    <div class="number">02</div>
+                    <h3>Build your baseline</h3>
+                    <p>
+                        Your results are recorded over time to understand
+                        your normal level of performance.
+                    </p>
+                </div>
+
+                <div class="card">
+                    <div class="number">03</div>
+                    <h3>Track changes</h3>
+                    <p>
+                        Future results can be compared with your previous
+                        performance to identify persistent changes.
+                    </p>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- Tests -->
+        <section class="tests">
+
+            <h2>What's measured?</h2>
+
+            <div class="test-list">
+
+                <div class="test-item">
+                    <span>🎯</span>
+                    <div>
+                        <h3>Target Tapping</h3>
+                        <p>Coordination and accuracy</p>
+                    </div>
+                </div>
+
+                <div class="test-item">
+                    <span>✋</span>
+                    <div>
+                        <h3>Moving Target</h3>
+                        <p>Motor control and tracking</p>
+                    </div>
+                </div>
+
+                <div class="test-item">
+                    <span>⚡</span>
+                    <div>
+                        <h3>Reaction Time</h3>
+                        <p>Speed of response</p>
+                    </div>
+                </div>
+
+                <div class="test-item">
+                    <span>🔄</span>
+                    <div>
+                        <h3>Alternating Taps</h3>
+                        <p>Fine motor control and consistency</p>
+                    </div>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- Important notice -->
+        <section class="notice">
+
+            <h2>Important</h2>
+
+            <p>
+                MotorTrack is a research prototype and is not a medical
+                diagnostic tool. Changes in test performance can have many
+                possible causes and should not be interpreted as a diagnosis
+                of Friedreich's ataxia.
+            </p>
+
+        </section>
+
+    </main>
+
+
+    <!-- Footer -->
+    <footer>
+
+        <p>
+            MotorTrack — Young Scientist & Technology Exhibition Project
+        </p>
+
+        <p>
+            Research prototype • Not for medical diagnosis
+        </p>
+
+    </footer>
+
+</body>
+</html>l
