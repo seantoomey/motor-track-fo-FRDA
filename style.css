@@ -371,3 +371,135 @@ footer p {
         padding: 16px;
     }
 }
+/* =========================
+   Results Page
+   ========================= */
+
+.results-summary {
+    background: white;
+    border: 1px solid #e5e8ef;
+    border-radius: 20px;
+    padding: 28px;
+    margin-top: 30px;
+    box-shadow: 0 8px 25px rgba(20, 30, 50, 0.06);
+}
+
+.results-summary h2 {
+    margin-top: 0;
+    margin-bottom: 20px;
+}
+
+
+/* Results table */
+
+.table-container {
+    width: 100%;
+    overflow-x: auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 650px;
+}
+
+thead {
+    background: #f5f7fb;
+}
+
+th {
+    text-align: left;
+    padding: 15px;
+    font-size: 14px;
+    color: #4b5563;
+    border-bottom: 1px solid #e5e8ef;
+}
+
+td {
+    padding: 16px 15px;
+    border-bottom: 1px solid #eef0f4;
+    color: #172033;
+}
+
+tbody tr:hover {
+    background: #fafbff;
+}
+
+
+/* Result cards */
+
+.results-summary::before {
+    content: "WEEKLY PERFORMANCE";
+    display: block;
+    color: #4f46e5;
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 1.5px;
+    margin-bottom: 8px;
+}
+
+
+/* Empty results message */
+
+#no-results {
+    background: white;
+    border: 1px solid #e5e8ef;
+    border-radius: 20px;
+    padding: 40px;
+    text-align: center;
+    margin-top: 30px;
+    box-shadow: 0 8px 25px rgba(20, 30, 50, 0.05);
+}
+
+#no-results h2 {
+    margin-bottom: 10px;
+}
+
+
+/* Clear button */
+
+#results-container > .start-button {
+    margin-top: 20px;
+    background: #f1f3f7;
+    color: #4b5563;
+    border: 1px solid #e0e4eb;
+}
+
+#results-container > .start-button:hover {
+    background: #e7eaf0;
+    box-shadow: none;
+}
+
+
+/* Results page heading */
+
+main section > h1 {
+    font-size: 44px;
+    line-height: 1.1;
+    margin-bottom: 12px;
+}
+
+main section > h1 + p {
+    color: #667085;
+    font-size: 17px;
+    max-width: 650px;
+}
+
+
+/* Mobile results */
+
+@media (max-width: 750px) {
+
+    main section > h1 {
+        font-size: 36px;
+    }
+
+    .results-summary {
+        padding: 20px;
+    }
+
+    #no-results {
+        padding: 30px 20px;
+    }
+
+}
