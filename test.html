@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>MotorTrack | Weekly Test</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<header>
+    <nav>
+
+        <div class="logo">MotorTrack</div>
+
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="test.html">Weekly Test</a>
+            <a href="research.html">Research</a>
+        </div>
+
+    </nav>
+</header>
+
+
+<main>
+
+    <section class="test-page">
+
+        <h1>Weekly Motor Test</h1>
+
+        <p>
+            This test takes approximately one minute. Try to complete it
+            under similar conditions each week.
+        </p>
+
+        <div id="instructions">
+            <h2>Before you start</h2>
+
+            <p>
+                Make sure you are comfortable and ready to complete the test.
+            </p>
+
+            <button class="start-button" onclick="startTest()">
+                Start Test
+            </button>
+        </div>
+
+
+        <!-- Test area -->
+
+        <div id="test-area" style="display:none;">
+
+            <h2 id="test-title"></h2>
+
+            <p id="test-instruction"></p>
+
+            <div id="game-area"></div>
+
+            <button id="next-button"
+                    class="start-button"
+                    onclick="nextTest()"
+                    style="display:none;">
+                Next Test
+            </button>
+
+        </div>
+
+
+        <!-- Results -->
+
+        <div id="final-results" style="display:none;">
+
+            <h2>Test Complete!</h2>
+
+            <p>Your results have been recorded on this device.</p>
+
+            <div id="results-display"></div>
+
+            <button class="start-button" onclick="location.reload()">
+                Take Test Again
+            </button>
+
+        </div>
+
+    </section>
+
+</main>
+
+
+<footer>
+
+    <p>
+        MotorTrack — Young Scientist & Technology Exhibition Project
+    </p>
+
+    <p>
+        Research prototype • Not for medical diagnosis
+    </p>
+
+</footer>
+
+
+<script src="script.js"></script>
+
+</body>
+
+</html>
