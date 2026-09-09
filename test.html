@@ -2,7 +2,9 @@
 <html lang="en">
 
 <head>
+
     <meta charset="UTF-8">
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>MotorTrack | Weekly Test</title>
@@ -11,162 +13,258 @@
 
     <style>
 
-        /* =====================================
-           WEEKLY TEST PAGE
-        ===================================== */
+        /* =========================================
+           MOTORTRACK WEEKLY TEST
+        ========================================= */
+
+        body {
+            background: #f6f7fb;
+        }
+
+        /* =========================================
+           PAGE
+        ========================================= */
 
         .test-page {
-            max-width: 950px;
+            max-width: 1000px;
             margin: 0 auto;
-            padding: 70px 20px;
+            padding: 65px 20px 90px;
         }
+
+
+        /* =========================================
+           HEADER
+        ========================================= */
 
         .test-header {
             text-align: center;
-            margin-bottom: 45px;
+            margin-bottom: 35px;
         }
 
         .test-label {
+            display: inline-block;
+
             color: #5b5ce2;
-            font-size: 13px;
+
+            font-size: 12px;
             font-weight: 800;
+
             letter-spacing: 2px;
+
             text-transform: uppercase;
-            margin-bottom: 12px;
+
+            margin-bottom: 14px;
         }
 
         .test-header h1 {
-            font-size: 48px;
-            margin-bottom: 15px;
+            font-size: 52px;
+            line-height: 1.1;
+
+            color: #172033;
+
+            margin: 0 0 18px;
         }
 
         .test-header p {
             max-width: 650px;
+
             margin: 0 auto;
+
             color: #667085;
+
             font-size: 17px;
             line-height: 1.7;
         }
 
-        /* =====================================
-           PROGRESS BAR
-        ===================================== */
+
+        /* =========================================
+           PROGRESS
+        ========================================= */
 
         .test-progress {
             display: flex;
+
             justify-content: center;
             align-items: center;
-            gap: 12px;
-            margin-bottom: 35px;
+
+            gap: 10px;
+
+            margin-bottom: 25px;
         }
 
         .progress-dot {
-            width: 38px;
-            height: 8px;
+            width: 55px;
+            height: 6px;
+
             border-radius: 20px;
-            background: #e5e7eb;
+
+            background: #e1e4ec;
+
+            transition: 0.3s;
         }
 
         .progress-dot.active {
             background: #5b5ce2;
         }
 
-        /* =====================================
-           MAIN TEST CARD
-        ===================================== */
+
+        /* =========================================
+           MAIN CARD
+        ========================================= */
 
         .test-card {
             background: white;
-            border-radius: 24px;
-            padding: 45px;
-            box-shadow: 0 15px 45px rgba(30, 35, 60, 0.08);
-            border: 1px solid #eef0f5;
+
+            border-radius: 28px;
+
+            padding: 50px;
+
+            border: 1px solid #e7e9f0;
+
+            box-shadow:
+                0 20px 60px rgba(25, 35, 60, 0.08);
+
             text-align: center;
         }
 
+
+        /* =========================================
+           ICON
+        ========================================= */
+
         .test-icon {
-            width: 70px;
-            height: 70px;
-            margin: 0 auto 20px;
+            width: 78px;
+            height: 78px;
+
+            margin: 0 auto 24px;
 
             display: flex;
+
             align-items: center;
             justify-content: center;
 
             background: #eef0ff;
-            border-radius: 20px;
 
-            font-size: 32px;
+            border-radius: 22px;
+
+            font-size: 36px;
         }
 
+
+        /* =========================================
+           TITLES
+        ========================================= */
+
         .test-card h2 {
+            color: #172033;
+
             font-size: 30px;
-            margin-bottom: 12px;
+
+            margin: 0 0 12px;
         }
 
         .test-card p {
             color: #667085;
-            line-height: 1.6;
+
+            line-height: 1.7;
+
+            font-size: 16px;
         }
 
-        /* =====================================
+
+        /* =========================================
            INSTRUCTIONS
-        ===================================== */
+        ========================================= */
 
         .instructions-box {
+            max-width: 650px;
+
+            margin: 30px auto;
+
+            padding: 25px 30px;
+
             background: #f8f9fc;
+
+            border: 1px solid #eaecf2;
+
             border-radius: 18px;
-            padding: 25px;
-            margin: 30px 0;
+
             text-align: left;
         }
 
         .instructions-box h3 {
-            margin-bottom: 10px;
+            color: #172033;
+
+            margin: 0 0 15px;
+
+            font-size: 17px;
         }
 
         .instructions-box ul {
-            padding-left: 20px;
+            margin: 0;
+
+            padding-left: 22px;
+
             color: #667085;
-            line-height: 1.8;
+
+            line-height: 1.9;
         }
 
-        /* =====================================
-           BUTTON
-        ===================================== */
+        .instructions-box li {
+            padding-left: 4px;
+        }
+
+
+        /* =========================================
+           START BUTTON
+        ========================================= */
 
         .test-button {
-            display: inline-block;
             border: none;
+
             background: #5b5ce2;
+
             color: white;
 
-            padding: 15px 30px;
+            padding: 16px 32px;
 
-            border-radius: 12px;
+            border-radius: 13px;
 
             font-size: 16px;
+
             font-weight: 700;
 
             cursor: pointer;
 
-            transition: 0.2s;
+            box-shadow: 0 8px 20px rgba(91, 92, 226, 0.22);
+
+            transition: all 0.2s ease;
         }
 
         .test-button:hover {
             transform: translateY(-2px);
-            opacity: 0.92;
+
+            box-shadow:
+                0 12px 25px rgba(91, 92, 226, 0.28);
         }
 
-        /* =====================================
+        .test-button:active {
+            transform: translateY(0);
+        }
+
+
+        /* =========================================
            GAME AREA
-        ===================================== */
+        ========================================= */
 
         #game-area {
+            position: relative;
+
             margin-top: 30px;
+
             min-height: 300px;
 
-            border-radius: 18px;
+            border-radius: 20px;
 
             background: #f8f9fc;
 
@@ -175,54 +273,151 @@
             overflow: hidden;
         }
 
-        /* =====================================
+
+        /* =========================================
            FINAL RESULTS
-        ===================================== */
+        ========================================= */
 
         .complete-message {
-            background: #f8f9fc;
-            border-radius: 18px;
+            margin: 30px auto;
+
             padding: 25px;
-            margin: 25px 0;
+
+            max-width: 700px;
+
+            background: #f8f9fc;
+
+            border: 1px solid #eaecf2;
+
+            border-radius: 18px;
         }
 
         .complete-message h3 {
-            font-size: 22px;
+            color: #172033;
+
+            font-size: 20px;
+
+            margin-bottom: 15px;
+        }
+
+
+        /* =========================================
+           RESULT ITEMS
+        ========================================= */
+
+        .result-card {
+            display: grid;
+
+            grid-template-columns: repeat(4, 1fr);
+
+            gap: 12px;
+
+            width: 100%;
+        }
+
+        .result-measure {
+            padding: 18px 10px;
+
+            background: white;
+
+            border-radius: 14px;
+
+            border: 1px solid #e5e7eb;
+        }
+
+        .result-measure span {
+            display: block;
+
+            font-size: 24px;
+
             margin-bottom: 8px;
         }
 
-        /* =====================================
-           MOBILE
-        ===================================== */
+        .result-measure small {
+            display: block;
 
-        @media (max-width: 650px) {
+            color: #667085;
+
+            font-size: 11px;
+
+            margin-bottom: 5px;
+        }
+
+        .result-measure strong {
+            color: #172033;
+
+            font-size: 18px;
+        }
+
+
+        /* =========================================
+           MOBILE
+        ========================================= */
+
+        @media (max-width: 750px) {
 
             .test-page {
-                padding: 40px 15px;
+                padding: 45px 15px 70px;
             }
 
             .test-header h1 {
-                font-size: 36px;
+                font-size: 40px;
             }
 
             .test-card {
-                padding: 25px 18px;
+                padding: 30px 20px;
+            }
+
+            .result-card {
+                grid-template-columns: 1fr 1fr;
+            }
+
+        }
+
+
+        @media (max-width: 500px) {
+
+            .test-header h1 {
+                font-size: 34px;
+            }
+
+            .test-header p {
+                font-size: 15px;
+            }
+
+            .test-card {
+                padding: 25px 15px;
             }
 
             .test-card h2 {
                 font-size: 25px;
             }
 
+            .instructions-box {
+                padding: 20px;
+            }
+
             .progress-dot {
-                width: 25px;
+                width: 35px;
+            }
+
+            .result-card {
+                grid-template-columns: 1fr;
             }
 
         }
 
     </style>
+
 </head>
 
+
 <body>
+
+
+<!-- =========================================
+     NAVIGATION
+========================================= -->
 
 <header>
 
@@ -234,7 +429,9 @@
 
         <div class="nav-links">
 
-            <a href="index.html">Home</a>
+            <a href="index.html">
+                Home
+            </a>
 
             <a href="test.html">
                 Weekly Test
@@ -259,26 +456,31 @@
 </header>
 
 
+<!-- =========================================
+     MAIN
+========================================= -->
+
 <main>
 
     <section class="test-page">
 
-        <!-- PAGE HEADER -->
+
+        <!-- HEADER -->
 
         <div class="test-header">
 
             <div class="test-label">
-                Weekly Motor Assessment
+                Friedreich's Ataxia Research Project
             </div>
 
             <h1>
-                Your 1-Minute Test
+                Your Weekly Test
             </h1>
 
             <p>
-                Complete four short activities to measure
-                coordination, reaction time, motor control
-                and consistency.
+                A short series of digital motor tasks designed
+                to measure changes in coordination, reaction time
+                and motor control over time.
             </p>
 
         </div>
@@ -288,13 +490,25 @@
 
         <div class="test-progress">
 
-            <div class="progress-dot active"></div>
+            <div
+                class="progress-dot active"
+                id="progress-1">
+            </div>
 
-            <div class="progress-dot"></div>
+            <div
+                class="progress-dot"
+                id="progress-2">
+            </div>
 
-            <div class="progress-dot"></div>
+            <div
+                class="progress-dot"
+                id="progress-3">
+            </div>
 
-            <div class="progress-dot"></div>
+            <div
+                class="progress-dot"
+                id="progress-4">
+            </div>
 
         </div>
 
@@ -304,7 +518,9 @@
         <div class="test-card">
 
 
-            <!-- INSTRUCTIONS -->
+            <!-- =================================
+                 START SCREEN
+            ================================= -->
 
             <div id="instructions">
 
@@ -312,14 +528,15 @@
                     🧠
                 </div>
 
+
                 <h2>
                     Ready to begin?
                 </h2>
 
+
                 <p>
-                    The test takes approximately one minute.
-                    Try to complete it under similar conditions
-                    each week.
+                    The complete test takes approximately
+                    one minute.
                 </p>
 
 
@@ -331,13 +548,21 @@
 
                     <ul>
 
-                        <li>Make sure you are comfortable.</li>
+                        <li>
+                            Make sure you are comfortable.
+                        </li>
 
-                        <li>Use the same device where possible.</li>
+                        <li>
+                            Use the same device where possible.
+                        </li>
 
-                        <li>Complete the test without distractions.</li>
+                        <li>
+                            Complete the test without distractions.
+                        </li>
 
-                        <li>Try to perform naturally rather than rushing.</li>
+                        <li>
+                            Try to perform naturally rather than rushing.
+                        </li>
 
                     </ul>
 
@@ -355,7 +580,9 @@
             </div>
 
 
-            <!-- TEST AREA -->
+            <!-- =================================
+                 TEST AREA
+            ================================= -->
 
             <div
                 id="test-area"
@@ -365,16 +592,19 @@
                     🎯
                 </div>
 
+
                 <h2 id="test-title">
                     Test
                 </h2>
+
 
                 <p id="test-instruction">
                     Follow the instructions below.
                 </p>
 
 
-                <div id="game-area"></div>
+                <div id="game-area">
+                </div>
 
 
                 <br>
@@ -393,7 +623,9 @@
             </div>
 
 
-            <!-- FINAL RESULTS -->
+            <!-- =================================
+                 FINAL RESULTS
+            ================================= -->
 
             <div
                 id="final-results"
@@ -403,23 +635,26 @@
                     ✅
                 </div>
 
+
                 <h2>
                     Test Complete!
                 </h2>
+
 
                 <p>
                     Your results have been recorded on this device.
                 </p>
 
 
-                <div
-                    class="complete-message">
+                <div class="complete-message">
 
                     <h3>
                         This week's results
                     </h3>
 
-                    <div id="results-display"></div>
+
+                    <div id="results-display">
+                    </div>
 
                 </div>
 
@@ -434,12 +669,17 @@
 
             </div>
 
+
         </div>
 
     </section>
 
 </main>
 
+
+<!-- =========================================
+     FOOTER
+========================================= -->
 
 <footer>
 
@@ -455,6 +695,7 @@
 
 
 <script src="script.js"></script>
+
 
 </body>
 
