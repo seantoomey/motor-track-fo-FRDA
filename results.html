@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>MotorTrack | Results</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<header>
+    <nav>
+
+        <div class="logo">MotorTrack</div>
+
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="test.html">Weekly Test</a>
+            <a href="results.html">Results</a>
+            <a href="research.html">Research</a>
+        </div>
+
+    </nav>
+</header>
+
+
+<main>
+
+    <section>
+
+        <h1>Your Results</h1>
+
+        <p>
+            Your previous MotorTrack test results are shown below.
+        </p>
+
+        <div id="no-results">
+            <h2>No results yet</h2>
+
+            <p>
+                Complete your first weekly test to see your results here.
+            </p>
+
+            <a href="test.html" class="start-button">
+                Take Weekly Test
+            </a>
+        </div>
+
+
+        <div id="results-container" style="display:none;">
+
+            <div class="results-summary">
+
+                <h2>Test History</h2>
+
+                <div class="table-container">
+
+                    <table>
+
+                        <thead>
+
+                            <tr>
+                                <th>Date</th>
+                                <th>Target Tapping</th>
+                                <th>Reaction Time</th>
+                                <th>Alternating Taps</th>
+                                <th>Moving Target</th>
+                            </tr>
+
+                        </thead>
+
+                        <tbody id="results-table">
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+
+            <button class="start-button" onclick="clearResults()">
+                Clear Results
+            </button>
+
+        </div>
+
+    </section>
+
+</main>
+
+
+<footer>
+
+    <p>
+        MotorTrack — Young Scientist & Technology Exhibition Project
+    </p>
+
+    <p>
+        Research prototype • Not for medical diagnosis
+    </p>
+
+</footer>
+
+
+<script>
+
+function loadResults() {
+
+    const results =
+        JSON.parse(localStorage.getItem("motorTrackResults")) || [];
+
+    const noResults =
+        document.getElementById("no-results");
+
+    const resultsContainer =
+        document.getElementById("results-container");
+
+    const table =
+        document.getElementById("results-table");
+
+
+    if (results.length === 0) {
+
+        noResults.style.display = "block";
+        resultsContainer.style.display = "none";
+
+        return;
+    }
+
+
+    noResults.style.display = "none";
+    resultsContainer.style.display = "block";
+
+
+    table.innerHTML = "";
+
+
+    results.forEach(function(result) {
+
+        const row = document.createElement("tr");
+
+        const date = new Date(result.date);
+
+        row.innerHTML = `
+
+            <td>
+                ${date.toLocaleDateString()}
+            </td>
+
+            <td>
+                ${result.targetTapping} taps
+            </td>
+
+            <td>
+                ${result.reactionTime} ms
+            </td>
+
+            <td>
+                ${result.alternatingTaps}
+            </td>
+
+            <td>
+                ${result.movingTarget} hits
+            </td>
+
+        `;
+
+        table.appendChild(row);
+
+    });
+
+}
+
+
+function clearResults() {
+
+    const confirmClear =
+        confirm("Are you sure you want to delete all your saved results?");
+
+    if (confirmClear) {
+
+        localStorage.removeItem("motorTrackResults");
+
+        loadResults();
+
+    }
+
+}
+
+
+loadResults();
+
+</script>
+
+</body>
+
+</html>
