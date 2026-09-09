@@ -28,8 +28,6 @@
 
 <main class="results-page">
 
-    <!-- Page heading -->
-
     <section class="results-heading">
 
         <p class="results-label">MOTOR PERFORMANCE</p>
@@ -44,55 +42,40 @@
     </section>
 
 
-    <!-- Statistics -->
+    <!-- Summary cards -->
 
     <section class="stats-grid">
 
         <div class="stat-card">
-
             <div class="stat-icon">🧪</div>
-
             <div>
                 <p class="stat-label">TESTS COMPLETED</p>
                 <h2 id="tests-completed">0</h2>
             </div>
-
         </div>
 
-
         <div class="stat-card">
-
             <div class="stat-icon">🎯</div>
-
             <div>
                 <p class="stat-label">LATEST TAPS</p>
                 <h2 id="latest-taps">—</h2>
             </div>
-
         </div>
 
-
         <div class="stat-card">
-
             <div class="stat-icon">⚡</div>
-
             <div>
                 <p class="stat-label">LATEST REACTION</p>
                 <h2 id="latest-reaction">—</h2>
             </div>
-
         </div>
 
-
         <div class="stat-card">
-
             <div class="stat-icon">📈</div>
-
             <div>
-                <p class="stat-label">PREVIOUS TESTS</p>
+                <p class="stat-label">COMPARISON</p>
                 <h2 id="comparison">—</h2>
             </div>
-
         </div>
 
     </section>
@@ -118,7 +101,7 @@
     </section>
 
 
-    <!-- Results -->
+    <!-- All results -->
 
     <section id="results-container" style="display:none;">
 
@@ -128,7 +111,7 @@
 
                 <div>
                     <p class="results-label">HISTORY</p>
-                    <h2>Test History</h2>
+                    <h2>All Test Results</h2>
                 </div>
 
                 <span class="history-count" id="history-count">
@@ -138,12 +121,12 @@
             </div>
 
 
+            <!-- Every test will appear here -->
+
             <div class="result-list" id="result-list"></div>
 
         </div>
 
-
-        <!-- Research note -->
 
         <div class="research-note">
 
@@ -154,10 +137,10 @@
                 <h3>Why track results over time?</h3>
 
                 <p>
-                    MotorTrack is designed to investigate whether repeated
-                    short digital tests can identify changes in motor
-                    performance over time. A single result should not be
-                    interpreted as a diagnosis.
+                    MotorTrack investigates whether repeated short digital
+                    tests can identify changes in motor performance over
+                    time. A single result should not be interpreted as a
+                    diagnosis.
                 </p>
 
             </div>
@@ -200,10 +183,17 @@ function loadResults() {
     const container =
         document.getElementById("results-container");
 
+    const list =
+        document.getElementById("result-list");
+
+
+    // Number of tests
 
     document.getElementById("tests-completed").textContent =
         results.length;
 
+
+    // If there are no results
 
     if (results.length === 0) {
 
@@ -214,43 +204,48 @@ function loadResults() {
     }
 
 
+    // Show results
+
     noResults.style.display = "none";
     container.style.display = "block";
 
+
+    // Latest result
 
     const latest = results[results.length - 1];
 
     document.getElementById("latest-taps").textContent =
         latest.targetTapping;
 
-
     document.getElementById("latest-reaction").textContent =
         latest.reactionTime + " ms";
 
 
-    document.getElementById("history-count").textContent =
-        results.length +
-        (results.length === 1 ? " test" : " tests");
-
-
-    // Compare latest result with previous result
+    // Compare latest test with previous test
 
     if (results.length >= 2) {
 
-        const previous = results[results.length - 2];
+        const previous =
+            results[results.length - 2];
 
-        const difference =
-            latest.targetTapping - previous.targetTapping;
+        if (
+            latest.targetTapping >
+            previous.targetTapping
+        ) {
 
-        if (difference > 0) {
             document.getElementById("comparison").textContent =
                 "Improved";
-        }
-        else if (difference < 0) {
+
+        } else if (
+            latest.targetTapping <
+            previous.targetTapping
+        ) {
+
             document.getElementById("comparison").textContent =
                 "Changed";
-        }
-        else {
+
+        } else {
+
             document.getElementById("comparison").textContent =
                 "Similar";
         }
@@ -262,17 +257,25 @@ function loadResults() {
     }
 
 
-    const list =
-        document.getElementById("result-list");
+    // Number of tests
+
+    document.getElementById("history-count").textContent =
+        results.length +
+        (results.length === 1 ? " test" : " tests");
+
+
+    // Clear the old list
 
     list.innerHTML = "";
 
 
-    // Show newest result first
+    // ADD EVERY TEST
 
-    [...results].reverse().forEach(function(result, index) {
+    results.forEach(function(result, index) {
 
-        const date = new Date(result.date);
+        const date =
+            new Date(result.date);
+
 
         const card =
             document.createElement("div");
@@ -285,17 +288,19 @@ function loadResults() {
             <div class="result-date">
 
                 <span class="result-number">
-                    ${results.length - index}
+                    ${index + 1}
                 </span>
 
                 <div>
+
                     <strong>
-                        ${date.toLocaleDateString()}
+                        Test ${index + 1}
                     </strong>
 
                     <small>
-                        Weekly test
+                        ${date.toLocaleDateString()}
                     </small>
+
                 </div>
 
             </div>
@@ -306,11 +311,19 @@ function loadResults() {
                 <span>🎯</span>
 
                 <div>
-                    <small>Target Tapping</small>
+
+                    <small>
+                        Target Tapping
+                    </small>
+
                     <strong>
                         ${result.targetTapping}
                     </strong>
-                    <em>taps</em>
+
+                    <em>
+                        taps
+                    </em>
+
                 </div>
 
             </div>
@@ -321,11 +334,19 @@ function loadResults() {
                 <span>⚡</span>
 
                 <div>
-                    <small>Reaction Time</small>
+
+                    <small>
+                        Reaction Time
+                    </small>
+
                     <strong>
                         ${result.reactionTime}
                     </strong>
-                    <em>ms</em>
+
+                    <em>
+                        ms
+                    </em>
+
                 </div>
 
             </div>
@@ -336,11 +357,19 @@ function loadResults() {
                 <span>🔄</span>
 
                 <div>
-                    <small>Alternating</small>
+
+                    <small>
+                        Alternating Taps
+                    </small>
+
                     <strong>
                         ${result.alternatingTaps}
                     </strong>
-                    <em>taps</em>
+
+                    <em>
+                        taps
+                    </em>
+
                 </div>
 
             </div>
@@ -351,11 +380,19 @@ function loadResults() {
                 <span>🎯</span>
 
                 <div>
-                    <small>Moving Target</small>
+
+                    <small>
+                        Moving Target
+                    </small>
+
                     <strong>
                         ${result.movingTarget}
                     </strong>
-                    <em>hits</em>
+
+                    <em>
+                        hits
+                    </em>
+
                 </div>
 
             </div>
@@ -370,6 +407,8 @@ function loadResults() {
 }
 
 
+// Clear all saved results
+
 function clearResults() {
 
     const confirmed =
@@ -380,7 +419,9 @@ function clearResults() {
 
     if (confirmed) {
 
-        localStorage.removeItem("motorTrackResults");
+        localStorage.removeItem(
+            "motorTrackResults"
+        );
 
         loadResults();
 
@@ -389,9 +430,12 @@ function clearResults() {
 }
 
 
+// Load results when page opens
+
 loadResults();
 
 </script>
+
 
 </body>
 
