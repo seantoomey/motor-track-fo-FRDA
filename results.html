@@ -14,7 +14,6 @@
 
 <header>
     <nav>
-
         <div class="logo">MotorTrack</div>
 
         <div class="nav-links">
@@ -23,72 +22,152 @@
             <a href="results.html">Results</a>
             <a href="research.html">Research</a>
         </div>
-
     </nav>
 </header>
 
 
-<main>
+<main class="results-page">
 
-    <section>
+    <!-- Page heading -->
+
+    <section class="results-heading">
+
+        <p class="results-label">MOTOR PERFORMANCE</p>
 
         <h1>Your Results</h1>
 
         <p>
-            Your previous MotorTrack test results are shown below.
+            Review your previous weekly tests and monitor your performance
+            over time.
         </p>
 
-        <div id="no-results">
-            <h2>No results yet</h2>
+    </section>
 
-            <p>
-                Complete your first weekly test to see your results here.
-            </p>
 
-            <a href="test.html" class="start-button">
-                Take Weekly Test
-            </a>
+    <!-- Statistics -->
+
+    <section class="stats-grid">
+
+        <div class="stat-card">
+
+            <div class="stat-icon">🧪</div>
+
+            <div>
+                <p class="stat-label">TESTS COMPLETED</p>
+                <h2 id="tests-completed">0</h2>
+            </div>
+
         </div>
 
 
-        <div id="results-container" style="display:none;">
+        <div class="stat-card">
 
-            <div class="results-summary">
+            <div class="stat-icon">🎯</div>
 
-                <h2>Test History</h2>
+            <div>
+                <p class="stat-label">LATEST TAPS</p>
+                <h2 id="latest-taps">—</h2>
+            </div>
 
-                <div class="table-container">
+        </div>
 
-                    <table>
 
-                        <thead>
+        <div class="stat-card">
 
-                            <tr>
-                                <th>Date</th>
-                                <th>Target Tapping</th>
-                                <th>Reaction Time</th>
-                                <th>Alternating Taps</th>
-                                <th>Moving Target</th>
-                            </tr>
+            <div class="stat-icon">⚡</div>
 
-                        </thead>
+            <div>
+                <p class="stat-label">LATEST REACTION</p>
+                <h2 id="latest-reaction">—</h2>
+            </div>
 
-                        <tbody id="results-table">
+        </div>
 
-                        </tbody>
 
-                    </table>
+        <div class="stat-card">
 
+            <div class="stat-icon">📈</div>
+
+            <div>
+                <p class="stat-label">PREVIOUS TESTS</p>
+                <h2 id="comparison">—</h2>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- No results -->
+
+    <section id="no-results" class="empty-results">
+
+        <div class="empty-icon">📊</div>
+
+        <h2>No results yet</h2>
+
+        <p>
+            Complete your first MotorTrack weekly test and your results
+            will appear here.
+        </p>
+
+        <a href="test.html" class="start-button">
+            Take Weekly Test
+        </a>
+
+    </section>
+
+
+    <!-- Results -->
+
+    <section id="results-container" style="display:none;">
+
+        <div class="history-card">
+
+            <div class="section-header">
+
+                <div>
+                    <p class="results-label">HISTORY</p>
+                    <h2>Test History</h2>
                 </div>
+
+                <span class="history-count" id="history-count">
+                    0 tests
+                </span>
 
             </div>
 
 
-            <button class="start-button" onclick="clearResults()">
-                Clear Results
-            </button>
+            <div class="result-list" id="result-list"></div>
 
         </div>
+
+
+        <!-- Research note -->
+
+        <div class="research-note">
+
+            <div class="research-note-icon">🔬</div>
+
+            <div>
+
+                <h3>Why track results over time?</h3>
+
+                <p>
+                    MotorTrack is designed to investigate whether repeated
+                    short digital tests can identify changes in motor
+                    performance over time. A single result should not be
+                    interpreted as a diagnosis.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <button class="clear-button" onclick="clearResults()">
+            Clear Saved Results
+        </button>
 
     </section>
 
@@ -118,60 +197,173 @@ function loadResults() {
     const noResults =
         document.getElementById("no-results");
 
-    const resultsContainer =
+    const container =
         document.getElementById("results-container");
 
-    const table =
-        document.getElementById("results-table");
+
+    document.getElementById("tests-completed").textContent =
+        results.length;
 
 
     if (results.length === 0) {
 
         noResults.style.display = "block";
-        resultsContainer.style.display = "none";
+        container.style.display = "none";
 
         return;
     }
 
 
     noResults.style.display = "none";
-    resultsContainer.style.display = "block";
+    container.style.display = "block";
 
 
-    table.innerHTML = "";
+    const latest = results[results.length - 1];
+
+    document.getElementById("latest-taps").textContent =
+        latest.targetTapping;
 
 
-    results.forEach(function(result) {
+    document.getElementById("latest-reaction").textContent =
+        latest.reactionTime + " ms";
 
-        const row = document.createElement("tr");
+
+    document.getElementById("history-count").textContent =
+        results.length +
+        (results.length === 1 ? " test" : " tests");
+
+
+    // Compare latest result with previous result
+
+    if (results.length >= 2) {
+
+        const previous = results[results.length - 2];
+
+        const difference =
+            latest.targetTapping - previous.targetTapping;
+
+        if (difference > 0) {
+            document.getElementById("comparison").textContent =
+                "Improved";
+        }
+        else if (difference < 0) {
+            document.getElementById("comparison").textContent =
+                "Changed";
+        }
+        else {
+            document.getElementById("comparison").textContent =
+                "Similar";
+        }
+
+    } else {
+
+        document.getElementById("comparison").textContent =
+            "First test";
+    }
+
+
+    const list =
+        document.getElementById("result-list");
+
+    list.innerHTML = "";
+
+
+    // Show newest result first
+
+    [...results].reverse().forEach(function(result, index) {
 
         const date = new Date(result.date);
 
-        row.innerHTML = `
+        const card =
+            document.createElement("div");
 
-            <td>
-                ${date.toLocaleDateString()}
-            </td>
+        card.className = "result-card";
 
-            <td>
-                ${result.targetTapping} taps
-            </td>
 
-            <td>
-                ${result.reactionTime} ms
-            </td>
+        card.innerHTML = `
 
-            <td>
-                ${result.alternatingTaps}
-            </td>
+            <div class="result-date">
 
-            <td>
-                ${result.movingTarget} hits
-            </td>
+                <span class="result-number">
+                    ${results.length - index}
+                </span>
+
+                <div>
+                    <strong>
+                        ${date.toLocaleDateString()}
+                    </strong>
+
+                    <small>
+                        Weekly test
+                    </small>
+                </div>
+
+            </div>
+
+
+            <div class="result-measure">
+
+                <span>🎯</span>
+
+                <div>
+                    <small>Target Tapping</small>
+                    <strong>
+                        ${result.targetTapping}
+                    </strong>
+                    <em>taps</em>
+                </div>
+
+            </div>
+
+
+            <div class="result-measure">
+
+                <span>⚡</span>
+
+                <div>
+                    <small>Reaction Time</small>
+                    <strong>
+                        ${result.reactionTime}
+                    </strong>
+                    <em>ms</em>
+                </div>
+
+            </div>
+
+
+            <div class="result-measure">
+
+                <span>🔄</span>
+
+                <div>
+                    <small>Alternating</small>
+                    <strong>
+                        ${result.alternatingTaps}
+                    </strong>
+                    <em>taps</em>
+                </div>
+
+            </div>
+
+
+            <div class="result-measure">
+
+                <span>🎯</span>
+
+                <div>
+                    <small>Moving Target</small>
+                    <strong>
+                        ${result.movingTarget}
+                    </strong>
+                    <em>hits</em>
+                </div>
+
+            </div>
 
         `;
 
-        table.appendChild(row);
+
+        list.appendChild(card);
 
     });
 
@@ -180,10 +372,13 @@ function loadResults() {
 
 function clearResults() {
 
-    const confirmClear =
-        confirm("Are you sure you want to delete all your saved results?");
+    const confirmed =
+        confirm(
+            "Are you sure you want to delete all saved results?"
+        );
 
-    if (confirmClear) {
+
+    if (confirmed) {
 
         localStorage.removeItem("motorTrackResults");
 
@@ -201,3 +396,6 @@ loadResults();
 </body>
 
 </html>
+
+
+
