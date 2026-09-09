@@ -8,22 +8,254 @@
     <title>MotorTrack | Weekly Test</title>
 
     <link rel="stylesheet" href="style.css">
+
+    <style>
+
+        /* =====================================
+           WEEKLY TEST PAGE
+        ===================================== */
+
+        .test-page {
+            max-width: 950px;
+            margin: 0 auto;
+            padding: 70px 20px;
+        }
+
+        .test-header {
+            text-align: center;
+            margin-bottom: 45px;
+        }
+
+        .test-label {
+            color: #5b5ce2;
+            font-size: 13px;
+            font-weight: 800;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 12px;
+        }
+
+        .test-header h1 {
+            font-size: 48px;
+            margin-bottom: 15px;
+        }
+
+        .test-header p {
+            max-width: 650px;
+            margin: 0 auto;
+            color: #667085;
+            font-size: 17px;
+            line-height: 1.7;
+        }
+
+        /* =====================================
+           PROGRESS BAR
+        ===================================== */
+
+        .test-progress {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 35px;
+        }
+
+        .progress-dot {
+            width: 38px;
+            height: 8px;
+            border-radius: 20px;
+            background: #e5e7eb;
+        }
+
+        .progress-dot.active {
+            background: #5b5ce2;
+        }
+
+        /* =====================================
+           MAIN TEST CARD
+        ===================================== */
+
+        .test-card {
+            background: white;
+            border-radius: 24px;
+            padding: 45px;
+            box-shadow: 0 15px 45px rgba(30, 35, 60, 0.08);
+            border: 1px solid #eef0f5;
+            text-align: center;
+        }
+
+        .test-icon {
+            width: 70px;
+            height: 70px;
+            margin: 0 auto 20px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            background: #eef0ff;
+            border-radius: 20px;
+
+            font-size: 32px;
+        }
+
+        .test-card h2 {
+            font-size: 30px;
+            margin-bottom: 12px;
+        }
+
+        .test-card p {
+            color: #667085;
+            line-height: 1.6;
+        }
+
+        /* =====================================
+           INSTRUCTIONS
+        ===================================== */
+
+        .instructions-box {
+            background: #f8f9fc;
+            border-radius: 18px;
+            padding: 25px;
+            margin: 30px 0;
+            text-align: left;
+        }
+
+        .instructions-box h3 {
+            margin-bottom: 10px;
+        }
+
+        .instructions-box ul {
+            padding-left: 20px;
+            color: #667085;
+            line-height: 1.8;
+        }
+
+        /* =====================================
+           BUTTON
+        ===================================== */
+
+        .test-button {
+            display: inline-block;
+            border: none;
+            background: #5b5ce2;
+            color: white;
+
+            padding: 15px 30px;
+
+            border-radius: 12px;
+
+            font-size: 16px;
+            font-weight: 700;
+
+            cursor: pointer;
+
+            transition: 0.2s;
+        }
+
+        .test-button:hover {
+            transform: translateY(-2px);
+            opacity: 0.92;
+        }
+
+        /* =====================================
+           GAME AREA
+        ===================================== */
+
+        #game-area {
+            margin-top: 30px;
+            min-height: 300px;
+
+            border-radius: 18px;
+
+            background: #f8f9fc;
+
+            border: 2px dashed #dfe3eb;
+
+            overflow: hidden;
+        }
+
+        /* =====================================
+           FINAL RESULTS
+        ===================================== */
+
+        .complete-message {
+            background: #f8f9fc;
+            border-radius: 18px;
+            padding: 25px;
+            margin: 25px 0;
+        }
+
+        .complete-message h3 {
+            font-size: 22px;
+            margin-bottom: 8px;
+        }
+
+        /* =====================================
+           MOBILE
+        ===================================== */
+
+        @media (max-width: 650px) {
+
+            .test-page {
+                padding: 40px 15px;
+            }
+
+            .test-header h1 {
+                font-size: 36px;
+            }
+
+            .test-card {
+                padding: 25px 18px;
+            }
+
+            .test-card h2 {
+                font-size: 25px;
+            }
+
+            .progress-dot {
+                width: 25px;
+            }
+
+        }
+
+    </style>
 </head>
 
 <body>
 
 <header>
+
     <nav>
 
-        <div class="logo">MotorTrack</div>
+        <div class="logo">
+            MotorTrack
+        </div>
 
         <div class="nav-links">
+
             <a href="index.html">Home</a>
-            <a href="test.html">Weekly Test</a>
-            <a href="research.html">Research</a>
+
+            <a href="test.html">
+                Weekly Test
+            </a>
+
+            <a href="results.html">
+                Results
+            </a>
+
+            <a href="progress.html">
+                Progress
+            </a>
+
+            <a href="research.html">
+                Research
+            </a>
+
         </div>
 
     </nav>
+
 </header>
 
 
@@ -31,59 +263,176 @@
 
     <section class="test-page">
 
-        <h1>Weekly Motor Test</h1>
+        <!-- PAGE HEADER -->
 
-        <p>
-            This test takes approximately one minute. Try to complete it
-            under similar conditions each week.
-        </p>
+        <div class="test-header">
 
-        <div id="instructions">
-            <h2>Before you start</h2>
+            <div class="test-label">
+                Weekly Motor Assessment
+            </div>
+
+            <h1>
+                Your 1-Minute Test
+            </h1>
 
             <p>
-                Make sure you are comfortable and ready to complete the test.
+                Complete four short activities to measure
+                coordination, reaction time, motor control
+                and consistency.
             </p>
 
-            <button class="start-button" onclick="startTest()">
-                Start Test
-            </button>
         </div>
 
 
-        <!-- Test area -->
+        <!-- PROGRESS -->
 
-        <div id="test-area" style="display:none;">
+        <div class="test-progress">
 
-            <h2 id="test-title"></h2>
+            <div class="progress-dot active"></div>
 
-            <p id="test-instruction"></p>
+            <div class="progress-dot"></div>
 
-            <div id="game-area"></div>
+            <div class="progress-dot"></div>
 
-            <button id="next-button"
-                    class="start-button"
+            <div class="progress-dot"></div>
+
+        </div>
+
+
+        <!-- TEST CARD -->
+
+        <div class="test-card">
+
+
+            <!-- INSTRUCTIONS -->
+
+            <div id="instructions">
+
+                <div class="test-icon">
+                    🧠
+                </div>
+
+                <h2>
+                    Ready to begin?
+                </h2>
+
+                <p>
+                    The test takes approximately one minute.
+                    Try to complete it under similar conditions
+                    each week.
+                </p>
+
+
+                <div class="instructions-box">
+
+                    <h3>
+                        Before you start
+                    </h3>
+
+                    <ul>
+
+                        <li>Make sure you are comfortable.</li>
+
+                        <li>Use the same device where possible.</li>
+
+                        <li>Complete the test without distractions.</li>
+
+                        <li>Try to perform naturally rather than rushing.</li>
+
+                    </ul>
+
+                </div>
+
+
+                <button
+                    class="test-button"
+                    onclick="startTest()">
+
+                    Start Weekly Test →
+
+                </button>
+
+            </div>
+
+
+            <!-- TEST AREA -->
+
+            <div
+                id="test-area"
+                style="display:none;">
+
+                <div class="test-icon">
+                    🎯
+                </div>
+
+                <h2 id="test-title">
+                    Test
+                </h2>
+
+                <p id="test-instruction">
+                    Follow the instructions below.
+                </p>
+
+
+                <div id="game-area"></div>
+
+
+                <br>
+
+
+                <button
+                    id="next-button"
+                    class="test-button"
                     onclick="nextTest()"
                     style="display:none;">
-                Next Test
-            </button>
 
-        </div>
+                    Next Test →
+
+                </button>
+
+            </div>
 
 
-        <!-- Results -->
+            <!-- FINAL RESULTS -->
 
-        <div id="final-results" style="display:none;">
+            <div
+                id="final-results"
+                style="display:none;">
 
-            <h2>Test Complete!</h2>
+                <div class="test-icon">
+                    ✅
+                </div>
 
-            <p>Your results have been recorded on this device.</p>
+                <h2>
+                    Test Complete!
+                </h2>
 
-            <div id="results-display"></div>
+                <p>
+                    Your results have been recorded on this device.
+                </p>
 
-            <button class="start-button" onclick="location.reload()">
-                Take Test Again
-            </button>
+
+                <div
+                    class="complete-message">
+
+                    <h3>
+                        This week's results
+                    </h3>
+
+                    <div id="results-display"></div>
+
+                </div>
+
+
+                <button
+                    class="test-button"
+                    onclick="location.reload()">
+
+                    Take Test Again
+
+                </button>
+
+            </div>
 
         </div>
 
@@ -110,3 +459,4 @@
 </body>
 
 </html>
+
