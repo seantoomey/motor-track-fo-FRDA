@@ -503,3 +503,391 @@ main section > h1 + p {
     }
 
 }
+/* ========================================
+   MOTORTRACK RESULTS DASHBOARD
+   ======================================== */
+
+.results-page {
+    max-width: 1100px;
+}
+
+
+/* Page heading */
+
+.results-heading {
+    margin-top: 30px;
+    margin-bottom: 35px;
+}
+
+.results-label {
+    color: #4f46e5;
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 1.6px;
+    margin: 0 0 8px;
+}
+
+.results-heading h1 {
+    font-size: 52px;
+    line-height: 1.05;
+    margin: 0 0 15px;
+}
+
+.results-heading > p:last-child {
+    color: #667085;
+    font-size: 18px;
+    max-width: 650px;
+    margin: 0;
+}
+
+
+/* ========================================
+   STATISTICS CARDS
+   ======================================== */
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    margin-bottom: 35px;
+}
+
+.stat-card {
+    background: white;
+    border: 1px solid #e5e8ef;
+    border-radius: 18px;
+    padding: 22px;
+
+    display: flex;
+    align-items: center;
+    gap: 15px;
+
+    box-shadow: 0 8px 25px rgba(20, 30, 50, 0.05);
+
+    transition: 0.2s;
+}
+
+.stat-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 30px rgba(20, 30, 50, 0.08);
+}
+
+.stat-icon {
+    width: 48px;
+    height: 48px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: #eef0ff;
+    border-radius: 13px;
+
+    font-size: 22px;
+}
+
+.stat-label {
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 1px;
+    color: #667085;
+
+    margin: 0 0 3px;
+}
+
+.stat-card h2 {
+    font-size: 25px;
+    margin: 0;
+    color: #172033;
+}
+
+
+/* ========================================
+   EMPTY RESULTS
+   ======================================== */
+
+.empty-results {
+    background: white;
+    border: 1px solid #e5e8ef;
+    border-radius: 22px;
+
+    padding: 65px 30px;
+
+    text-align: center;
+
+    box-shadow: 0 8px 25px rgba(20, 30, 50, 0.05);
+}
+
+.empty-icon {
+    font-size: 48px;
+    margin-bottom: 15px;
+}
+
+.empty-results h2 {
+    margin: 0 0 10px;
+}
+
+.empty-results p {
+    color: #667085;
+    max-width: 500px;
+    margin: 0 auto 25px;
+}
+
+
+/* ========================================
+   HISTORY CARD
+   ======================================== */
+
+.history-card {
+    background: white;
+
+    border: 1px solid #e5e8ef;
+    border-radius: 22px;
+
+    padding: 30px;
+
+    box-shadow: 0 8px 25px rgba(20, 30, 50, 0.05);
+}
+
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    margin-bottom: 25px;
+}
+
+.section-header h2 {
+    margin: 0;
+    font-size: 28px;
+}
+
+.section-header .results-label {
+    margin-bottom: 3px;
+}
+
+.history-count {
+    background: #f1f3ff;
+    color: #4f46e5;
+
+    padding: 8px 13px;
+
+    border-radius: 20px;
+
+    font-size: 13px;
+    font-weight: 700;
+}
+
+
+/* ========================================
+   INDIVIDUAL RESULT
+   ======================================== */
+
+.result-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.result-card {
+    display: grid;
+
+    grid-template-columns: 1.2fr repeat(4, 1fr);
+
+    align-items: center;
+
+    gap: 20px;
+
+    padding: 20px;
+
+    border: 1px solid #edf0f5;
+
+    border-radius: 16px;
+
+    transition: 0.2s;
+}
+
+.result-card:hover {
+    background: #fafbff;
+    border-color: #dfe3f0;
+    transform: translateY(-2px);
+}
+
+
+/* Date */
+
+.result-date {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.result-number {
+    width: 35px;
+    height: 35px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 10px;
+
+    background: #eef0ff;
+    color: #4f46e5;
+
+    font-weight: 800;
+    font-size: 13px;
+}
+
+.result-date strong {
+    display: block;
+    font-size: 15px;
+}
+
+.result-date small {
+    display: block;
+    color: #98a2b3;
+    margin-top: 2px;
+}
+
+
+/* Measurements */
+
+.result-measure {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+}
+
+.result-measure > span {
+    font-size: 18px;
+}
+
+.result-measure small {
+    display: block;
+    color: #667085;
+    font-size: 11px;
+}
+
+.result-measure strong {
+    font-size: 18px;
+    margin-right: 3px;
+}
+
+.result-measure em {
+    font-size: 11px;
+    color: #98a2b3;
+    font-style: normal;
+}
+
+
+/* ========================================
+   RESEARCH NOTE
+   ======================================== */
+
+.research-note {
+    display: flex;
+
+    gap: 18px;
+
+    margin-top: 25px;
+
+    padding: 24px;
+
+    background: #f1f3ff;
+
+    border: 1px solid #dfe2ff;
+
+    border-radius: 18px;
+}
+
+.research-note-icon {
+    font-size: 27px;
+}
+
+.research-note h3 {
+    margin: 0 0 5px;
+    font-size: 17px;
+}
+
+.research-note p {
+    margin: 0;
+    color: #596275;
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+
+/* ========================================
+   CLEAR BUTTON
+   ======================================== */
+
+.clear-button {
+    margin-top: 20px;
+
+    background: transparent;
+
+    border: 1px solid #d7dbe4;
+
+    color: #667085;
+
+    padding: 11px 17px;
+
+    border-radius: 10px;
+
+    cursor: pointer;
+
+    font-weight: 600;
+}
+
+.clear-button:hover {
+    background: #f5f6f8;
+}
+
+
+/* ========================================
+   MOBILE
+   ======================================== */
+
+@media (max-width: 900px) {
+
+    .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .result-card {
+        grid-template-columns: 1fr 1fr;
+    }
+
+}
+
+
+@media (max-width: 600px) {
+
+    .results-heading h1 {
+        font-size: 38px;
+    }
+
+    .stats-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .history-card {
+        padding: 20px;
+    }
+
+    .section-header {
+        align-items: flex-start;
+        gap: 15px;
+    }
+
+    .result-card {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+
+    .research-note {
+        padding: 20px;
+    }
+
+}
