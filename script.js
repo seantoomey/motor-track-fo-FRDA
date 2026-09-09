@@ -1,24 +1,19 @@
-// ========================================
-// MotorTrack Weekly Test
-// ========================================
+// ==========================================
+// MOTORTRACK - WEEKLY MOTOR TEST
+// ==========================================
 
+// Current test number
 let currentTest = 0;
 
-const results = {
+// Store results for this weekly session
+let sessionResults = {
     targetTapping: 0,
     reactionTime: 0,
     alternatingTaps: 0,
     movingTarget: 0
 };
 
-let testStartTime;
-let tapCount = 0;
-let reactionStart;
-let alternatingCount = 0;
-let movingHits = 0;
-
-
-// The four tests
+// Test order
 const tests = [
     "target",
     "reaction",
@@ -26,207 +21,243 @@ const tests = [
     "moving"
 ];
 
-
-// ========================================
-// START TEST
-// ========================================
+// ==========================================
+// START THE TEST
+// ==========================================
 
 function startTest() {
+
+    currentTest = 0;
+
+    sessionResults = {
+        targetTapping: 0,
+        reactionTime: 0,
+        alternatingTaps: 0,
+        movingTarget: 0
+    };
 
     document.getElementById("instructions").style.display = "none";
     document.getElementById("test-area").style.display = "block";
 
-    currentTest = 0;
-
-    loadTest();
+    runCurrentTest();
 }
 
+// ==========================================
+// RUN CURRENT TEST
+// ==========================================
 
-// ========================================
-// LOAD CURRENT TEST
-// ========================================
+function runCurrentTest() {
 
-function loadTest() {
+    const test = tests[currentTest];
 
     document.getElementById("next-button").style.display = "none";
+
+    if (test === "target") {
+        targetTappingTest();
+    }
+
+    if (test === "reaction") {
+        reactionTimeTest();
+    }
+
+    if (test === "alternating") {
+        alternatingTapsTest();
+    }
+
+    if (test === "moving") {
+        movingTargetTest();
+    }
+}
+
+// ==========================================
+// GO TO NEXT TEST
+// ==========================================
+
+function nextTest() {
+
+    currentTest++;
+
+    if (currentTest >= tests.length) {
+        finishTest();
+        return;
+    }
+
+    runCurrentTest();
+}
+
+// ==========================================
+// 1. TARGET TAPPING TEST
+// ==========================================
+
+function targetTappingTest() {
+
+    document.getElementById("test-title").textContent =
+        "🎯 Target Tapping";
+
+    document.getElementById("test-instruction").textContent =
+        "Tap the target as many times as you can in 15 seconds.";
 
     const gameArea = document.getElementById("game-area");
 
     gameArea.innerHTML = "";
 
-    const test = tests[currentTest];
+    let taps = 0;
+    let timeLeft = 15;
 
-    if (test === "target") {
-        targetTapping();
-    }
+    const target = document.createElement("button");
 
-    if (test === "reaction") {
-        reactionTime();
-    }
-
-    if (test === "alternating") {
-        alternatingTaps();
-    }
-
-    if (test === "moving") {
-        movingTarget();
-    }
-}
-
-
-// ========================================
-// TEST 1 — TARGET TAPPING
-// ========================================
-
-function targetTapping() {
-
-    document.getElementById("test-title").textContent =
-        "Test 1 — Target Tapping";
-
-    document.getElementById("test-instruction").textContent =
-        "Tap the targets as quickly as you can for 15 seconds.";
-
-    const gameArea = document.getElementById("game-area");
+    target.textContent = "TAP";
+    target.style.position = "absolute";
+    target.style.width = "80px";
+    target.style.height = "80px";
+    target.style.borderRadius = "50%";
+    target.style.border = "none";
+    target.style.background = "#5b5ce2";
+    target.style.color = "white";
+    target.style.fontSize = "18px";
+    target.style.fontWeight = "bold";
+    target.style.cursor = "pointer";
 
     gameArea.style.position = "relative";
     gameArea.style.height = "300px";
-    gameArea.style.background = "#eef0ff";
-    gameArea.style.borderRadius = "15px";
 
-    tapCount = 0;
+    gameArea.appendChild(target);
 
-    createTarget();
+    function moveTarget() {
 
-    testStartTime = Date.now();
+        const maxX = gameArea.clientWidth - 90;
+        const maxY = gameArea.clientHeight - 90;
 
-    const timer = setInterval(() => {
+        target.style.left =
+            Math.random() * Math.max(maxX, 0) + "px";
 
-        const elapsed = Date.now() - testStartTime;
+        target.style.top =
+            Math.random() * Math.max(maxY, 0) + "px";
+    }
 
-        if (elapsed >= 15000) {
+    target.onclick = function () {
+
+        taps++;
+
+        moveTarget();
+    };
+
+    moveTarget();
+
+    const timer = setInterval(function () {
+
+        timeLeft--;
+
+        document.getElementById("test-instruction").textContent =
+            "Time left: " + timeLeft + " seconds";
+
+        if (timeLeft <= 0) {
 
             clearInterval(timer);
 
-            gameArea.innerHTML =
-                "<h3>Finished!</h3>" +
-                "<p>Targets tapped: " + tapCount + "</p>";
+            sessionResults.targetTapping = taps;
 
-            results.targetTapping = tapCount;
+            gameArea.innerHTML =
+                "<h3>Test complete!</h3>" +
+                "<p>You tapped the target <strong>" +
+                taps +
+                "</strong> times.</p>";
 
             document.getElementById("next-button").style.display = "inline-block";
         }
 
-    }, 100);
+    }, 1000);
 }
 
+// ==========================================
+// 2. REACTION TIME TEST
+// ==========================================
 
-function createTarget() {
-
-    const gameArea = document.getElementById("game-area");
-
-    const target = document.createElement("button");
-
-    target.textContent = "●";
-
-    target.style.position = "absolute";
-    target.style.width = "55px";
-    target.style.height = "55px";
-    target.style.borderRadius = "50%";
-    target.style.border = "none";
-    target.style.cursor = "pointer";
-    target.style.fontSize = "25px";
-
-    target.style.left =
-        Math.random() * (gameArea.clientWidth - 60) + "px";
-
-    target.style.top =
-        Math.random() * (gameArea.clientHeight - 60) + "px";
-
-    target.onclick = function () {
-
-        tapCount++;
-
-        target.remove();
-
-        createTarget();
-    };
-
-    gameArea.appendChild(target);
-}
-
-
-// ========================================
-// TEST 2 — REACTION TIME
-// ========================================
-
-function reactionTime() {
+function reactionTimeTest() {
 
     document.getElementById("test-title").textContent =
-        "Test 2 — Reaction Time";
+        "⚡ Reaction Time";
 
     document.getElementById("test-instruction").textContent =
-        "Wait for the button to change, then tap it as quickly as possible.";
+        "Wait for the screen to change, then tap the button as quickly as possible.";
 
     const gameArea = document.getElementById("game-area");
+
+    gameArea.innerHTML = "";
 
     const button = document.createElement("button");
 
-    button.textContent = "Wait...";
-
-    button.style.width = "100%";
-    button.style.height = "180px";
-    button.style.fontSize = "28px";
-    button.style.border = "none";
-    button.style.borderRadius = "15px";
-    button.style.cursor = "pointer";
+    button.textContent = "WAIT...";
+    button.className = "start-button";
 
     gameArea.appendChild(button);
 
-    const delay = 1500 + Math.random() * 3000;
+    let startTime = null;
+    let finished = false;
 
-    setTimeout(() => {
+    const delay =
+        1500 + Math.random() * 3000;
+
+    setTimeout(function () {
+
+        if (finished) return;
 
         button.textContent = "TAP NOW!";
+        button.style.background = "#22c55e";
 
-        reactionStart = performance.now();
-
-        button.onclick = function () {
-
-            const reaction =
-                performance.now() - reactionStart;
-
-            results.reactionTime = Math.round(reaction);
-
-            button.textContent =
-                "Reaction time: " +
-                Math.round(reaction) +
-                " ms";
-
-            document.getElementById("next-button").style.display =
-                "inline-block";
-        };
+        startTime = performance.now();
 
     }, delay);
+
+    button.onclick = function () {
+
+        if (finished) return;
+
+        if (startTime === null) {
+
+            document.getElementById("test-instruction").textContent =
+                "Too early! Wait for TAP NOW.";
+
+            return;
+        }
+
+        finished = true;
+
+        const reaction =
+            Math.round(performance.now() - startTime);
+
+        sessionResults.reactionTime = reaction;
+
+        gameArea.innerHTML =
+            "<h3>Test complete!</h3>" +
+            "<p>Your reaction time was <strong>" +
+            reaction +
+            " ms</strong>.</p>";
+
+        document.getElementById("next-button").style.display =
+            "inline-block";
+    };
 }
 
+// ==========================================
+// 3. ALTERNATING TAPS TEST
+// ==========================================
 
-// ========================================
-// TEST 3 — ALTERNATING TAPS
-// ========================================
-
-function alternatingTaps() {
+function alternatingTapsTest() {
 
     document.getElementById("test-title").textContent =
-        "Test 3 — Alternating Taps";
+        "🔄 Alternating Taps";
 
     document.getElementById("test-instruction").textContent =
-        "Tap the two buttons alternately for 10 seconds.";
+        "Press A and B alternately for 10 seconds.";
 
     const gameArea = document.getElementById("game-area");
 
-    alternatingCount = 0;
+    gameArea.innerHTML = "";
 
     let expected = "A";
+    let correct = 0;
+    let timeLeft = 10;
 
     const buttonA = document.createElement("button");
     const buttonB = document.createElement("button");
@@ -234,207 +265,231 @@ function alternatingTaps() {
     buttonA.textContent = "A";
     buttonB.textContent = "B";
 
-    buttonA.style.width = "45%";
-    buttonB.style.width = "45%";
+    buttonA.className = "start-button";
+    buttonB.className = "start-button";
 
-    buttonA.style.height = "150px";
-    buttonB.style.height = "150px";
-
-    buttonA.style.fontSize = "40px";
-    buttonB.style.fontSize = "40px";
-
-    buttonA.style.margin = "2%";
-    buttonB.style.margin = "2%";
+    buttonA.style.margin = "10px";
+    buttonB.style.margin = "10px";
 
     gameArea.appendChild(buttonA);
     gameArea.appendChild(buttonB);
 
-    function tap(letter) {
+    function press(letter) {
 
         if (letter === expected) {
 
-            alternatingCount++;
+            correct++;
 
             if (expected === "A") {
                 expected = "B";
             } else {
                 expected = "A";
             }
+
         }
     }
 
-    buttonA.onclick = () => tap("A");
-    buttonB.onclick = () => tap("B");
+    buttonA.onclick = function () {
+        press("A");
+    };
 
-    const start = Date.now();
+    buttonB.onclick = function () {
+        press("B");
+    };
 
-    const timer = setInterval(() => {
+    const timer = setInterval(function () {
 
-        if (Date.now() - start >= 10000) {
+        timeLeft--;
+
+        document.getElementById("test-instruction").textContent =
+            "Time left: " + timeLeft + " seconds";
+
+        if (timeLeft <= 0) {
 
             clearInterval(timer);
 
-            results.alternatingTaps = alternatingCount;
+            sessionResults.alternatingTaps = correct;
 
             gameArea.innerHTML =
-                "<h3>Finished!</h3>" +
-                "<p>Correct alternating taps: " +
-                alternatingCount +
-                "</p>";
+                "<h3>Test complete!</h3>" +
+                "<p>Correct alternating taps: <strong>" +
+                correct +
+                "</strong>.</p>";
 
             document.getElementById("next-button").style.display =
                 "inline-block";
         }
 
-    }, 100);
+    }, 1000);
 }
 
+// ==========================================
+// 4. MOVING TARGET TEST
+// ==========================================
 
-// ========================================
-// TEST 4 — MOVING TARGET
-// ========================================
-
-function movingTarget() {
+function movingTargetTest() {
 
     document.getElementById("test-title").textContent =
-        "Test 4 — Moving Target";
+        "✋ Moving Target";
 
     document.getElementById("test-instruction").textContent =
-        "Tap the moving target as many times as you can for 15 seconds.";
+        "Tap the moving target as many times as possible in 15 seconds.";
 
     const gameArea = document.getElementById("game-area");
 
+    gameArea.innerHTML = "";
+
     gameArea.style.position = "relative";
     gameArea.style.height = "300px";
-    gameArea.style.background = "#eef0ff";
-    gameArea.style.borderRadius = "15px";
 
-    movingHits = 0;
+    let hits = 0;
+    let timeLeft = 15;
 
     const target = document.createElement("button");
 
     target.textContent = "●";
 
     target.style.position = "absolute";
-    target.style.width = "55px";
-    target.style.height = "55px";
+    target.style.width = "70px";
+    target.style.height = "70px";
     target.style.borderRadius = "50%";
     target.style.border = "none";
-    target.style.cursor = "pointer";
+    target.style.background = "#7c3aed";
+    target.style.color = "white";
     target.style.fontSize = "25px";
+    target.style.cursor = "pointer";
 
     gameArea.appendChild(target);
 
     function moveTarget() {
 
+        const maxX = gameArea.clientWidth - 80;
+        const maxY = gameArea.clientHeight - 80;
+
         target.style.left =
-            Math.random() * (gameArea.clientWidth - 60) + "px";
+            Math.random() * Math.max(maxX, 0) + "px";
 
         target.style.top =
-            Math.random() * (gameArea.clientHeight - 60) + "px";
+            Math.random() * Math.max(maxY, 0) + "px";
     }
 
     target.onclick = function () {
 
-        movingHits++;
+        hits++;
 
         moveTarget();
     };
 
     moveTarget();
 
-    const start = Date.now();
+    const movement = setInterval(function () {
 
-    const timer = setInterval(() => {
+        moveTarget();
 
-        if (Date.now() - start >= 15000) {
+    }, 700);
+
+    const timer = setInterval(function () {
+
+        timeLeft--;
+
+        document.getElementById("test-instruction").textContent =
+            "Time left: " + timeLeft + " seconds";
+
+        if (timeLeft <= 0) {
 
             clearInterval(timer);
+            clearInterval(movement);
 
-            results.movingTarget = movingHits;
+            sessionResults.movingTarget = hits;
 
             gameArea.innerHTML =
-                "<h3>Finished!</h3>" +
-                "<p>Targets hit: " +
-                movingHits +
-                "</p>";
+                "<h3>Test complete!</h3>" +
+                "<p>Moving-target hits: <strong>" +
+                hits +
+                "</strong>.</p>";
 
             document.getElementById("next-button").style.display =
                 "inline-block";
         }
 
-    }, 100);
+    }, 1000);
 }
 
-
-// ========================================
-// NEXT TEST
-// ========================================
-
-function nextTest() {
-
-    currentTest++;
-
-    if (currentTest < tests.length) {
-
-        loadTest();
-
-    } else {
-
-        finishTest();
-    }
-}
-
-
-// ========================================
-// FINISH TEST
-// ========================================
+// ==========================================
+// FINISH THE WEEKLY TEST
+// ==========================================
 
 function finishTest() {
 
     document.getElementById("test-area").style.display = "none";
-
     document.getElementById("final-results").style.display = "block";
 
-    const resultsDisplay =
-        document.getElementById("results-display");
+    const today = new Date();
 
-    resultsDisplay.innerHTML = `
-        <p><strong>Target tapping:</strong>
-        ${results.targetTapping} taps</p>
+    const result = {
 
-        <p><strong>Reaction time:</strong>
-        ${results.reactionTime} ms</p>
+        date: today.toISOString(),
 
-        <p><strong>Alternating taps:</strong>
-        ${results.alternatingTaps}</p>
+        targetTapping: sessionResults.targetTapping,
 
-        <p><strong>Moving target:</strong>
-        ${results.movingTarget} hits</p>
-    `;
+        reactionTime: sessionResults.reactionTime,
 
+        alternatingTaps: sessionResults.alternatingTaps,
 
-    // Save the result to the browser
+        movingTarget: sessionResults.movingTarget
 
-    const previousResults =
+    };
+
+    // Get previous results
+    let savedResults =
         JSON.parse(localStorage.getItem("motorTrackResults")) || [];
 
-    previousResults.push({
+    // Add this week's result
+    savedResults.push(result);
 
-        date: new Date().toISOString(),
-
-        targetTapping: results.targetTapping,
-
-        reactionTime: results.reactionTime,
-
-        alternatingTaps: results.alternatingTaps,
-
-        movingTarget: results.movingTarget
-
-    });
-
+    // Save everything
     localStorage.setItem(
         "motorTrackResults",
-        JSON.stringify(previousResults)
+        JSON.stringify(savedResults)
     );
+
+    // Display results
+    document.getElementById("results-display").innerHTML =
+
+        "<div class='result-card'>" +
+
+        "<div class='result-measure'>" +
+        "<span>🎯</span>" +
+        "<div><small>Target Tapping</small>" +
+        "<strong>" +
+        result.targetTapping +
+        "</strong></div></div>" +
+
+        "<div class='result-measure'>" +
+        "<span>⚡</span>" +
+        "<div><small>Reaction Time</small>" +
+        "<strong>" +
+        result.reactionTime +
+        " ms</strong></div></div>" +
+
+        "<div class='result-measure'>" +
+        "<span>🔄</span>" +
+        "<div><small>Alternating Taps</small>" +
+        "<strong>" +
+        result.alternatingTaps +
+        "</strong></div></div>" +
+
+        "<div class='result-measure'>" +
+        "<span>✋</span>" +
+        "<div><small>Moving Target</small>" +
+        "<strong>" +
+        result.movingTarget +
+        "</strong></div></div>" +
+
+        "</div>";
 }
+
+// ==========================================
+// END OF SCRIPT
+// ==========================================
+ 
