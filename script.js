@@ -188,7 +188,7 @@ function reactionTimeTest() {
     const button = document.createElement("button");
 
     button.textContent = "WAIT...";
-    button.className = "start-button";
+    button.className = "start-button reaction-button";
 
     gameArea.appendChild(button);
 
