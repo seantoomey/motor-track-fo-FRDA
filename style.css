@@ -902,3 +902,14 @@ main section > h1 + p {
     margin: 30px auto;
     display: block;
 }
+#reaction-button {
+    width: 90%;
+    height: 300px;
+    font-size: 60px;
+    font-weight: 800;
+    border-radius: 30px;
+    border: none;
+    cursor: pointer;
+    margin: 30px auto;
+    display: block;
+}
