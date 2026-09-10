@@ -889,16 +889,19 @@ main section > h1 + p {
     .research-note {
         padding: 20px;
     }
+/* BIG REACTION TIME BUTTON */
 .reaction-button {
     width: 90% !important;
+    max-width: 700px !important;
     height: 300px !important;
     font-size: 60px !important;
-    font-weight: 800;
+    font-weight: 800 !important;
     border-radius: 25px !important;
-    border: none;
+    border: none !important;
     cursor: pointer;
     margin: 30px auto !important;
     display: block !important;
+    box-sizing: border-box;
 }
 
 
