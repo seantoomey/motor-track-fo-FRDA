@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>MotorMonitor | Create Profile</title>
+    <meta name="description" content="Create an anonymous MotorMonitor research profile.">
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <header>
+        <nav>
+            <div class="logo">MotorMonitor</div>
+
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="test.html">Weekly Test</a>
+                <a href="research.html">Research</a>
+            </div>
+        </nav>
+    </header>
+
+
+    <!-- Main content -->
+    <main>
+
+        <section class="hero">
+
+            <div class="hero-text">
+
+                <p class="small-title">MOTORMONITOR PARTICIPANT PROFILE</p>
+
+                <h1>Create your profile</h1>
+
+                <p class="description">
+                    Before taking the weekly test, please create your
+                    anonymous research profile.
+                </p>
+
+                <div class="profile-box">
+
+                    <h2>Your participant number</h2>
+
+                    <p>
+                        MotorMonitor will automatically assign you an
+                        anonymous participant number.
+                    </p>
+
+                    <p>
+                        Your name is not required.
+                    </p>
+
+                    <button id="create-profile" class="start-button">
+                        Create Anonymous Profile
+                    </button>
+
+                    <div id="profile-created" style="display: none;">
+
+                        <h2>Your participant number</h2>
+
+                        <p id="participant-number"></p>
+
+                        <p>
+                            Please keep this number safe. It will be used
+                            to connect your weekly test results to your
+                            research profile.
+                        </p>
+
+                        <a href="test.html" class="start-button">
+                            Continue to Weekly Test
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- Footer -->
+    <footer>
+
+        <p>
+            MotorMonitor — Young Scientist & Technology Exhibition Project
+        </p>
+
+        <p>
+            Research prototype • Not for medical diagnosis
+        </p>
+
+    </footer>
+
+
+    <script>
+
+        const createProfileButton =
+            document.getElementById("create-profile");
+
+        const profileCreated =
+            document.getElementById("profile-created");
+
+        const participantNumber =
+            document.getElementById("participant-number");
+
+
+        createProfileButton.addEventListener("click", function() {
+
+            const existingProfile =
+                localStorage.getItem("motorMonitorProfile");
+
+            if (existingProfile) {
+
+                const profile =
+                    JSON.parse(existingProfile);
+
+                participantNumber.textContent =
+                    profile.participantId;
+
+            } else {
+
+                const participantId =
+                    "MM-" +
+                    Math.floor(100000 + Math.random() * 900000);
+
+                const profile = {
+                    participantId: participantId,
+                    createdAt: new Date().toISOString()
+                };
+
+                localStorage.setItem(
+                    "motorMonitorProfile",
+                    JSON.stringify(profile)
+                );
+
+                participantNumber.textContent =
+                    participantId;
+
+            }
+
+            createProfileButton.style.display = "none";
+            profileCreated.style.display = "block";
+
+        });
+
+    </script>
+
+</body>
+</html>
