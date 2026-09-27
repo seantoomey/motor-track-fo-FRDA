@@ -426,19 +426,24 @@ function finishTest() {
 
     const today = new Date();
 
-    const result = {
+    const savedProfile =
+    JSON.parse(localStorage.getItem("motorMonitorProfile"));
 
-        date: today.toISOString(),
+const result = {
 
-        targetTapping: sessionResults.targetTapping,
+    participantId: savedProfile.participantId,
 
-        reactionTime: sessionResults.reactionTime,
+    date: today.toISOString(),
 
-        alternatingTaps: sessionResults.alternatingTaps,
+    targetTapping: sessionResults.targetTapping,
 
-        movingTarget: sessionResults.movingTarget
+    reactionTime: sessionResults.reactionTime,
 
-    };
+    alternatingTaps: sessionResults.alternatingTaps,
+
+    movingTarget: sessionResults.movingTarget
+
+};
 
     // Get previous results
     let savedResults =
