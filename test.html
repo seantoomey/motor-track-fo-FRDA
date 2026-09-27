@@ -413,7 +413,14 @@
 
 
 <body>
+<script>
+    const savedProfile =
+        localStorage.getItem("motorMonitorProfile");
 
+    if (!savedProfile) {
+        window.location.href = "profile.html";
+    }
+</script>
 
 <!-- =========================================
      NAVIGATION
