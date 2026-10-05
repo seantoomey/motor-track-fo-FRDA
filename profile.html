@@ -1,81 +1,262 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
 
     <title>MotorMonitor | Create Profile</title>
-    <meta name="description" content="Create an anonymous MotorMonitor research profile.">
+
+    <meta
+        name="description"
+        content="Create an anonymous MotorMonitor research profile."
+    >
 
     <link rel="stylesheet" href="style.css">
+
 </head>
+
 
 <body>
 
+
     <!-- Navigation -->
+
     <header>
+
         <nav>
-            <div class="logo">MotorMonitor</div>
+
+            <div class="logo">
+                MotorMonitor
+            </div>
+
 
             <div class="nav-links">
-                <a href="index.html">Home</a>
-                <a href="test.html">Weekly Test</a>
-                <a href="research.html">Research</a>
+
+                <a href="index.html">
+                    Home
+                </a>
+
+                <a href="test.html">
+                    Weekly Test
+                </a>
+
+                <a href="research.html">
+                    Research
+                </a>
+
+                <a href="signin.html">
+                    Sign In
+                </a>
+
             </div>
+
         </nav>
+
     </header>
 
 
     <!-- Main content -->
+
     <main>
 
         <section class="hero">
 
             <div class="hero-text">
 
-                <p class="small-title">MOTORMONITOR PARTICIPANT PROFILE</p>
+                <p class="small-title">
+                    MOTORMONITOR PARTICIPANT PROFILE
+                </p>
 
-                <h1>Create your profile</h1>
+
+                <h1>
+                    Create your profile
+                </h1>
+
 
                 <p class="description">
-                    Before taking the weekly test, please create your
-                    anonymous research profile.
+
+                    Create an anonymous profile before taking
+                    the MotorMonitor weekly test.
+
+                    <br><br>
+
+                    Do not use your real name or other information
+                    that could identify you.
+
                 </p>
+
 
                 <div class="profile-box">
 
-                    <h2>Your participant number</h2>
+
+                    <!-- ACCOUNT NAME -->
+
+                    <h2>
+                        Choose an account name
+                    </h2>
+
 
                     <p>
-                        MotorMonitor will automatically assign you an
-                        anonymous participant number.
+                        Choose a nickname that you will remember,
+                        but that does not reveal your identity.
                     </p>
+
+
+                    <input
+                        type="text"
+                        id="account-name"
+                        placeholder="Example: PizzaLover45"
+                        maxlength="20"
+                        autocomplete="username"
+                    >
+
+
+                    <p class="profile-note">
+                        Do not use your real name, initials,
+                        school name, birthday, or anything else
+                        that could identify you.
+                    </p>
+
+
+                    <!-- PASSWORD -->
+
+                    <h2>
+                        Create a password
+                    </h2>
+
+
+                    <input
+                        type="password"
+                        id="password"
+                        placeholder="At least 8 characters"
+                        minlength="8"
+                        autocomplete="new-password"
+                    >
+
+
+                    <!-- AGE -->
+
+                    <h2>
+                        How old are you?
+                    </h2>
+
 
                     <p>
-                        Your name is not required.
+                        Enter your age in whole years.
                     </p>
 
-                    <button id="create-profile" class="start-button">
+
+                    <input
+                        type="number"
+                        id="age"
+                        min="12"
+                        max="18"
+                        placeholder="Example: 15"
+                    >
+
+
+                    <!-- STUDY GROUP -->
+
+                    <h2>
+                        Study group
+                    </h2>
+
+
+                    <p>
+                        Select the group you are participating in.
+                    </p>
+
+
+                    <select id="study-group">
+
+                        <option value="">
+                            Select your study group
+                        </option>
+
+                        <option value="FRDA">
+                            FRDA group
+                        </option>
+
+                        <option value="Control">
+                            Control group
+                        </option>
+
+                    </select>
+
+
+                    <br>
+                    <br>
+
+
+                    <!-- CREATE BUTTON -->
+
+                    <button
+                        id="create-profile"
+                        class="start-button"
+                    >
                         Create Anonymous Profile
                     </button>
 
-                    <div id="profile-created" style="display: none;">
 
-                        <h2>Your participant number</h2>
+                    <!-- ERROR MESSAGE -->
+
+                    <p
+                        id="error-message"
+                        style="display: none;"
+                    ></p>
+
+
+                    <!-- PROFILE CREATED -->
+
+                    <div
+                        id="profile-created"
+                        style="display: none;"
+                    >
+
+                        <h2>
+                            Profile created
+                        </h2>
+
+
+                        <p>
+                            Your anonymous participant number is:
+                        </p>
+
 
                         <p id="participant-number"></p>
 
+
                         <p>
-                            Please keep this number safe. It will be used
-                            to connect your weekly test results to your
+                            Your account name is:
+                        </p>
+
+
+                        <p id="created-account-name"></p>
+
+
+                        <p>
+                            Keep your account name and password safe.
+                            Your participant number will be used to
+                            connect your weekly test results to your
                             research profile.
                         </p>
 
-                        <a href="test.html" class="start-button">
+
+                        <a
+                            href="test.html"
+                            class="start-button"
+                        >
                             Continue to Weekly Test
                         </a>
 
                     </div>
+
 
                 </div>
 
@@ -87,11 +268,13 @@
 
 
     <!-- Footer -->
+
     <footer>
 
         <p>
             MotorMonitor — Young Scientist & Technology Exhibition Project
         </p>
+
 
         <p>
             Research prototype • Not for medical diagnosis
@@ -102,56 +285,305 @@
 
     <script>
 
+
         const createProfileButton =
             document.getElementById("create-profile");
 
+
+        const accountNameInput =
+            document.getElementById("account-name");
+
+
+        const passwordInput =
+            document.getElementById("password");
+
+
+        const ageInput =
+            document.getElementById("age");
+
+
+        const studyGroupInput =
+            document.getElementById("study-group");
+
+
+        const errorMessage =
+            document.getElementById("error-message");
+
+
         const profileCreated =
             document.getElementById("profile-created");
+
 
         const participantNumber =
             document.getElementById("participant-number");
 
 
-        createProfileButton.addEventListener("click", function() {
+        const createdAccountName =
+            document.getElementById("created-account-name");
 
-            const existingProfile =
-                localStorage.getItem("motorMonitorProfile");
 
-            if (existingProfile) {
+        async function hashPassword(password) {
 
-                const profile =
-                    JSON.parse(existingProfile);
+            const encoder =
+                new TextEncoder();
 
-                participantNumber.textContent =
-                    profile.participantId;
 
-            } else {
+            const data =
+                encoder.encode(password);
+
+
+            const hashBuffer =
+                await crypto.subtle.digest(
+                    "SHA-256",
+                    data
+                );
+
+
+            const hashArray =
+                Array.from(
+                    new Uint8Array(hashBuffer)
+                );
+
+
+            return hashArray
+                .map(
+                    byte =>
+                        byte
+                            .toString(16)
+                            .padStart(2, "0")
+                )
+                .join("");
+
+        }
+
+
+        function showError(message) {
+
+            errorMessage.textContent =
+                message;
+
+            errorMessage.style.display =
+                "block";
+
+        }
+
+
+        createProfileButton.addEventListener(
+            "click",
+            async function() {
+
+
+                errorMessage.style.display =
+                    "none";
+
+
+                const accountName =
+                    accountNameInput.value.trim();
+
+
+                const password =
+                    passwordInput.value;
+
+
+                const age =
+                    ageInput.value;
+
+
+                const studyGroup =
+                    studyGroupInput.value;
+
+
+                /* ACCOUNT NAME CHECK */
+
+                if (
+                    accountName.length < 3 ||
+                    accountName.length > 20
+                ) {
+
+                    showError(
+                        "Your account name must be between 3 and 20 characters."
+                    );
+
+                    return;
+
+                }
+
+
+                if (
+                    !/^[a-zA-Z0-9_-]+$/.test(accountName)
+                ) {
+
+                    showError(
+                        "Your account name can only contain letters, numbers, underscores and hyphens."
+                    );
+
+                    return;
+
+                }
+
+
+                /* PASSWORD CHECK */
+
+                if (password.length < 8) {
+
+                    showError(
+                        "Your password must be at least 8 characters long."
+                    );
+
+                    return;
+
+                }
+
+
+                /* AGE CHECK */
+
+                const ageNumber =
+                    Number(age);
+
+
+                if (
+                    !age ||
+                    ageNumber < 12 ||
+                    ageNumber > 18
+                ) {
+
+                    showError(
+                        "Please enter an age between 12 and 18."
+                    );
+
+                    return;
+
+                }
+
+
+                /* STUDY GROUP CHECK */
+
+                if (!studyGroup) {
+
+                    showError(
+                        "Please select your study group."
+                    );
+
+                    return;
+
+                }
+
+
+                /* CHECK FOR EXISTING PROFILE */
+
+                const existingProfile =
+                    localStorage.getItem(
+                        "motorMonitorProfile"
+                    );
+
+
+                if (existingProfile) {
+
+                    showError(
+                        "A MotorMonitor profile already exists on this device."
+                    );
+
+                    return;
+
+                }
+
+
+                /* CREATE ANONYMOUS PARTICIPANT NUMBER */
 
                 const participantId =
                     "MM-" +
-                    Math.floor(100000 + Math.random() * 900000);
+                    Math.floor(
+                        100000 +
+                        Math.random() * 900000
+                    );
+
+
+                /* HASH PASSWORD */
+
+                const passwordHash =
+                    await hashPassword(
+                        password
+                    );
+
+
+                /* SAVE PROFILE */
 
                 const profile = {
-                    participantId: participantId,
-                    createdAt: new Date().toISOString()
+
+                    participantId:
+                        participantId,
+
+                    accountName:
+                        accountName,
+
+                    passwordHash:
+                        passwordHash,
+
+                    age:
+                        ageNumber,
+
+                    studyGroup:
+                        studyGroup,
+
+                    createdAt:
+                        new Date().toISOString()
+
                 };
+
 
                 localStorage.setItem(
                     "motorMonitorProfile",
                     JSON.stringify(profile)
                 );
 
+
+                localStorage.setItem(
+                    "motorMonitorSignedIn",
+                    "true"
+                );
+
+
+                /* SHOW SUCCESS */
+
                 participantNumber.textContent =
                     participantId;
 
+
+                createdAccountName.textContent =
+                    accountName;
+
+
+                accountNameInput.style.display =
+                    "none";
+
+
+                passwordInput.style.display =
+                    "none";
+
+
+                ageInput.style.display =
+                    "none";
+
+
+                studyGroupInput.style.display =
+                    "none";
+
+
+                createProfileButton.style.display =
+                    "none";
+
+
+                profileCreated.style.display =
+                    "block";
+
+
             }
+        );
 
-            createProfileButton.style.display = "none";
-            profileCreated.style.display = "block";
-
-        });
 
     </script>
 
+
 </body>
+
 </html>
