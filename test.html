@@ -415,11 +415,25 @@
 <body>
 <script>
 
+    const savedProfile =
+        localStorage.getItem("motorMonitorProfile");
+
     const signedIn =
         localStorage.getItem("motorMonitorSignedIn");
 
-    if (signedIn !== "true") {
-        window.location.href = "signin.html";
+
+    if (
+        !savedProfile ||
+        signedIn !== "true"
+    ) {
+
+        localStorage.removeItem(
+            "motorMonitorSignedIn"
+        );
+
+        window.location.href =
+            "signin.html";
+
     }
 
 </script>
