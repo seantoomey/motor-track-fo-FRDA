@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>MotorMonitor | Sign In</title>
+    <meta
+        name="description"
+        content="Sign in to your anonymous MotorMonitor research profile."
+    >
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <header>
+        <nav>
+
+            <div class="logo">
+                MotorMonitor
+            </div>
+
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="test.html">Weekly Test</a>
+                <a href="research.html">Research</a>
+                <a href="profile.html">Create Profile</a>
+            </div>
+
+        </nav>
+    </header>
+
+
+    <!-- Main content -->
+    <main>
+
+        <section class="hero">
+
+            <div class="hero-text">
+
+                <p class="small-title">
+                    MOTORMONITOR PARTICIPANT LOGIN
+                </p>
+
+                <h1>
+                    Sign in
+                </h1>
+
+                <p class="description">
+                    Sign in using the anonymous account name and password
+                    you created when setting up your profile.
+                </p>
+
+
+                <div class="profile-box">
+
+                    <h2>
+                        Account name
+                    </h2>
+
+                    <input
+                        type="text"
+                        id="account-name"
+                        placeholder="Example: PizzaLover45"
+                        autocomplete="username"
+                    >
+
+
+                    <h2>
+                        Password
+                    </h2>
+
+                    <input
+                        type="password"
+                        id="password"
+                        placeholder="Enter your password"
+                        autocomplete="current-password"
+                    >
+
+
+                    <br>
+                    <br>
+
+
+                    <button
+                        id="sign-in"
+                        class="start-button"
+                    >
+                        Sign In
+                    </button>
+
+
+                    <p
+                        id="error-message"
+                        style="display: none;"
+                    ></p>
+
+
+                    <div
+                        id="signed-in"
+                        style="display: none;"
+                    >
+
+                        <h2>
+                            Sign in successful
+                        </h2>
+
+                        <p>
+                            Welcome back to MotorMonitor.
+                        </p>
+
+                        <p>
+                            Your participant number is:
+                        </p>
+
+                        <p id="participant-number"></p>
+
+
+                        <a
+                            href="test.html"
+                            class="start-button"
+                        >
+                            Continue to Weekly Test
+                        </a>
+
+                    </div>
+
+
+                    <p>
+                        Don't have an account?
+                    </p>
+
+                    <a href="profile.html">
+                        Create a Profile
+                    </a>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- Footer -->
+
+    <footer>
+
+        <p>
+            MotorMonitor — Young Scientist & Technology Exhibition Project
+        </p>
+
+        <p>
+            Research prototype • Not for medical diagnosis
+        </p>
+
+    </footer>
+
+
+    <script>
+
+        const accountNameInput =
+            document.getElementById("account-name");
+
+        const passwordInput =
+            document.getElementById("password");
+
+        const signInButton =
+            document.getElementById("sign-in");
+
+        const errorMessage =
+            document.getElementById("error-message");
+
+        const signedIn =
+            document.getElementById("signed-in");
+
+        const participantNumber =
+            document.getElementById("participant-number");
+
+
+        /*
+         * Convert the password into the same
+         * SHA-256 hash used when creating
+         * the profile.
+         */
+
+        async function hashPassword(password) {
+
+            const encoder =
+                new TextEncoder();
+
+            const data =
+                encoder.encode(password);
+
+            const hashBuffer =
+                await crypto.subtle.digest(
+                    "SHA-256",
+                    data
+                );
+
+            const hashArray =
+                Array.from(
+                    new Uint8Array(hashBuffer)
+                );
+
+            return hashArray
+                .map(
+                    byte =>
+                        byte
+                            .toString(16)
+                            .padStart(2, "0")
+                )
+                .join("");
+
+        }
+
+
+        /*
+         * Display an error message.
+         */
+
+        function showError(message) {
+
+            errorMessage.textContent =
+                message;
+
+            errorMessage.style.display =
+                "block";
+
+        }
+
+
+        /*
+         * Sign in.
+         */
+
+        signInButton.addEventListener(
+            "click",
+            async function() {
+
+                errorMessage.style.display =
+                    "none";
+
+
+                const accountName =
+                    accountNameInput.value.trim();
+
+                const password =
+                    passwordInput.value;
+
+
+                /*
+                 * Check that both fields
+                 * have been entered.
+                 */
+
+                if (!accountName || !password) {
+
+                    showError(
+                        "Please enter your account name and password."
+                    );
+
+                    return;
+
+                }
+
+
+                /*
+                 * Get the saved profile.
+                 */
+
+                const savedProfile =
+                    localStorage.getItem(
+                        "motorMonitorProfile"
+                    );
+
+
+                if (!savedProfile) {
+
+                    showError(
+                        "No profile was found on this device. Please create a profile first."
+                    );
+
+                    return;
+
+                }
+
+
+                const profile =
+                    JSON.parse(
+                        savedProfile
+                    );
+
+
+                /*
+                 * Check the account name.
+                 */
+
+                if (
+                    accountName.toLowerCase() !==
+                    profile.accountName.toLowerCase()
+                ) {
+
+                    showError(
+                        "The account name or password is incorrect."
+                    );
+
+                    return;
+
+                }
+
+
+                /*
+                 * Hash the entered password.
+                 */
+
+                const passwordHash =
+                    await hashPassword(
+                        password
+                    );
+
+
+                /*
+                 * Check the password.
+                 */
+
+                if (
+                    passwordHash !==
+                    profile.passwordHash
+                ) {
+
+                    showError(
+                        "The account name or password is incorrect."
+                    );
+
+                    return;
+
+                }
+
+
+                /*
+                 * Sign the participant in.
+                 */
+
+                localStorage.setItem(
+                    "motorMonitorSignedIn",
+                    "true"
+                );
+
+
+                /*
+                 * Show successful sign-in.
+                 */
+
+                participantNumber.textContent =
+                    profile.participantId;
+
+
+                accountNameInput.style.display =
+                    "none";
+
+                passwordInput.style.display =
+                    "none";
+
+                signInButton.style.display =
+                    "none";
+
+                signedIn.style.display =
+                    "block";
+
+            }
+        );
+
+    </script>
+
+</body>
+
+</html>
