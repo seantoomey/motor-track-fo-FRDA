@@ -185,13 +185,20 @@ function reactionTimeTest() {
 
     gameArea.innerHTML = "";
 
-    const button = document.createElement("button");
+    
+const button = document.createElement("button");
 
-    button.textContent = "WAIT...";
-    button.className = "start-button reaction-button";
+button.textContent = "WAIT...";
+button.className = "start-button reaction-button";
 
-    gameArea.appendChild(button);
+button.style.width = "100%";
+button.style.height = "300px";
+button.style.display = "block";
+button.style.fontSize = "32px";
+button.style.margin = "0";
+button.style.boxSizing = "border-box";
 
+gameArea.appendChild(button);
     let startTime = null;
     let finished = false;
 
