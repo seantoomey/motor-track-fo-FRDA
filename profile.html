@@ -2,101 +2,101 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MotorMonitor - Create Account</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MotorMonitor - Create Account</title>
 
-    <style>
-        * { box-sizing: border-box; }
+<style>
+* { box-sizing: border-box; }
 
-        body {
-            margin: 0;
-            padding: 30px 15px;
-            font-family: Arial, sans-serif;
-            background: #f1f5f9;
-            color: #1e293b;
-        }
+body {
+    margin: 0;
+    padding: 30px 15px;
+    font-family: Arial, sans-serif;
+    background: #f1f5f9;
+    color: #1e293b;
+}
 
-        .container {
-            max-width: 450px;
-            margin: 40px auto;
-            padding: 30px;
-            background: white;
-            border-radius: 14px;
-            box-shadow: 0 4px 18px rgba(0,0,0,0.08);
-        }
+.container {
+    max-width: 450px;
+    margin: 40px auto;
+    padding: 30px;
+    background: white;
+    border-radius: 14px;
+    box-shadow: 0 4px 18px rgba(0,0,0,0.08);
+}
 
-        h1 {
-            text-align: center;
-            color: #2563eb;
-        }
+h1 {
+    text-align: center;
+    color: #2563eb;
+}
 
-        p { line-height: 1.5; }
+p { line-height: 1.5; }
 
-        label {
-            display: block;
-            margin-top: 17px;
-            margin-bottom: 6px;
-            font-weight: bold;
-        }
+label {
+    display: block;
+    margin-top: 17px;
+    margin-bottom: 6px;
+    font-weight: bold;
+}
 
-        input, select {
-            width: 100%;
-            padding: 12px;
-            border: 1px solid #cbd5e1;
-            border-radius: 7px;
-            font-size: 16px;
-        }
+input, select {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #cbd5e1;
+    border-radius: 7px;
+    font-size: 16px;
+}
 
-        button {
-            width: 100%;
-            margin-top: 24px;
-            padding: 13px;
-            border: none;
-            border-radius: 7px;
-            background: #2563eb;
-            color: white;
-            font-size: 16px;
-            cursor: pointer;
-        }
+button {
+    width: 100%;
+    margin-top: 24px;
+    padding: 13px;
+    border: none;
+    border-radius: 7px;
+    background: #2563eb;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+}
 
-        button:disabled {
-            background: #94a3b8;
-            cursor: not-allowed;
-        }
+button:disabled {
+    background: #94a3b8;
+    cursor: not-allowed;
+}
 
-        .message {
-            margin-top: 18px;
-            padding: 12px;
-            border-radius: 7px;
-            display: none;
-            line-height: 1.5;
-        }
+.message {
+    margin-top: 18px;
+    padding: 12px;
+    border-radius: 7px;
+    display: none;
+    line-height: 1.5;
+}
 
-        .error {
-            background: #fee2e2;
-            color: #991b1b;
-        }
+.error {
+    background: #fee2e2;
+    color: #991b1b;
+}
 
-        .link {
-            text-align: center;
-            margin-top: 20px;
-        }
+.link {
+    text-align: center;
+    margin-top: 20px;
+}
 
-        .link a { color: #2563eb; }
+.link a { color: #2563eb; }
 
-        #success-screen {
-            display: none;
-            text-align: center;
-        }
+#success-screen {
+    display: none;
+    text-align: center;
+}
 
-        .participant-number {
-            font-size: 24px;
-            font-weight: bold;
-            color: #2563eb;
-            margin: 20px 0;
-        }
-    </style>
+.participant-number {
+    font-size: 24px;
+    font-weight: bold;
+    color: #2563eb;
+    margin: 20px 0;
+}
+</style>
 </head>
 
 <body>
@@ -104,6 +104,7 @@
 <div class="container">
 
     <div id="registration-screen">
+
         <h1>MotorMonitor</h1>
         <p>Create your participant account to take part in the study.</p>
 
@@ -157,9 +158,11 @@
             Already have an account?
             <a href="signin.html">Sign in</a>
         </div>
+
     </div>
 
     <div id="success-screen">
+
         <h1>Account Created!</h1>
         <p>Your MotorMonitor participant account has been created.</p>
         <p>Your participant number is:</p>
@@ -171,153 +174,174 @@
         <a href="signin.html">
             <button type="button">Continue to Sign In</button>
         </a>
+
     </div>
 
 </div>
 
 <script>
-    // SUPABASE SETTINGS
 
-    const SUPABASE_URL =
-        "https://lihamiyfzlvfmmpcorlb.supabase.co";
+// SUPABASE SETTINGS
 
-    const SUPABASE_PUBLISHABLE_KEY =
-        "sb_publishable_6FLGvCfBrAmvQP9F6SbpFA_bzGdr8kd";
+const SUPABASE_URL =
+    "https://lihamiyfzlvfmmpcorlb.supabase.co";
 
-
-    // FORM ELEMENTS
-
-    const registrationForm =
-        document.getElementById("registration-form");
-
-    const registerButton =
-        document.getElementById("register-button");
-
-    const errorMessage =
-        document.getElementById("error-message");
+const SUPABASE_PUBLISHABLE_KEY =
+    "sb_publishable_6FLGvCfBrAmvQP9F6SbpFA_bzGdr8kd";
 
 
-    // REGISTRATION
+// ELEMENTS
 
-    registrationForm.addEventListener("submit", async function(event) {
+const registrationForm =
+    document.getElementById("registration-form");
 
-        event.preventDefault();
+const registerButton =
+    document.getElementById("register-button");
 
-        errorMessage.style.display = "none";
+const errorMessage =
+    document.getElementById("error-message");
 
-        const username = document
-            .getElementById("account-name")
-            .value.trim();
 
-        const password = document
-            .getElementById("password")
-            .value;
+// ERROR MESSAGE
 
-        const age = Number(
-            document.getElementById("age").value
+function showError(message) {
+    errorMessage.textContent = message;
+    errorMessage.style.display = "block";
+}
+
+
+// REGISTRATION
+
+registrationForm.addEventListener("submit", async function(event) {
+
+    event.preventDefault();
+
+    errorMessage.style.display = "none";
+
+    const username = document
+        .getElementById("account-name")
+        .value.trim();
+
+    const password = document
+        .getElementById("password")
+        .value;
+
+    const age = Number(
+        document.getElementById("age").value
+    );
+
+    const studyGroup = document
+        .getElementById("study-group").value;
+
+
+    // VALIDATION
+
+    const usernamePattern = /^[a-z][a-z0-9_]{2,23}$/;
+
+    if (!usernamePattern.test(username)) {
+        showError(
+            "Username must start with a lowercase letter and contain only lowercase letters, numbers and underscores. Use 3–24 characters."
+        );
+        return;
+    }
+
+    if (password.length < 10 || password.length > 72) {
+        showError(
+            "Password must be between 10 and 72 characters."
+        );
+        return;
+    }
+
+    if (!Number.isInteger(age) || age < 12 || age > 18) {
+        showError("Please enter an age between 12 and 18.");
+        return;
+    }
+
+    if (!["FRDA", "Control"].includes(studyGroup)) {
+        showError("Please select a study group.");
+        return;
+    }
+
+
+    // CHECK SUPABASE SETTINGS
+
+    if (
+        !SUPABASE_URL.startsWith("https://") ||
+        !SUPABASE_PUBLISHABLE_KEY.startsWith("sb_publishable_")
+    ) {
+        showError("Please check your Supabase connection settings.");
+        return;
+    }
+
+
+    // SEND REGISTRATION REQUEST
+
+    registerButton.disabled = true;
+    registerButton.textContent = "Creating Account...";
+
+    try {
+
+        const response = await fetch(
+            `${SUPABASE_URL}/functions/v1/sign-in-system`,
+            {
+                method: "POST",
+
+                headers: {
+                    "Content-Type": "application/json",
+                    "apikey": SUPABASE_PUBLISHABLE_KEY,
+                    "Authorization": `Bearer ${SUPABASE_PUBLISHABLE_KEY}`
+                },
+
+                body: JSON.stringify({
+                    action: "register",
+                    username: username,
+                    password: password,
+                    age: age,
+                    study_group: studyGroup
+                })
+            }
         );
 
-        const studyGroup = document
-            .getElementById("study-group").value;
+        const data = await response.json();
 
-
-        // VALIDATION
-
-        const usernamePattern = /^[a-z][a-z0-9_]{2,23}$/;
-
-        if (!usernamePattern.test(username)) {
-            showError(
-                "Username must start with a lowercase letter and contain only lowercase letters, numbers and underscores. Use 3–24 characters."
+        if (!response.ok) {
+            throw new Error(
+                data.error || "Registration failed. Please try again."
             );
-            return;
         }
 
-        if (password.length < 10 || password.length > 72) {
-            showError(
-                "Your password must be between 10 and 72 characters."
+        if (!data.participant_number) {
+            throw new Error(
+                "No participant number was returned. Check your Supabase function."
             );
-            return;
-        }
-
-        if (!Number.isInteger(age) || age < 12 || age > 18) {
-            showError("Please enter an age between 12 and 18.");
-            return;
-        }
-
-        if (!["FRDA", "Control"].includes(studyGroup)) {
-            showError("Please select a study group.");
-            return;
         }
 
 
-        // SEND TO SUPABASE
+        // DISPLAY SUCCESS
 
-        registerButton.disabled = true;
-        registerButton.textContent = "Creating Account...";
+        document.getElementById("registration-screen")
+            .style.display = "none";
 
-        try {
-            const response = await fetch(
-                `${SUPABASE_URL}/functions/v1/sign-in-system`,
-                {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json",
-                        "apikey": SUPABASE_PUBLISHABLE_KEY,
-                        "Authorization": `Bearer ${SUPABASE_PUBLISHABLE_KEY}`
-                    },
-                    body: JSON.stringify({
-                        action: "register",
-                        username: username,
-                        password: password,
-                        age: age,
-                        study_group: studyGroup
-                    })
-                }
-            );
+        document.getElementById("success-screen")
+            .style.display = "block";
 
-            const data = await response.json();
+        document.getElementById("participant-number")
+            .textContent = data.participant_number;
 
-            if (!response.ok) {
-                throw new Error(
-                    data.error || "Registration failed. Please try again."
-                );
-            }
+        registrationForm.reset();
 
-            if (!data.participant_number) {
-                throw new Error(
-                    "No participant number was returned. Please check your Supabase function."
-                );
-            }
+    } catch (error) {
 
+        showError(error.message);
 
-            // SHOW SUCCESS
+    } finally {
 
-            document.getElementById("registration-screen")
-                .style.display = "none";
+        registerButton.disabled = false;
+        registerButton.textContent = "Create Account";
 
-            document.getElementById("success-screen")
-                .style.display = "block";
-
-            document.getElementById("participant-number")
-                .textContent = data.participant_number;
-
-            registrationForm.reset();
-
-        } catch (error) {
-            showError(error.message);
-
-        } finally {
-            registerButton.disabled = false;
-            registerButton.textContent = "Create Account";
-        }
-
-    });
-
-
-    function showError(message) {
-        errorMessage.textContent = message;
-        errorMessage.style.display = "block";
     }
+
+});
 
 </script>
 
