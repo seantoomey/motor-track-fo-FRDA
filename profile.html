@@ -4,337 +4,360 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MotorMonitor | Create Profile</title>
-    <meta name="description" content="Create an anonymous MotorMonitor research profile.">
-    <link rel="stylesheet" href="style.css">
+    <title>MotorMonitor - Create Account</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            padding: 30px 15px;
+            font-family: Arial, sans-serif;
+            background: #f1f5f9;
+            color: #1e293b;
+        }
+
+        .container {
+            max-width: 450px;
+            margin: 40px auto;
+            padding: 30px;
+            background: white;
+            border-radius: 14px;
+            box-shadow: 0 4px 18px rgba(0,0,0,0.08);
+        }
+
+        h1 {
+            text-align: center;
+            color: #2563eb;
+        }
+
+        p {
+            line-height: 1.5;
+        }
+
+        label {
+            display: block;
+            margin-top: 17px;
+            margin-bottom: 6px;
+            font-weight: bold;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #cbd5e1;
+            border-radius: 7px;
+            font-size: 16px;
+        }
+
+        button {
+            width: 100%;
+            margin-top: 24px;
+            padding: 13px;
+            border: none;
+            border-radius: 7px;
+            background: #2563eb;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        button:disabled {
+            background: #94a3b8;
+            cursor: not-allowed;
+        }
+
+        .message {
+            margin-top: 18px;
+            padding: 12px;
+            border-radius: 7px;
+            display: none;
+            line-height: 1.5;
+        }
+
+        .error {
+            background: #fee2e2;
+            color: #991b1b;
+        }
+
+        .success {
+            background: #dcfce7;
+            color: #166534;
+        }
+
+        .link {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .link a {
+            color: #2563eb;
+        }
+
+        #success-screen {
+            display: none;
+            text-align: center;
+        }
+
+        .participant-number {
+            font-size: 24px;
+            font-weight: bold;
+            color: #2563eb;
+            margin: 20px 0;
+        }
+    </style>
 </head>
 
 <body>
-    <header>
-        <nav>
-            <div class="logo">MotorMonitor</div>
-            <div class="nav-links">
-                <a href="index.html">Home</a>
-                <a href="test.html">Weekly Test</a>
-                <a href="research.html">Research</a>
-                <a href="signin.html">Sign In</a>
-            </div>
-        </nav>
-    </header>
 
-    <main>
-        <section class="hero">
-            <div class="hero-text">
-                <p class="small-title">MOTORMONITOR PARTICIPANT PROFILE</p>
+<div class="container">
 
-                <h1>Create your profile</h1>
+    <div id="registration-screen">
 
-                <p class="description">
-                    Create an anonymous profile before taking
-                    the MotorMonitor weekly test.
+        <h1>MotorMonitor</h1>
+        <p>Create your participant account to take part in the study.</p>
 
-                    <br><br>
+        <form id="registration-form">
 
-                    Do not use your real name or other information
-                    that could identify you.
-                </p>
+            <label for="account-name">Username</label>
+            <input
+                type="text"
+                id="account-name"
+                placeholder="Choose a username"
+                required
+                autocomplete="username"
+            >
 
-                <div class="profile-box" id="registration-form">
+            <label for="password">Password</label>
+            <input
+                type="password"
+                id="password"
+                placeholder="Create a password"
+                required
+                minlength="10"
+                maxlength="72"
+                autocomplete="new-password"
+            >
 
-                    <h2>Choose an account name</h2>
+            <label for="age">Age</label>
+            <input
+                type="number"
+                id="age"
+                min="12"
+                max="18"
+                required
+            >
 
-                    <p>
-                        Choose a nickname that you will remember,
-                        but that does not reveal your identity.
-                    </p>
+            <label for="study-group">Study group</label>
+            <select id="study-group" required>
+                <option value="">Select your group</option>
+                <option value="FRDA">FRDA</option>
+                <option value="Control">Control</option>
+            </select>
 
-                    <input
-                        type="text"
-                        id="account-name"
-                        placeholder="Example: PizzaLover45"
-                        maxlength="24"
-                        autocomplete="username"
-                    >
+            <button type="submit" id="register-button">
+                Create Account
+            </button>
 
-                    <p class="profile-note">
-                        Do not use your real name, initials,
-                        school name, birthday, or anything else
-                        that could identify you.
-                    </p>
+        </form>
 
-                    <h2>Create a password</h2>
+        <div id="error-message" class="message error"></div>
 
-                    <input
-                        type="password"
-                        id="password"
-                        placeholder="At least 10 characters"
-                        minlength="10"
-                        maxlength="72"
-                        autocomplete="new-password"
-                    >
+        <div class="link">
+            Already have an account?
+            <a href="signin.html">Sign in</a>
+        </div>
 
-                    <h2>How old are you?</h2>
+    </div>
 
-                    <p>Enter your age in whole years.</p>
+    <div id="success-screen">
 
-                    <input
-                        type="number"
-                        id="age"
-                        min="12"
-                        max="18"
-                        step="1"
-                        placeholder="Example: 15"
-                    >
+        <h1>Account Created!</h1>
 
-                    <h2>Study group</h2>
+        <p>Your MotorMonitor participant account has been created.</p>
 
-                    <p>Select the group you are participating in.</p>
+        <p>Your participant number is:</p>
 
-                    <select id="study-group">
-                        <option value="">Select your study group</option>
-                        <option value="FRDA">FRDA group</option>
-                        <option value="Control">Control group</option>
-                    </select>
+        <div id="participant-number" class="participant-number"></div>
 
-                    <br><br>
+        <p>Keep this number for your study records.</p>
 
-                    <button
-                        id="create-profile"
-                        class="start-button"
-                        type="button"
-                    >
-                        Create Anonymous Profile
-                    </button>
+        <a href="signin.html">
+            <button type="button">Continue to Sign In</button>
+        </a>
 
-                    <p
-                        id="error-message"
-                        style="display: none;"
-                        role="alert"
-                    ></p>
-                </div>
+    </div>
 
-                <div
-                    class="profile-box"
-                    id="profile-created"
-                    style="display: none;"
-                >
-                    <h2>Profile created!</h2>
+</div>
 
-                    <p>Your anonymous participant number is:</p>
+<script>
+    // SUPABASE CONNECTION SETTINGS
 
-                    <p id="participant-number"></p>
+    const SUPABASE_URL =
+        "https://lihamiyfzlvfmmpcorlb.supabase.co";
 
-                    <p>Your account name is:</p>
+    const SUPABASE_PUBLISHABLE_KEY =
+        "PASTE_YOUR_SB_PUBLISHABLE_KEY_HERE";
 
-                    <p id="created-account-name"></p>
 
-                    <p>
-                        Keep your account name and password safe.
-                        Your participant number will connect your
-                        weekly test results to your research profile.
-                    </p>
+    // REGISTRATION FORM
 
-                    <p>
-                        Your account has been created. Sign in before
-                        starting your weekly test.
-                    </p>
+    const registrationForm =
+        document.getElementById("registration-form");
 
-                    <a href="signin.html" class="start-button">
-                        Continue to Sign In
-                    </a>
-                </div>
-            </div>
-        </section>
-    </main>
+    const registerButton =
+        document.getElementById("register-button");
 
-    <footer>
-        <p>
-            MotorMonitor — Young Scientist & Technology Exhibition Project
-        </p>
+    const errorMessage =
+        document.getElementById("error-message");
 
-        <p>
-            Research prototype • Not for medical diagnosis
-        </p>
-    </footer>
 
-    <script>
-        // SUPABASE SETTINGS
-        const SUPABASE_URL =
-            "https://YOUR_PROJECT_REF.supabase.co";
+    registrationForm.addEventListener("submit", async function(event) {
 
-        const SUPABASE_PUBLISHABLE_KEY =
-            "YOUR_PUBLISHABLE_KEY";
+        event.preventDefault();
 
-        const FUNCTION_URL =
-            SUPABASE_URL + "/functions/v1/sign-in-system";
+        errorMessage.style.display = "none";
 
-        // HTML ELEMENTS
-        const createProfileButton =
-            document.getElementById("create-profile");
+        const username = document
+            .getElementById("account-name")
+            .value.trim();
 
-        const accountNameInput =
-            document.getElementById("account-name");
+        const password = document
+            .getElementById("password")
+            .value;
 
-        const passwordInput =
-            document.getElementById("password");
+        const age = Number(
+            document.getElementById("age").value
+        );
 
-        const ageInput =
-            document.getElementById("age");
+        const studyGroup = document
+            .getElementById("study-group")
+            .value;
 
-        const studyGroupInput =
-            document.getElementById("study-group");
 
-        const errorMessage =
-            document.getElementById("error-message");
+        // CHECK INPUTS
 
-        const registrationForm =
-            document.getElementById("registration-form");
+        const usernamePattern = /^[a-z][a-z0-9_]{2,23}$/;
 
-        const profileCreated =
-            document.getElementById("profile-created");
-
-        const participantNumber =
-            document.getElementById("participant-number");
-
-        const createdAccountName =
-            document.getElementById("created-account-name");
-
-        function showError(message) {
-            errorMessage.textContent = message;
-            errorMessage.style.display = "block";
+        if (!usernamePattern.test(username)) {
+            showError(
+                "Username must start with a letter and contain only lowercase letters, numbers and underscores. Use 3–24 characters."
+            );
+            return;
         }
 
-        createProfileButton.addEventListener("click", async function () {
+        if (password.length < 10 || password.length > 72) {
+            showError(
+                "Your password must be between 10 and 72 characters."
+            );
+            return;
+        }
 
-            errorMessage.style.display = "none";
+        if (!Number.isInteger(age) || age < 12 || age > 18) {
+            showError(
+                "Please enter an age between 12 and 18."
+            );
+            return;
+        }
 
-            const accountName =
-                accountNameInput.value.trim().toLowerCase();
+        if (!["FRDA", "Control"].includes(studyGroup)) {
+            showError(
+                "Please select a study group."
+            );
+            return;
+        }
 
-            const password =
-                passwordInput.value;
+        if (
+            SUPABASE_URL.includes("YOUR_PROJECT_REF") ||
+            SUPABASE_PUBLISHABLE_KEY === "PASTE_YOUR_SB_PUBLISHABLE_KEY_HERE"
+        ) {
+            showError(
+                "The Supabase connection has not been configured yet."
+            );
+            return;
+        }
 
-            const age =
-                Number(ageInput.value);
 
-            const studyGroup =
-                studyGroupInput.value;
+        // SEND REGISTRATION TO SUPABASE
 
-            // CHECK USERNAME
-            if (!/^[a-z][a-z0-9_]{2,23}$/.test(accountName)) {
-                showError(
-                    "Your username must be 3–24 characters, start with a letter, and contain only letters, numbers and underscores."
-                );
-                return;
-            }
+        registerButton.disabled = true;
+        registerButton.textContent = "Creating Account...";
 
-            // CHECK PASSWORD
-            if (password.length < 10 || password.length > 72) {
-                showError(
-                    "Your password must be between 10 and 72 characters."
-                );
-                return;
-            }
+        try {
 
-            // CHECK AGE
-            if (
-                !Number.isInteger(age) ||
-                age < 12 ||
-                age > 18
-            ) {
-                showError(
-                    "Please enter a whole-number age between 12 and 18."
-                );
-                return;
-            }
-
-            // CHECK STUDY GROUP
-            if (
-                studyGroup !== "FRDA" &&
-                studyGroup !== "Control"
-            ) {
-                showError("Please select your study group.");
-                return;
-            }
-
-            // PREVENT EMPTY CONFIGURATION
-            if (
-                SUPABASE_URL.includes("YOUR_PROJECT_REF") ||
-                SUPABASE_PUBLISHABLE_KEY === "YOUR_PUBLISHABLE_KEY"
-            ) {
-                showError(
-                    "Supabase has not been configured yet. Please check the project URL and publishable key."
-                );
-                return;
-            }
-
-            // PREVENT DOUBLE SUBMISSION
-            createProfileButton.disabled = true;
-            createProfileButton.textContent = "Creating profile...";
-
-            try {
-                const response = await fetch(FUNCTION_URL, {
+            const response = await fetch(
+                `${SUPABASE_URL}/functions/v1/sign-in-system`,
+                {
                     method: "POST",
 
                     headers: {
                         "Content-Type": "application/json",
                         "apikey": SUPABASE_PUBLISHABLE_KEY,
-                        "Authorization":
-                            "Bearer " + SUPABASE_PUBLISHABLE_KEY
+                        "Authorization": `Bearer ${SUPABASE_PUBLISHABLE_KEY}`
                     },
 
                     body: JSON.stringify({
                         action: "register",
-                        username: accountName,
+                        username: username,
                         password: password,
                         age: age,
                         study_group: studyGroup
                     })
-                });
-
-                const result = await response.json();
-
-                if (!response.ok || !result.success) {
-                    showError(
-                        result.error || "Could not create your profile."
-                    );
-                    return;
                 }
+            );
 
-                if (!result.participant_number) {
-                    showError(
-                        "Your account was created, but no participant number was returned. Please contact the project administrator."
-                    );
-                    return;
-                }
+            const data = await response.json();
 
-                // DISPLAY SUPABASE PARTICIPANT NUMBER
-                participantNumber.textContent =
-                    result.participant_number;
-
-                createdAccountName.textContent =
-                    accountName;
-
-                // CLEAR PASSWORD FROM THE INPUT
-                passwordInput.value = "";
-
-                // SHOW SUCCESS SCREEN
-                registrationForm.style.display = "none";
-                profileCreated.style.display = "block";
-
-            } catch (error) {
-                console.error("Registration error:", error);
-
-                showError(
-                    "Could not connect to Supabase. Please check your internet connection and try again."
+            if (!response.ok) {
+                throw new Error(
+                    data.error || "Registration failed. Please try again."
                 );
-
-            } finally {
-                createProfileButton.disabled = false;
-                createProfileButton.textContent =
-                    "Create Anonymous Profile";
             }
-        });
-    </script>
+
+            if (!data.participant_number) {
+                throw new Error(
+                    "Account created, but no participant number was returned. Please contact the project administrator."
+                );
+            }
+
+
+            // SHOW SUCCESS SCREEN
+
+            document.getElementById("registration-screen")
+                .style.display = "none";
+
+            document.getElementById("success-screen")
+                .style.display = "block";
+
+            document.getElementById("participant-number")
+                .textContent = data.participant_number;
+
+            registrationForm.reset();
+
+        } catch (error) {
+
+            showError(error.message);
+
+        } finally {
+
+            registerButton.disabled = false;
+            registerButton.textContent = "Create Account";
+
+        }
+
+    });
+
+
+    function showError(message) {
+
+        errorMessage.textContent = message;
+        errorMessage.style.display = "block";
+
+    }
+
+</script>
+
 </body>
 </html>
