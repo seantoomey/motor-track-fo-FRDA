@@ -7,9 +7,7 @@
     <title>MotorMonitor - Create Account</title>
 
     <style>
-        * {
-            box-sizing: border-box;
-        }
+        * { box-sizing: border-box; }
 
         body {
             margin: 0;
@@ -33,9 +31,7 @@
             color: #2563eb;
         }
 
-        p {
-            line-height: 1.5;
-        }
+        p { line-height: 1.5; }
 
         label {
             display: block;
@@ -82,19 +78,12 @@
             color: #991b1b;
         }
 
-        .success {
-            background: #dcfce7;
-            color: #166534;
-        }
-
         .link {
             text-align: center;
             margin-top: 20px;
         }
 
-        .link a {
-            color: #2563eb;
-        }
+        .link a { color: #2563eb; }
 
         #success-screen {
             display: none;
@@ -115,7 +104,6 @@
 <div class="container">
 
     <div id="registration-screen">
-
         <h1>MotorMonitor</h1>
         <p>Create your participant account to take part in the study.</p>
 
@@ -169,15 +157,11 @@
             Already have an account?
             <a href="signin.html">Sign in</a>
         </div>
-
     </div>
 
     <div id="success-screen">
-
         <h1>Account Created!</h1>
-
         <p>Your MotorMonitor participant account has been created.</p>
-
         <p>Your participant number is:</p>
 
         <div id="participant-number" class="participant-number"></div>
@@ -187,22 +171,21 @@
         <a href="signin.html">
             <button type="button">Continue to Sign In</button>
         </a>
-
     </div>
 
 </div>
 
 <script>
-    // SUPABASE CONNECTION SETTINGS
+    // SUPABASE SETTINGS
 
     const SUPABASE_URL =
         "https://lihamiyfzlvfmmpcorlb.supabase.co";
 
     const SUPABASE_PUBLISHABLE_KEY =
-        "PASTE_YOUR_SB_PUBLISHABLE_KEY_HERE";
+        "sb_publishable_6FLGvCfBrAmvQP9F6SbpFA_bzGdr8kd";
 
 
-    // REGISTRATION FORM
+    // FORM ELEMENTS
 
     const registrationForm =
         document.getElementById("registration-form");
@@ -213,6 +196,8 @@
     const errorMessage =
         document.getElementById("error-message");
 
+
+    // REGISTRATION
 
     registrationForm.addEventListener("submit", async function(event) {
 
@@ -233,17 +218,16 @@
         );
 
         const studyGroup = document
-            .getElementById("study-group")
-            .value;
+            .getElementById("study-group").value;
 
 
-        // CHECK INPUTS
+        // VALIDATION
 
         const usernamePattern = /^[a-z][a-z0-9_]{2,23}$/;
 
         if (!usernamePattern.test(username)) {
             showError(
-                "Username must start with a letter and contain only lowercase letters, numbers and underscores. Use 3–24 characters."
+                "Username must start with a lowercase letter and contain only lowercase letters, numbers and underscores. Use 3–24 characters."
             );
             return;
         }
@@ -256,48 +240,31 @@
         }
 
         if (!Number.isInteger(age) || age < 12 || age > 18) {
-            showError(
-                "Please enter an age between 12 and 18."
-            );
+            showError("Please enter an age between 12 and 18.");
             return;
         }
 
         if (!["FRDA", "Control"].includes(studyGroup)) {
-            showError(
-                "Please select a study group."
-            );
-            return;
-        }
-
-        if (
-            SUPABASE_URL.includes("YOUR_PROJECT_REF") ||
-            SUPABASE_PUBLISHABLE_KEY === "PASTE_YOUR_SB_PUBLISHABLE_KEY_HERE"
-        ) {
-            showError(
-                "The Supabase connection has not been configured yet."
-            );
+            showError("Please select a study group.");
             return;
         }
 
 
-        // SEND REGISTRATION TO SUPABASE
+        // SEND TO SUPABASE
 
         registerButton.disabled = true;
         registerButton.textContent = "Creating Account...";
 
         try {
-
             const response = await fetch(
                 `${SUPABASE_URL}/functions/v1/sign-in-system`,
                 {
                     method: "POST",
-
                     headers: {
                         "Content-Type": "application/json",
                         "apikey": SUPABASE_PUBLISHABLE_KEY,
                         "Authorization": `Bearer ${SUPABASE_PUBLISHABLE_KEY}`
                     },
-
                     body: JSON.stringify({
                         action: "register",
                         username: username,
@@ -318,12 +285,12 @@
 
             if (!data.participant_number) {
                 throw new Error(
-                    "Account created, but no participant number was returned. Please contact the project administrator."
+                    "No participant number was returned. Please check your Supabase function."
                 );
             }
 
 
-            // SHOW SUCCESS SCREEN
+            // SHOW SUCCESS
 
             document.getElementById("registration-screen")
                 .style.display = "none";
@@ -337,24 +304,19 @@
             registrationForm.reset();
 
         } catch (error) {
-
             showError(error.message);
 
         } finally {
-
             registerButton.disabled = false;
             registerButton.textContent = "Create Account";
-
         }
 
     });
 
 
     function showError(message) {
-
         errorMessage.textContent = message;
         errorMessage.style.display = "block";
-
     }
 
 </script>
