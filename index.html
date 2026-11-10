@@ -117,6 +117,8 @@
             padding: 0;
         }
 
+        /* HERO SECTION — RESTORED WITHOUT DNA GRAPHIC */
+
         .mm-hero {
             position: relative;
             overflow: hidden;
@@ -152,7 +154,7 @@
         }
 
         .mm-hero-content {
-            max-width: 690px;
+            max-width: 800px;
         }
 
         .mm-eyebrow {
@@ -183,24 +185,8 @@
         .mm-hero p {
             color: #d0cce9;
             font-size: 1.12rem;
-            max-width: 620px;
+            max-width: 800px;
             margin-bottom: 30px;
-        }
-
-        .mm-hero-art {
-            position: absolute;
-            right: 7%;
-            top: 50%;
-            transform: translateY(-50%);
-            width: min(34vw, 390px);
-            opacity: 0.8;
-            filter: drop-shadow(0 0 28px rgba(152, 120, 255, 0.35));
-            pointer-events: none;
-        }
-
-        .mm-hero-art svg {
-            width: 100%;
-            height: auto;
         }
 
         .mm-button {
@@ -511,12 +497,6 @@
         }
 
         @media (max-width: 850px) {
-            .mm-hero-art {
-                right: -5%;
-                width: 35vw;
-                opacity: 0.3;
-            }
-
             .mm-card-grid {
                 grid-template-columns: repeat(2, minmax(0, 1fr));
             }
@@ -538,12 +518,6 @@
 
             .mm-hero {
                 min-height: 500px;
-            }
-
-            .mm-hero-art {
-                width: 65vw;
-                right: -20%;
-                opacity: 0.18;
             }
 
             .mm-hero-inner {
@@ -601,40 +575,6 @@
 
     <!-- HERO -->
     <section class="mm-hero">
-        <div class="mm-hero-art" aria-hidden="true">
-            <svg viewBox="0 0 400 600" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <defs>
-                    <linearGradient id="dnaA" x1="0" y1="0" x2="400" y2="600">
-                        <stop stop-color="#c8b5ff"/>
-                        <stop offset="1" stop-color="#7955e8"/>
-                    </linearGradient>
-                </defs>
-                <path d="M90 20 C350 120 50 220 310 320 C570 420 50 500 170 580"
-                      stroke="url(#dnaA)" stroke-width="8" stroke-linecap="round"/>
-                <path d="M310 20 C50 120 350 220 90 320 C-170 420 350 500 230 580"
-                      stroke="#7c9cff" stroke-width="8" stroke-linecap="round"/>
-                <g stroke="#c8b5ff" stroke-width="3" opacity="0.8">
-                    <path d="M130 45 L270 45"/>
-                    <path d="M90 100 L310 100"/>
-                    <path d="M75 160 L325 160"/>
-                    <path d="M110 220 L290 220"/>
-                    <path d="M130 280 L270 280"/>
-                    <path d="M100 340 L300 340"/>
-                    <path d="M75 400 L325 400"/>
-                    <path d="M100 460 L300 460"/>
-                    <path d="M145 520 L255 520"/>
-                </g>
-                <g fill="#ffffff">
-                    <circle cx="130" cy="45" r="5"/>
-                    <circle cx="270" cy="45" r="5"/>
-                    <circle cx="90" cy="100" r="5"/>
-                    <circle cx="310" cy="100" r="5"/>
-                    <circle cx="75" cy="160" r="5"/>
-                    <circle cx="325" cy="160" r="5"/>
-                </g>
-            </svg>
-        </div>
-
         <div class="mm-hero-inner">
             <div class="mm-hero-content">
                 <span class="mm-eyebrow">Young Scientist Research Project</span>
@@ -694,7 +634,8 @@
                     that are not obvious from a single test.
                 </p>
                 <p>
-                    MotorMonitor focuses on <span class="mm-highlight">weekly observations</span>
+                    MotorMonitor focuses on
+                    <span class="mm-highlight">weekly observations</span>
                     rather than comparing participants against one another.
                 </p>
             </div>
@@ -716,7 +657,7 @@
         </div>
     </section>
 
-    <!-- TESTS -->
+    <!-- FOUR MOTOR TESTS -->
     <section class="mm-section">
         <div class="mm-section-heading">
             <span class="mm-section-tag">The activities</span>
