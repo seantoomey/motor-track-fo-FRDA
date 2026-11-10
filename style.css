@@ -82,8 +82,6 @@ main {
    Homepage full-width fix
    ========================= */
 
-/* Only applies to the redesigned homepage */
-
 body:has(.mm-hero) main {
     max-width: none;
     width: 100%;
@@ -299,9 +297,6 @@ footer p {
     margin-bottom: 20px;
 }
 
-
-/* Results table */
-
 .table-container {
     width: 100%;
     overflow-x: auto;
@@ -335,9 +330,6 @@ tbody tr:hover {
     background: #fafbff;
 }
 
-
-/* Result cards */
-
 .results-summary::before {
     content: "WEEKLY PERFORMANCE";
     display: block;
@@ -347,9 +339,6 @@ tbody tr:hover {
     letter-spacing: 1.5px;
     margin-bottom: 8px;
 }
-
-
-/* Empty results message */
 
 #no-results {
     background: white;
@@ -365,9 +354,6 @@ tbody tr:hover {
     margin-bottom: 10px;
 }
 
-
-/* Clear button */
-
 #results-container > .start-button {
     margin-top: 20px;
     background: #f1f3f7;
@@ -379,9 +365,6 @@ tbody tr:hover {
     background: #e7eaf0;
     box-shadow: none;
 }
-
-
-/* Results page heading */
 
 main section > h1 {
     font-size: 44px;
@@ -403,9 +386,6 @@ main section > h1 + p {
 .results-page {
     max-width: 1100px;
 }
-
-
-/* Page heading */
 
 .results-heading {
     margin-top: 30px;
@@ -432,9 +412,6 @@ main section > h1 + p {
     max-width: 650px;
     margin: 0;
 }
-
-
-/* Statistics cards */
 
 .stats-grid {
     display: grid;
@@ -485,9 +462,6 @@ main section > h1 + p {
     color: #172033;
 }
 
-
-/* Empty results */
-
 .empty-results {
     background: white;
     border: 1px solid #e5e8ef;
@@ -511,9 +485,6 @@ main section > h1 + p {
     max-width: 500px;
     margin: 0 auto 25px;
 }
-
-
-/* History card */
 
 .history-card {
     background: white;
@@ -548,9 +519,6 @@ main section > h1 + p {
     font-weight: 700;
 }
 
-
-/* Individual result */
-
 .result-list {
     display: flex;
     flex-direction: column;
@@ -573,9 +541,6 @@ main section > h1 + p {
     border-color: #dfe3f0;
     transform: translateY(-2px);
 }
-
-
-/* Date */
 
 .result-date {
     display: flex;
@@ -607,9 +572,6 @@ main section > h1 + p {
     margin-top: 2px;
 }
 
-
-/* Measurements */
-
 .result-measure {
     display: flex;
     align-items: center;
@@ -637,9 +599,6 @@ main section > h1 + p {
     font-style: normal;
 }
 
-
-/* Research note */
-
 .research-note {
     display: flex;
     gap: 18px;
@@ -665,9 +624,6 @@ main section > h1 + p {
     font-size: 14px;
     line-height: 1.6;
 }
-
-
-/* Clear button */
 
 .clear-button {
     margin-top: 20px;
@@ -728,7 +684,6 @@ main section > h1 + p {
         padding: 25px 15px 50px;
     }
 
-    /* Keep the redesigned homepage full width on phones */
     body:has(.mm-hero) main {
         padding: 0;
     }
@@ -799,7 +754,6 @@ main section > h1 + p {
     .research-note {
         padding: 20px;
     }
-
 }
 
 
@@ -836,7 +790,94 @@ main section > h1 + p {
         height: 220px;
         font-size: 42px;
     }
+}
 
+
+/* ========================================
+   MOTORMONITOR ANIMATIONS
+   ======================================== */
+
+@keyframes mmFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(25px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes mmFloat {
+    0%, 100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-9px);
+    }
+}
+
+/* Hero animations */
+
+.mm-hero-inner {
+    animation: mmFadeIn 0.9s ease-out both;
+}
+
+.mm-hero-panel {
+    animation:
+        mmFadeIn 1s ease-out 0.2s both,
+        mmFloat 5s ease-in-out 1.2s infinite;
+}
+
+
+/* Scroll-triggered cards */
+
+/* Cards start hidden until JavaScript reveals them */
+
+.mm-process-card,
+.mm-test-card {
+    opacity: 0;
+    transform: translateY(25px);
+    transition:
+        opacity 0.7s ease,
+        transform 0.7s ease,
+        box-shadow 0.25s ease,
+        border-color 0.25s ease;
+}
+
+/* Added when a card enters the screen */
+
+.mm-process-card.mm-visible,
+.mm-test-card.mm-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Test card hover */
+
+.mm-test-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 25px rgba(40, 35, 90, 0.09);
+    border-color: #c9bfff;
+}
+
+
+/* Buttons */
+
+.mm-primary-button,
+.mm-secondary-button {
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease,
+        background 0.2s ease;
+}
+
+.mm-primary-button:hover,
+.mm-secondary-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(40, 35, 90, 0.18);
 }
 
 
@@ -856,103 +897,15 @@ main section > h1 + p {
         transition-duration: 0.01ms !important;
     }
 
-}
-
-/* ========================================
-   MOTORMONITOR ANIMATIONS
-   ======================================== */
-
-/* Homepage fade-in */
-@keyframes mmFadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(25px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-/* Gentle floating effect */
-@keyframes mmFloat {
-    0%, 100% {
-        transform: translateY(0);
-    }
-    50% {
-        transform: translateY(-9px);
-    }
-}
-
-/* Hero entrance */
-.mm-hero-inner {
-    animation: mmFadeIn 0.9s ease-out both;
-}
-
-/* Hero information panel */
-.mm-hero-panel {
-    animation:
-        mmFadeIn 1s ease-out 0.2s both,
-        mmFloat 5s ease-in-out 1.2s infinite;
-}
-
-/* Process cards appear one after another */
-.mm-process-card {
-    animation: mmFadeIn 0.7s ease-out both;
-}
-
-.mm-process-card:nth-child(1) {
-    animation-delay: 0.1s;
-}
-
-.mm-process-card:nth-child(2) {
-    animation-delay: 0.3s;
-}
-
-.mm-process-card:nth-child(3) {
-    animation-delay: 0.5s;
-}
-
-/* Test cards */
-.mm-test-card {
-    transition:
-        transform 0.25s ease,
-        box-shadow 0.25s ease,
-        border-color 0.25s ease;
-}
-
-.mm-test-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 12px 25px rgba(40, 35, 90, 0.09);
-    border-color: #c9bfff;
-}
-
-/* Buttons */
-.mm-primary-button,
-.mm-secondary-button {
-    transition:
-        transform 0.2s ease,
-        box-shadow 0.2s ease,
-        background 0.2s ease;
-}
-
-.mm-primary-button:hover,
-.mm-secondary-button:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 8px 20px rgba(40, 35, 90, 0.18);
-}
-
-/* Respect reduced-motion preferences */
-@media (prefers-reduced-motion: reduce) {
     .mm-hero-inner,
-    .mm-hero-panel,
-    .mm-process-card {
+    .mm-hero-panel {
         animation: none !important;
     }
 
-    .mm-test-card,
-    .mm-primary-button,
-    .mm-secondary-button {
+    .mm-process-card,
+    .mm-test-card {
+        opacity: 1;
+        transform: none;
         transition: none !important;
     }
 }
