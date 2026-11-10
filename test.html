@@ -1,40 +1,23 @@
+
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-
     <meta charset="UTF-8">
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <title>MotorTrack | Weekly Test</title>
-
     <link rel="stylesheet" href="style.css">
 
     <style>
-
-        /* =========================================
-           MOTORTRACK WEEKLY TEST
-        ========================================= */
-
         body {
             background: #f6f7fb;
         }
-
-        /* =========================================
-           PAGE
-        ========================================= */
 
         .test-page {
             max-width: 1000px;
             margin: 0 auto;
             padding: 65px 20px 90px;
         }
-
-
-        /* =========================================
-           HEADER
-        ========================================= */
 
         .test-header {
             text-align: center;
@@ -43,63 +26,42 @@
 
         .test-label {
             display: inline-block;
-
             color: #5b5ce2;
-
             font-size: 12px;
             font-weight: 800;
-
             letter-spacing: 2px;
-
             text-transform: uppercase;
-
             margin-bottom: 14px;
         }
 
         .test-header h1 {
             font-size: 52px;
             line-height: 1.1;
-
             color: #172033;
-
             margin: 0 0 18px;
         }
 
         .test-header p {
             max-width: 650px;
-
             margin: 0 auto;
-
             color: #667085;
-
             font-size: 17px;
             line-height: 1.7;
         }
 
-
-        /* =========================================
-           PROGRESS
-        ========================================= */
-
         .test-progress {
             display: flex;
-
             justify-content: center;
             align-items: center;
-
             gap: 10px;
-
             margin-bottom: 25px;
         }
 
         .progress-dot {
             width: 55px;
             height: 6px;
-
             border-radius: 20px;
-
             background: #e1e4ec;
-
             transition: 0.3s;
         }
 
@@ -107,106 +69,59 @@
             background: #5b5ce2;
         }
 
-
-        /* =========================================
-           MAIN CARD
-        ========================================= */
-
         .test-card {
             background: white;
-
             border-radius: 28px;
-
             padding: 50px;
-
             border: 1px solid #e7e9f0;
-
-            box-shadow:
-                0 20px 60px rgba(25, 35, 60, 0.08);
-
+            box-shadow: 0 20px 60px rgba(25, 35, 60, 0.08);
             text-align: center;
         }
-
-
-        /* =========================================
-           ICON
-        ========================================= */
 
         .test-icon {
             width: 78px;
             height: 78px;
-
             margin: 0 auto 24px;
-
             display: flex;
-
             align-items: center;
             justify-content: center;
-
             background: #eef0ff;
-
             border-radius: 22px;
-
             font-size: 36px;
         }
 
-
-        /* =========================================
-           TITLES
-        ========================================= */
-
         .test-card h2 {
             color: #172033;
-
             font-size: 30px;
-
             margin: 0 0 12px;
         }
 
         .test-card p {
             color: #667085;
-
             line-height: 1.7;
-
             font-size: 16px;
         }
 
-
-        /* =========================================
-           INSTRUCTIONS
-        ========================================= */
-
         .instructions-box {
             max-width: 650px;
-
             margin: 30px auto;
-
             padding: 25px 30px;
-
             background: #f8f9fc;
-
             border: 1px solid #eaecf2;
-
             border-radius: 18px;
-
             text-align: left;
         }
 
         .instructions-box h3 {
             color: #172033;
-
             margin: 0 0 15px;
-
             font-size: 17px;
         }
 
         .instructions-box ul {
             margin: 0;
-
             padding-left: 22px;
-
             color: #667085;
-
             line-height: 1.9;
         }
 
@@ -214,148 +129,54 @@
             padding-left: 4px;
         }
 
-
-        /* =========================================
-           START BUTTON
-        ========================================= */
-
         .test-button {
             border: none;
-
             background: #5b5ce2;
-
             color: white;
-
             padding: 16px 32px;
-
             border-radius: 13px;
-
             font-size: 16px;
-
             font-weight: 700;
-
             cursor: pointer;
-
             box-shadow: 0 8px 20px rgba(91, 92, 226, 0.22);
-
             transition: all 0.2s ease;
         }
 
         .test-button:hover {
             transform: translateY(-2px);
-
-            box-shadow:
-                0 12px 25px rgba(91, 92, 226, 0.28);
+            box-shadow: 0 12px 25px rgba(91, 92, 226, 0.28);
         }
 
         .test-button:active {
             transform: translateY(0);
         }
 
-
-        /* =========================================
-           GAME AREA
-        ========================================= */
-
         #game-area {
             position: relative;
-
             margin-top: 30px;
-
             min-height: 300px;
-
             border-radius: 20px;
-
             background: #f8f9fc;
-
             border: 2px dashed #dfe3eb;
-
             overflow: hidden;
         }
 
-
-        /* =========================================
-           FINAL RESULTS
-        ========================================= */
-
         .complete-message {
             margin: 30px auto;
-
             padding: 25px;
-
             max-width: 700px;
-
             background: #f8f9fc;
-
             border: 1px solid #eaecf2;
-
             border-radius: 18px;
         }
 
         .complete-message h3 {
             color: #172033;
-
             font-size: 20px;
-
             margin-bottom: 15px;
         }
 
-
-        /* =========================================
-           RESULT ITEMS
-        ========================================= */
-
-        .result-card {
-            display: grid;
-
-            grid-template-columns: repeat(4, 1fr);
-
-            gap: 12px;
-
-            width: 100%;
-        }
-
-        .result-measure {
-            padding: 18px 10px;
-
-            background: white;
-
-            border-radius: 14px;
-
-            border: 1px solid #e5e7eb;
-        }
-
-        .result-measure span {
-            display: block;
-
-            font-size: 24px;
-
-            margin-bottom: 8px;
-        }
-
-        .result-measure small {
-            display: block;
-
-            color: #667085;
-
-            font-size: 11px;
-
-            margin-bottom: 5px;
-        }
-
-        .result-measure strong {
-            color: #172033;
-
-            font-size: 18px;
-        }
-
-
-        /* =========================================
-           MOBILE
-        ========================================= */
-
         @media (max-width: 750px) {
-
             .test-page {
                 padding: 45px 15px 70px;
             }
@@ -367,16 +188,9 @@
             .test-card {
                 padding: 30px 20px;
             }
-
-            .result-card {
-                grid-template-columns: 1fr 1fr;
-            }
-
         }
 
-
         @media (max-width: 500px) {
-
             .test-header h1 {
                 font-size: 34px;
             }
@@ -400,142 +214,76 @@
             .progress-dot {
                 width: 35px;
             }
-
-            .result-card {
-                grid-template-columns: 1fr;
-            }
-
         }
-
     </style>
-
 </head>
 
-
 <body>
-<script>
 
+<script>
     const savedProfile =
         localStorage.getItem("motorMonitorProfile");
 
     const signedIn =
         localStorage.getItem("motorMonitorSignedIn");
 
-
-    if (
-        !savedProfile ||
-        signedIn !== "true"
-    ) {
-
-        localStorage.removeItem(
-            "motorMonitorSignedIn"
-        );
-
-        window.location.href =
-            "signin.html";
-
+    if (!savedProfile || signedIn !== "true") {
+        localStorage.removeItem("motorMonitorSignedIn");
+        window.location.href = "signin.html";
     }
-
 </script>
 
-<!-- =========================================
-     NAVIGATION
-========================================= -->
+<!-- NAVIGATION -->
 
 <header>
-
     <nav>
-
         <div class="logo">
             MotorTrack
         </div>
 
         <div class="nav-links">
-
-            <a href="index.html">
-                Home
-            </a>
-
-            <a href="test.html">
-                Weekly Test
-            </a>
-
-            <a href="research.html">
-                Research
-            </a>
-
+            <a href="index.html">Home</a>
+            <a href="test.html">Weekly Test</a>
+            <a href="research.html">Research</a>
         </div>
-
     </nav>
-
 </header>
 
-
-<!-- =========================================
-     MAIN
-========================================= -->
+<!-- MAIN -->
 
 <main>
-
     <section class="test-page">
-
 
         <!-- HEADER -->
 
         <div class="test-header">
-
             <div class="test-label">
                 Friedreich's Ataxia Research Project
             </div>
 
-            <h1>
-                Your Weekly Test
-            </h1>
+            <h1>Your Weekly Test</h1>
 
             <p>
                 A short series of digital motor tasks designed
                 to measure changes in coordination, reaction time
                 and motor control over time.
             </p>
-
         </div>
-
 
         <!-- PROGRESS -->
 
         <div class="test-progress">
-
-            <div
-                class="progress-dot active"
-                id="progress-1">
-            </div>
-
-            <div
-                class="progress-dot"
-                id="progress-2">
-            </div>
-
-            <div
-                class="progress-dot"
-                id="progress-3">
-            </div>
-
-            <div
-                class="progress-dot"
-                id="progress-4">
-            </div>
-
+            <div class="progress-dot active" id="progress-1"></div>
+            <div class="progress-dot" id="progress-2"></div>
+            <div class="progress-dot" id="progress-3"></div>
+            <div class="progress-dot" id="progress-4"></div>
         </div>
-
 
         <!-- TEST CARD -->
 
         <div class="test-card">
 
-
-            <!-- =================================
-                 START SCREEN
-            ================================= -->
+            <!-- START SCREEN -->
 
             <div id="instructions">
 
@@ -543,46 +291,57 @@
                     🧠
                 </div>
 
-
-                <h2>
-                    Ready to begin?
-                </h2>
-
+                <h2>Ready to begin?</h2>
 
                 <p>
                     The complete test takes approximately
                     one minute.
                 </p>
 
-
                 <div class="instructions-box">
 
-                    <h3>
-                        Before you start
-                    </h3>
+                    <h3>Weekly Testing Guidelines</h3>
+
+                    <p>
+                        Please follow these guidelines every week
+                        to help keep the research results consistent.
+                    </p>
 
                     <ul>
-
                         <li>
-                            Make sure you are comfortable.
+                            Use the same device for every weekly test.
                         </li>
 
                         <li>
-                            Use the same device where possible.
+                            Keep your screen orientation the same.
                         </li>
 
                         <li>
-                            Complete the test without distractions.
+                            Complete the tests in a quiet environment.
                         </li>
 
                         <li>
-                            Try to perform naturally rather than rushing.
+                            Follow the same testing instructions each week.
                         </li>
 
+                        <li>
+                            Try to complete your test at approximately
+                            the same time each week.
+                        </li>
+
+                        <li>
+                            Avoid switching devices during the study.
+                            If you need to change devices, let the researcher know.
+                        </li>
                     </ul>
 
-                </div>
+                    <p>
+                        Your results will be securely recorded for
+                        research purposes. You will not be shown
+                        previous scores or asked to beat them.
+                    </p>
 
+                </div>
 
                 <button
                     class="test-button"
@@ -594,36 +353,25 @@
 
             </div>
 
+            <!-- TEST AREA -->
 
-            <!-- =================================
-                 TEST AREA
-            ================================= -->
-
-            <div
-                id="test-area"
-                style="display:none;">
+            <div id="test-area" style="display:none;">
 
                 <div class="test-icon">
                     🎯
                 </div>
 
-
                 <h2 id="test-title">
                     Test
                 </h2>
-
 
                 <p id="test-instruction">
                     Follow the instructions below.
                 </p>
 
-
-                <div id="game-area">
-                </div>
-
+                <div id="game-area"></div>
 
                 <br>
-
 
                 <button
                     id="next-button"
@@ -637,64 +385,52 @@
 
             </div>
 
+            <!-- FINAL CONFIRMATION -->
 
-            <!-- =================================
-                 FINAL RESULTS
-            ================================= -->
-
-            <div
-                id="final-results"
-                style="display:none;">
+            <div id="final-results" style="display:none;">
 
                 <div class="test-icon">
                     ✅
                 </div>
 
-
-                <h2>
-                    Test Complete!
-                </h2>
-
+                <h2>Test Complete!</h2>
 
                 <p>
-                    Your results have been recorded on this device.
+                    Your weekly test has been completed successfully.
                 </p>
-
 
                 <div class="complete-message">
 
-                    <h3>
-                        This week's results
-                    </h3>
+                    <h3>Thank you for participating.</h3>
 
+                    <p>
+                        Your results have been securely recorded
+                        for research purposes. Your previous scores
+                        will not be displayed.
+                    </p>
 
-                    <div id="results-display">
-                    </div>
+                    <p>
+                        We look forward to your next weekly test.
+                    </p>
 
                 </div>
 
-
                 <button
                     class="test-button"
-                    onclick="location.reload()">
+                    onclick="location.href='index.html'">
 
-                    Take Test Again
+                    Return Home →
 
                 </button>
 
             </div>
 
-
         </div>
 
     </section>
-
 </main>
 
-
-<!-- =========================================
-     FOOTER
-========================================= -->
+<!-- FOOTER -->
 
 <footer>
 
@@ -708,11 +444,7 @@
 
 </footer>
 
-
 <script src="script.js"></script>
 
-
 </body>
-
 </html>
-
