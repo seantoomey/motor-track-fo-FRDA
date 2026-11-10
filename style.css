@@ -857,3 +857,102 @@ main section > h1 + p {
     }
 
 }
+
+/* ========================================
+   MOTORMONITOR ANIMATIONS
+   ======================================== */
+
+/* Homepage fade-in */
+@keyframes mmFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(25px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Gentle floating effect */
+@keyframes mmFloat {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-9px);
+    }
+}
+
+/* Hero entrance */
+.mm-hero-inner {
+    animation: mmFadeIn 0.9s ease-out both;
+}
+
+/* Hero information panel */
+.mm-hero-panel {
+    animation:
+        mmFadeIn 1s ease-out 0.2s both,
+        mmFloat 5s ease-in-out 1.2s infinite;
+}
+
+/* Process cards appear one after another */
+.mm-process-card {
+    animation: mmFadeIn 0.7s ease-out both;
+}
+
+.mm-process-card:nth-child(1) {
+    animation-delay: 0.1s;
+}
+
+.mm-process-card:nth-child(2) {
+    animation-delay: 0.3s;
+}
+
+.mm-process-card:nth-child(3) {
+    animation-delay: 0.5s;
+}
+
+/* Test cards */
+.mm-test-card {
+    transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease,
+        border-color 0.25s ease;
+}
+
+.mm-test-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 25px rgba(40, 35, 90, 0.09);
+    border-color: #c9bfff;
+}
+
+/* Buttons */
+.mm-primary-button,
+.mm-secondary-button {
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease,
+        background 0.2s ease;
+}
+
+.mm-primary-button:hover,
+.mm-secondary-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(40, 35, 90, 0.18);
+}
+
+/* Respect reduced-motion preferences */
+@media (prefers-reduced-motion: reduce) {
+    .mm-hero-inner,
+    .mm-hero-panel,
+    .mm-process-card {
+        animation: none !important;
+    }
+
+    .mm-test-card,
+    .mm-primary-button,
+    .mm-secondary-button {
+        transition: none !important;
+    }
+}
