@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,171 +9,790 @@
     <meta name="description" content="MotorMonitor is a young scientist research project investigating whether short digital weekly motor tests can monitor changes in motor performance associated with Friedreich's Ataxia.">
 
     <link rel="stylesheet" href="style.css">
+
+    <style>
+        :root {
+            --mm-navy: #111b36;
+            --mm-purple: #7057d9;
+            --mm-light-purple: #eeeaff;
+            --mm-background: #f7f8fc;
+            --mm-text: #28334b;
+            --mm-muted: #68738a;
+            --mm-white: #ffffff;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            margin: 0;
+            background: var(--mm-background);
+            color: var(--mm-text);
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        .mm-header {
+            background: rgba(255, 255, 255, 0.97);
+            border-bottom: 1px solid #e8eaf2;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+
+        .mm-nav {
+            max-width: 1180px;
+            margin: auto;
+            padding: 19px 28px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 25px;
+        }
+
+        .mm-logo {
+            color: var(--mm-navy);
+            font-size: 25px;
+            font-weight: 800;
+            letter-spacing: -1px;
+            white-space: nowrap;
+        }
+
+        .mm-logo span {
+            color: var(--mm-purple);
+        }
+
+        .mm-nav-links {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+        }
+
+        .mm-nav-links a {
+            color: #536078;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 600;
+            transition: color 0.2s ease;
+        }
+
+        .mm-nav-links a:hover {
+            color: var(--mm-purple);
+        }
+
+        .mm-nav-links .mm-signin {
+            background: var(--mm-navy);
+            color: white;
+            padding: 11px 19px;
+            border-radius: 9px;
+        }
+
+        .mm-nav-links .mm-signin:hover {
+            background: var(--mm-purple);
+            color: white;
+        }
+
+        .mm-hero {
+            background:
+                radial-gradient(circle at 85% 20%, rgba(133, 111, 236, 0.25), transparent 30%),
+                linear-gradient(125deg, #111b36 0%, #202c53 65%, #443b83 100%);
+            color: white;
+            padding: 100px 28px 105px;
+            overflow: hidden;
+        }
+
+        .mm-hero-inner {
+            max-width: 1180px;
+            margin: auto;
+            display: grid;
+            grid-template-columns: 1.4fr 0.8fr;
+            align-items: center;
+            gap: 70px;
+        }
+
+        .mm-eyebrow {
+            display: inline-block;
+            color: #d1c8ff;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.16);
+            border-radius: 30px;
+            padding: 9px 15px;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            margin-bottom: 24px;
+        }
+
+        .mm-hero h1 {
+            font-size: clamp(42px, 6vw, 68px);
+            line-height: 1.08;
+            letter-spacing: -2.5px;
+            max-width: 700px;
+            margin: 0 0 25px;
+        }
+
+        .mm-hero h1 span {
+            color: #b9aaff;
+        }
+
+        .mm-hero-description {
+            color: #d3d9eb;
+            font-size: 17px;
+            line-height: 1.8;
+            max-width: 650px;
+            margin-bottom: 32px;
+        }
+
+        .mm-primary-button {
+            display: inline-block;
+            background: #a99aff;
+            color: #171d3a;
+            text-decoration: none;
+            padding: 16px 25px;
+            border-radius: 10px;
+            font-size: 15px;
+            font-weight: 800;
+            transition: transform 0.2s ease, background 0.2s ease;
+        }
+
+        .mm-primary-button:hover {
+            background: #c0b5ff;
+            transform: translateY(-2px);
+        }
+
+        .mm-profile-note {
+            color: #c2c9df;
+            font-size: 12px;
+            margin-top: 17px;
+        }
+
+        .mm-hero-panel {
+            background: rgba(255, 255, 255, 0.09);
+            border: 1px solid rgba(255, 255, 255, 0.17);
+            border-radius: 22px;
+            padding: 30px;
+            backdrop-filter: blur(8px);
+        }
+
+        .mm-panel-label {
+            color: #c7bfff;
+            font-size: 11px;
+            letter-spacing: 1.5px;
+            font-weight: 800;
+            margin-bottom: 23px;
+        }
+
+        .mm-panel-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 17px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.13);
+        }
+
+        .mm-panel-item:last-child {
+            border-bottom: none;
+            padding-bottom: 0;
+        }
+
+        .mm-panel-icon {
+            width: 43px;
+            height: 43px;
+            display: grid;
+            place-items: center;
+            background: rgba(169, 154, 255, 0.2);
+            border-radius: 12px;
+            font-size: 20px;
+            flex-shrink: 0;
+        }
+
+        .mm-panel-item strong {
+            display: block;
+            font-size: 14px;
+            margin-bottom: 5px;
+        }
+
+        .mm-panel-item small {
+            color: #c2c9df;
+            font-size: 12px;
+        }
+
+        .mm-section {
+            max-width: 1180px;
+            margin: auto;
+            padding: 85px 28px;
+        }
+
+        .mm-section-heading {
+            text-align: center;
+            max-width: 680px;
+            margin: 0 auto 45px;
+        }
+
+        .mm-section-label {
+            color: var(--mm-purple);
+            font-size: 11px;
+            letter-spacing: 1.5px;
+            font-weight: 800;
+            margin-bottom: 13px;
+        }
+
+        .mm-section-heading h2 {
+            color: var(--mm-navy);
+            font-size: clamp(29px, 4vw, 39px);
+            letter-spacing: -1px;
+            margin: 0 0 15px;
+        }
+
+        .mm-section-heading p {
+            color: var(--mm-muted);
+            font-size: 15px;
+            line-height: 1.7;
+        }
+
+        .mm-process-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 22px;
+        }
+
+        .mm-process-card {
+            background: white;
+            border: 1px solid #e9eaf2;
+            border-radius: 17px;
+            padding: 29px;
+            box-shadow: 0 8px 25px rgba(22, 31, 63, 0.035);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .mm-process-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(22, 31, 63, 0.08);
+        }
+
+        .mm-number {
+            width: 43px;
+            height: 43px;
+            display: grid;
+            place-items: center;
+            border-radius: 12px;
+            background: var(--mm-light-purple);
+            color: var(--mm-purple);
+            font-size: 14px;
+            font-weight: 800;
+            margin-bottom: 24px;
+        }
+
+        .mm-process-card h3 {
+            color: var(--mm-navy);
+            font-size: 19px;
+            margin: 0 0 12px;
+        }
+
+        .mm-process-card p {
+            color: var(--mm-muted);
+            font-size: 14px;
+            line-height: 1.75;
+            margin: 0;
+        }
+
+        .mm-tests-section {
+            background: #ffffff;
+            border-top: 1px solid #eceef5;
+            border-bottom: 1px solid #eceef5;
+        }
+
+        .mm-tests-grid {
+            max-width: 1180px;
+            margin: auto;
+            padding: 80px 28px;
+            display: grid;
+            grid-template-columns: 0.8fr 1.2fr;
+            gap: 65px;
+            align-items: center;
+        }
+
+        .mm-tests-intro h2 {
+            color: var(--mm-navy);
+            font-size: 36px;
+            letter-spacing: -1px;
+            margin: 0 0 18px;
+        }
+
+        .mm-tests-intro p {
+            color: var(--mm-muted);
+            line-height: 1.8;
+            font-size: 15px;
+        }
+
+        .mm-test-list {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+
+        .mm-test-card {
+            background: var(--mm-background);
+            border: 1px solid #eaebf2;
+            border-radius: 15px;
+            padding: 22px;
+            display: flex;
+            gap: 14px;
+            align-items: flex-start;
+        }
+
+        .mm-test-icon {
+            width: 43px;
+            height: 43px;
+            flex-shrink: 0;
+            display: grid;
+            place-items: center;
+            background: var(--mm-light-purple);
+            border-radius: 12px;
+            font-size: 21px;
+        }
+
+        .mm-test-card h3 {
+            color: var(--mm-navy);
+            font-size: 15px;
+            margin: 2px 0 7px;
+        }
+
+        .mm-test-card p {
+            color: var(--mm-muted);
+            font-size: 12px;
+            line-height: 1.5;
+            margin: 0;
+        }
+
+        .mm-research {
+            background: linear-gradient(135deg, #eeeaff, #f7f5ff);
+            border: 1px solid #e2dcff;
+            border-radius: 20px;
+            padding: 36px;
+            display: grid;
+            grid-template-columns: 1fr auto;
+            gap: 25px;
+            align-items: center;
+        }
+
+        .mm-research h2 {
+            color: var(--mm-navy);
+            font-size: 25px;
+            margin: 0 0 12px;
+        }
+
+        .mm-research p {
+            color: #59627b;
+            font-size: 14px;
+            line-height: 1.8;
+            margin: 0;
+            max-width: 750px;
+        }
+
+        .mm-secondary-button {
+            display: inline-block;
+            background: var(--mm-purple);
+            color: white;
+            padding: 14px 20px;
+            border-radius: 9px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 13px;
+            white-space: nowrap;
+            transition: background 0.2s ease;
+        }
+
+        .mm-secondary-button:hover {
+            background: #5740bd;
+        }
+
+        .mm-notice {
+            max-width: 1180px;
+            margin: 0 auto;
+            padding: 0 28px 75px;
+        }
+
+        .mm-notice-inner {
+            background: #fff;
+            border: 1px solid #e7e9f0;
+            border-left: 4px solid var(--mm-purple);
+            border-radius: 10px;
+            padding: 23px 26px;
+        }
+
+        .mm-notice h3 {
+            color: var(--mm-navy);
+            font-size: 15px;
+            margin: 0 0 8px;
+        }
+
+        .mm-notice p {
+            color: var(--mm-muted);
+            font-size: 13px;
+            line-height: 1.7;
+            margin: 0;
+        }
+
+        .mm-footer {
+            background: var(--mm-navy);
+            color: #d4d9e8;
+            padding: 35px 28px;
+            text-align: center;
+        }
+
+        .mm-footer strong {
+            color: white;
+            font-size: 16px;
+        }
+
+        .mm-footer p {
+            font-size: 12px;
+            line-height: 1.7;
+            margin: 9px 0 0;
+            color: #aeb8d0;
+        }
+
+        @media (max-width: 800px) {
+            .mm-hero-inner {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .mm-hero {
+                padding: 75px 24px;
+            }
+
+            .mm-hero-panel {
+                max-width: 550px;
+            }
+
+            .mm-process-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .mm-tests-grid {
+                grid-template-columns: 1fr;
+                gap: 35px;
+            }
+
+            .mm-research {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .mm-nav {
+                flex-direction: column;
+                gap: 16px;
+                padding: 17px 15px;
+            }
+
+            .mm-nav-links {
+                width: 100%;
+                justify-content: center;
+                gap: 15px;
+                flex-wrap: wrap;
+            }
+
+            .mm-nav-links a {
+                font-size: 12px;
+            }
+
+            .mm-nav-links .mm-signin {
+                padding: 9px 13px;
+            }
+
+            .mm-hero h1 {
+                letter-spacing: -1.5px;
+            }
+
+            .mm-hero-description {
+                font-size: 15px;
+            }
+
+            .mm-section,
+            .mm-tests-grid {
+                padding: 60px 20px;
+            }
+
+            .mm-test-list {
+                grid-template-columns: 1fr;
+            }
+
+            .mm-research {
+                padding: 25px;
+            }
+
+            .mm-notice {
+                padding: 0 20px 55px;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            html {
+                scroll-behavior: auto;
+            }
+
+            *,
+            *::before,
+            *::after {
+                transition-duration: 0.01ms !important;
+            }
+        }
+    </style>
 </head>
 
 <body>
 
     <!-- Navigation -->
-    <header>
-        <nav>
-            <div class="logo">MotorMonitor</div>
+    <header class="mm-header">
+        <nav class="mm-nav">
+            <div class="mm-logo">Motor<span>Monitor</span></div>
 
-            <div class="nav-links">
+            <div class="mm-nav-links">
                 <a href="index.html">Home</a>
                 <a href="test.html">Weekly Test</a>
                 <a href="research.html">Research</a>
-                <a href="signin.html">Sign In</a>
+                <a href="signin.html" class="mm-signin">Sign In</a>
             </div>
         </nav>
     </header>
 
-
-    <!-- Main content -->
     <main>
 
-        <!-- Welcome section -->
-        <section class="hero">
+        <!-- Hero section -->
+        <section class="mm-hero">
+            <div class="mm-hero-inner">
 
-           <div class="hero-text">
+                <div>
+                    <div class="mm-eyebrow">
+                        FRIEDREICH'S ATAXIA RESEARCH PROJECT
+                    </div>
 
-        <p class="small-title">FRIEDREICH'S ATAXIA RESEARCH PROJECT</p>
+                    <h1>
+                        Understanding movement.
+                        <span>One week at a time.</span>
+                    </h1>
 
-        <h1>
-            Welcome to MotorMonitor.
-        </h1>
+                    <p class="mm-hero-description">
+                        MotorMonitor is a digital motor testing project
+                        developed as part of the Stripe Young Scientist
+                        & Technology Exhibition. Created by Sean Toomey,
+                        it investigates whether short weekly motor tests
+                        can help researchers study changes in motor
+                        performance associated with Friedreich's ataxia
+                        (FRDA).
+                    </p>
 
-        <p class="description">
-            MotorMonitor is a one-minute weekly digital motor test developed
-            as part of the Stripe Young Scientist & Technology Exhibition
-            investigating the link between motor performance and
-            Friedreich's ataxia (FRDA) created by Sean Toomey.
-        </p>
+                    <a href="profile.html" class="mm-primary-button">
+                        Create Your Profile →
+                    </a>
 
-        <a href="profile.html" class="start-button">
-            Create Your Profile
-        </a>
+                    <p class="mm-profile-note">
+                        Your profile uses an anonymous participant number
+                        rather than displaying your name.
+                    </p>
+                </div>
 
-        <p class="profile-note">
-            Your profile will use an anonymous participant number rather
-            than your name.
-        </p>
+                <div class="mm-hero-panel">
+                    <div class="mm-panel-label">
+                        THE MOTOR MONITOR APPROACH
+                    </div>
 
-    </div>
+                    <div class="mm-panel-item">
+                        <div class="mm-panel-icon">⌁</div>
+                        <div>
+                            <strong>Short digital tests</strong>
+                            <small>Simple tasks designed to measure movement</small>
+                        </div>
+                    </div>
 
-</section>
+                    <div class="mm-panel-item">
+                        <div class="mm-panel-icon">◷</div>
+                        <div>
+                            <strong>Weekly participation</strong>
+                            <small>Repeat testing over an extended period</small>
+                        </div>
+                    </div>
 
+                    <div class="mm-panel-item">
+                        <div class="mm-panel-icon">▥</div>
+                        <div>
+                            <strong>Research data</strong>
+                            <small>Results recorded for research analysis</small>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
 
         <!-- How it works -->
-        <section class="how-it-works">
+        <section class="mm-section">
 
-            <h2>How MotorMonitor works</h2>
+            <div class="mm-section-heading">
+                <div class="mm-section-label">THE PROCESS</div>
+                <h2>How MotorMonitor works</h2>
+                <p>
+                    A straightforward weekly process designed to collect
+                    consistent motor performance data over time.
+                </p>
+            </div>
 
-            <div class="cards">
+            <div class="mm-process-grid">
 
-                <div class="card">
-                    <div class="number">01</div>
-                    <h3>Take the test</h3>
+                <div class="mm-process-card">
+                    <div class="mm-number">01</div>
+                    <h3>Complete the tests</h3>
                     <p>
-                        Complete a series of short motor and reaction tests
-                        lasting around one minute.
+                        Participants complete four short digital motor
+                        and reaction tests during each weekly session.
                     </p>
                 </div>
 
-                <div class="card">
-                    <div class="number">02</div>
-                    <h3>Build your baseline</h3>
+                <div class="mm-process-card">
+                    <div class="mm-number">02</div>
+                    <h3>Record the results</h3>
                     <p>
-                        Your results are recorded over time to understand
-                        your normal level of performance.
+                        Test results are securely recorded for the
+                        research project, allowing performance to be
+                        examined across multiple sessions.
                     </p>
                 </div>
 
-                <div class="card">
-                    <div class="number">03</div>
-                    <h3>Track changes</h3>
+                <div class="mm-process-card">
+                    <div class="mm-number">03</div>
+                    <h3>Study changes over time</h3>
                     <p>
-                        Future results can be compared with your previous
-                        performance to identify persistent changes that wouldn't
-                        be normal factoring in aging and other natural causes of 
-                        worsening motor control.
+                        Researchers can analyse patterns across repeated
+                        sessions while considering natural variation and
+                        other factors that may affect performance.
                     </p>
                 </div>
 
             </div>
-
         </section>
 
+        <!-- Tests section -->
+        <section class="mm-tests-section">
 
-        <!-- Tests -->
-        <section class="tests">
+            <div class="mm-tests-grid">
 
-            <h2>What's measured?</h2>
+                <div class="mm-tests-intro">
+                    <div class="mm-section-label">MOTOR PERFORMANCE</div>
 
-            <div class="test-list">
+                    <h2>What's measured?</h2>
 
-                <div class="test-item">
-                    <span>🎯</span>
-                    <div>
-                        <h3>Target Tapping</h3>
-                        <p>Coordination and accuracy</p>
-                    </div>
+                    <p>
+                        MotorMonitor uses four short tasks to examine
+                        different aspects of motor performance, including
+                        coordination, reaction speed, tracking and
+                        consistency.
+                    </p>
                 </div>
 
-                <div class="test-item">
-                    <span>✋</span>
-                    <div>
-                        <h3>Moving Target</h3>
-                        <p>Motor control and tracking</p>
+                <div class="mm-test-list">
+
+                    <div class="mm-test-card">
+                        <div class="mm-test-icon">🎯</div>
+                        <div>
+                            <h3>Target Tapping</h3>
+                            <p>Coordination and tapping accuracy</p>
+                        </div>
                     </div>
+
+                    <div class="mm-test-card">
+                        <div class="mm-test-icon">✋</div>
+                        <div>
+                            <h3>Moving Target</h3>
+                            <p>Motor control and visual tracking</p>
+                        </div>
+                    </div>
+
+                    <div class="mm-test-card">
+                        <div class="mm-test-icon">⚡</div>
+                        <div>
+                            <h3>Reaction Time</h3>
+                            <p>Speed of response to a visual signal</p>
+                        </div>
+                    </div>
+
+                    <div class="mm-test-card">
+                        <div class="mm-test-icon">🔄</div>
+                        <div>
+                            <h3>Alternating Taps</h3>
+                            <p>Fine motor control and consistency</p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- Research section -->
+        <section class="mm-section">
+
+            <div class="mm-research">
+
+                <div>
+                    <div class="mm-section-label">THE SCIENCE</div>
+
+                    <h2>Why study Friedreich's ataxia?</h2>
+
+                    <p>
+                        Friedreich's ataxia is a rare inherited condition
+                        that can affect coordination, balance and movement.
+                        This project explores whether repeated digital
+                        motor tests could provide useful information about
+                        changes in motor performance over time. It is a
+                        research investigation, not a clinical study or
+                        diagnostic system.
+                    </p>
                 </div>
 
-                <div class="test-item">
-                    <span>⚡</span>
-                    <div>
-                        <h3>Reaction Time</h3>
-                        <p>Speed of response</p>
-                    </div>
-                </div>
-
-                <div class="test-item">
-                    <span>🔄</span>
-                    <div>
-                        <h3>Alternating Taps</h3>
-                        <p>Fine motor control and consistency</p>
-                    </div>
-                </div>
+                <a href="research.html" class="mm-secondary-button">
+                    Explore the Research →
+                </a>
 
             </div>
 
         </section>
-
 
         <!-- Important notice -->
-        <section class="notice">
+        <section class="mm-notice">
 
-            <h2>Important</h2>
+            <div class="mm-notice-inner">
+                <h3>Important research notice</h3>
 
-            <p>
-                MotorMonitor is a research prototype and is not a medical
-                diagnostic tool. Changes in test performance can have many
-                possible causes and should not be interpreted as a diagnosis
-                of Friedreich's ataxia.
-            </p>
+                <p>
+                    MotorMonitor is a student research prototype and is
+                    not a medical diagnostic tool. Test results cannot
+                    diagnose Friedreich's ataxia or determine whether
+                    someone has a medical condition. Changes in
+                    performance can have many possible causes.
+                </p>
+            </div>
 
         </section>
 
     </main>
 
-
     <!-- Footer -->
-    <footer>
+    <footer class="mm-footer">
+
+        <strong>MotorMonitor</strong>
 
         <p>
-            MotorMonitor — Young Scientist & Technology Exhibition Project
+            Young Scientist & Technology Exhibition Research Project
         </p>
 
         <p>
-            Research prototype • Not for medical diagnosis
+            Created by Sean Toomey · Research prototype · Not for medical diagnosis
         </p>
 
     </footer>
