@@ -552,3 +552,32 @@ async function finishTest() {
 // ==========================================
 // END OF SCRIPT
 // ==========================================
+
+// ========================================
+// SCROLL-TRIGGERED CARD ANIMATIONS
+// ========================================
+
+document.addEventListener("DOMContentLoaded", () => {
+    const cards = document.querySelectorAll(
+        ".mm-process-card, .mm-test-card"
+    );
+
+    // Show cards immediately if reduced motion is enabled
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+        cards.forEach(card => card.classList.add("mm-visible"));
+        return;
+    }
+
+    const observer = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add("mm-visible");
+                observer.unobserve(entry.target);
+            }
+        });
+    }, {
+        threshold: 0.15
+    });
+
+    cards.forEach(card => observer.observe(card));
+});
