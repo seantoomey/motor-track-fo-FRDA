@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>MotorMonitor | FRDA Motor Test Research Project</title>
-    <meta name="description" content="MotorMonitor is a young scientist research project investigating whether short digital weekly motor tests can monitor changes in motor performance associated with Friedreich's Ataxia.">
+    <meta name="description" content="MotorMonitor is a Young Scientist research project investigating whether short digital weekly motor tests can monitor changes in motor performance associated with Friedreich's ataxia.">
 
     <link rel="stylesheet" href="style.css">
 
@@ -95,6 +95,8 @@
             background: var(--mm-purple);
             color: white;
         }
+
+        /* HERO */
 
         .mm-hero {
             background:
@@ -221,6 +223,8 @@
             font-size: 12px;
         }
 
+        /* GENERAL SECTIONS */
+
         .mm-section {
             max-width: 1180px;
             margin: auto;
@@ -253,6 +257,8 @@
             font-size: 15px;
             line-height: 1.7;
         }
+
+        /* PROCESS CARDS */
 
         .mm-process-grid {
             display: grid;
@@ -299,6 +305,78 @@
             line-height: 1.75;
             margin: 0;
         }
+
+        /* WHY MONITOR */
+
+        .mm-why-section {
+            background: white;
+            border-top: 1px solid #eceef5;
+            border-bottom: 1px solid #eceef5;
+        }
+
+        .mm-why-grid {
+            max-width: 1180px;
+            margin: auto;
+            padding: 80px 28px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 55px;
+            align-items: center;
+        }
+
+        .mm-why-intro h2 {
+            color: var(--mm-navy);
+            font-size: 35px;
+            letter-spacing: -1px;
+            margin: 0 0 18px;
+        }
+
+        .mm-why-intro p {
+            color: var(--mm-muted);
+            font-size: 15px;
+            line-height: 1.85;
+        }
+
+        .mm-why-points {
+            display: grid;
+            gap: 16px;
+        }
+
+        .mm-why-point {
+            display: flex;
+            align-items: flex-start;
+            gap: 16px;
+            background: var(--mm-background);
+            border: 1px solid #eaebf2;
+            border-radius: 14px;
+            padding: 20px;
+        }
+
+        .mm-why-icon {
+            width: 42px;
+            height: 42px;
+            flex-shrink: 0;
+            display: grid;
+            place-items: center;
+            background: var(--mm-light-purple);
+            border-radius: 12px;
+            font-size: 20px;
+        }
+
+        .mm-why-point h3 {
+            color: var(--mm-navy);
+            font-size: 15px;
+            margin: 2px 0 7px;
+        }
+
+        .mm-why-point p {
+            color: var(--mm-muted);
+            font-size: 13px;
+            line-height: 1.6;
+            margin: 0;
+        }
+
+        /* TESTS */
 
         .mm-tests-section {
             background: #ffffff;
@@ -369,6 +447,115 @@
             margin: 0;
         }
 
+        /* DIFFERENCE CARDS */
+
+        .mm-feature-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .mm-feature-card {
+            background: white;
+            border: 1px solid #e9eaf2;
+            border-radius: 16px;
+            padding: 27px;
+            box-shadow: 0 8px 25px rgba(22, 31, 63, 0.035);
+        }
+
+        .mm-feature-icon {
+            width: 48px;
+            height: 48px;
+            display: grid;
+            place-items: center;
+            background: var(--mm-light-purple);
+            border-radius: 13px;
+            font-size: 22px;
+            margin-bottom: 20px;
+        }
+
+        .mm-feature-card h3 {
+            color: var(--mm-navy);
+            font-size: 17px;
+            margin: 0 0 10px;
+        }
+
+        .mm-feature-card p {
+            color: var(--mm-muted);
+            font-size: 13px;
+            line-height: 1.75;
+            margin: 0;
+        }
+
+        /* TIMELINE */
+
+        .mm-timeline-section {
+            background: white;
+            border-top: 1px solid #eceef5;
+            border-bottom: 1px solid #eceef5;
+        }
+
+        .mm-timeline {
+            max-width: 850px;
+            margin: auto;
+            display: grid;
+            gap: 0;
+        }
+
+        .mm-timeline-item {
+            display: grid;
+            grid-template-columns: 65px 1fr;
+            gap: 20px;
+            position: relative;
+            padding-bottom: 30px;
+        }
+
+        .mm-timeline-item:last-child {
+            padding-bottom: 0;
+        }
+
+        .mm-timeline-marker {
+            width: 48px;
+            height: 48px;
+            display: grid;
+            place-items: center;
+            background: var(--mm-light-purple);
+            color: var(--mm-purple);
+            border-radius: 14px;
+            font-weight: 800;
+            position: relative;
+            z-index: 1;
+        }
+
+        .mm-timeline-item:not(:last-child)::after {
+            content: "";
+            position: absolute;
+            left: 23px;
+            top: 48px;
+            bottom: 0;
+            width: 2px;
+            background: #e2dcff;
+        }
+
+        .mm-timeline-content {
+            padding: 5px 0 0;
+        }
+
+        .mm-timeline-content h3 {
+            color: var(--mm-navy);
+            font-size: 17px;
+            margin: 0 0 8px;
+        }
+
+        .mm-timeline-content p {
+            color: var(--mm-muted);
+            font-size: 14px;
+            line-height: 1.7;
+            margin: 0;
+        }
+
+        /* RESEARCH PANEL */
+
         .mm-research {
             background: linear-gradient(135deg, #eeeaff, #f7f5ff);
             border: 1px solid #e2dcff;
@@ -411,6 +598,69 @@
             background: #5740bd;
         }
 
+        /* ABOUT */
+
+        .mm-about {
+            background: white;
+            border: 1px solid #e9eaf2;
+            border-radius: 18px;
+            padding: 35px;
+        }
+
+        .mm-about h2 {
+            color: var(--mm-navy);
+            font-size: 25px;
+            margin: 0 0 14px;
+        }
+
+        .mm-about p {
+            color: var(--mm-muted);
+            font-size: 14px;
+            line-height: 1.8;
+            margin: 0 0 12px;
+        }
+
+        .mm-about p:last-child {
+            margin-bottom: 0;
+        }
+
+        /* FAQ */
+
+        .mm-faq-list {
+            max-width: 850px;
+            margin: auto;
+            display: grid;
+            gap: 13px;
+        }
+
+        .mm-faq-item {
+            background: white;
+            border: 1px solid #e8eaf2;
+            border-radius: 13px;
+            padding: 20px 23px;
+        }
+
+        .mm-faq-item summary {
+            color: var(--mm-navy);
+            font-size: 15px;
+            font-weight: 700;
+            cursor: pointer;
+            line-height: 1.5;
+        }
+
+        .mm-faq-item p {
+            color: var(--mm-muted);
+            font-size: 13px;
+            line-height: 1.75;
+            margin: 15px 0 0;
+        }
+
+        .mm-faq-item[open] {
+            border-color: #d8d0ff;
+        }
+
+        /* NOTICE */
+
         .mm-notice {
             max-width: 1180px;
             margin: 0 auto;
@@ -438,6 +688,8 @@
             margin: 0;
         }
 
+        /* FOOTER */
+
         .mm-footer {
             background: var(--mm-navy);
             color: #d4d9e8;
@@ -457,6 +709,8 @@
             color: #aeb8d0;
         }
 
+        /* RESPONSIVE */
+
         @media (max-width: 800px) {
             .mm-hero-inner {
                 grid-template-columns: 1fr;
@@ -471,11 +725,13 @@
                 max-width: 550px;
             }
 
-            .mm-process-grid {
+            .mm-process-grid,
+            .mm-feature-grid {
                 grid-template-columns: 1fr;
             }
 
-            .mm-tests-grid {
+            .mm-tests-grid,
+            .mm-why-grid {
                 grid-template-columns: 1fr;
                 gap: 35px;
             }
@@ -516,7 +772,8 @@
             }
 
             .mm-section,
-            .mm-tests-grid {
+            .mm-tests-grid,
+            .mm-why-grid {
                 padding: 60px 20px;
             }
 
@@ -524,12 +781,18 @@
                 grid-template-columns: 1fr;
             }
 
-            .mm-research {
+            .mm-research,
+            .mm-about {
                 padding: 25px;
             }
 
             .mm-notice {
                 padding: 0 20px 55px;
+            }
+
+            .mm-timeline-item {
+                grid-template-columns: 52px 1fr;
+                gap: 13px;
             }
         }
 
@@ -549,7 +812,7 @@
 
 <body>
 
-    <!-- Navigation -->
+    <!-- NAVIGATION -->
     <header class="mm-header">
         <nav class="mm-nav">
             <div class="mm-logo">Motor<span>Monitor</span></div>
@@ -565,7 +828,7 @@
 
     <main>
 
-        <!-- Hero section -->
+        <!-- HERO -->
         <section class="mm-hero">
             <div class="mm-hero-inner">
 
@@ -594,8 +857,8 @@
                     </a>
 
                     <p class="mm-profile-note">
-                        Your profile uses an anonymous participant number
-                        rather than displaying your name.
+                        Your profile uses a participant number rather
+                        than displaying your name.
                     </p>
                 </div>
 
@@ -632,7 +895,7 @@
             </div>
         </section>
 
-        <!-- How it works -->
+        <!-- HOW IT WORKS -->
         <section class="mm-section">
 
             <div class="mm-section-heading">
@@ -659,9 +922,9 @@
                     <div class="mm-number">02</div>
                     <h3>Record the results</h3>
                     <p>
-                        Test results are securely recorded for the
-                        research project, allowing performance to be
-                        examined across multiple sessions.
+                        Test results are recorded for the research
+                        project, allowing performance to be examined
+                        across multiple sessions.
                     </p>
                 </div>
 
@@ -678,7 +941,74 @@
             </div>
         </section>
 
-        <!-- Tests section -->
+        <!-- WHY MONITOR -->
+        <section class="mm-why-section">
+
+            <div class="mm-why-grid">
+
+                <div class="mm-why-intro">
+                    <div class="mm-section-label">THE PURPOSE</div>
+
+                    <h2>Why monitor motor performance?</h2>
+
+                    <p>
+                        Movement and coordination are important parts
+                        of everyday activities. Repeated motor testing
+                        provides an opportunity to explore how performance
+                        may vary over time.
+                    </p>
+
+                    <p>
+                        A single test only gives a snapshot of performance.
+                        By repeating the same tasks regularly, this project
+                        can investigate patterns across multiple sessions.
+                    </p>
+                </div>
+
+                <div class="mm-why-points">
+
+                    <div class="mm-why-point">
+                        <div class="mm-why-icon">📅</div>
+                        <div>
+                            <h3>Repeated observations</h3>
+                            <p>
+                                Weekly sessions provide multiple
+                                observations instead of relying on
+                                one test.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="mm-why-point">
+                        <div class="mm-why-icon">📊</div>
+                        <div>
+                            <h3>Patterns over time</h3>
+                            <p>
+                                Researchers can explore whether
+                                performance changes or remains
+                                relatively consistent.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="mm-why-point">
+                        <div class="mm-why-icon">🔬</div>
+                        <div>
+                            <h3>Research exploration</h3>
+                            <p>
+                                The project investigates the potential
+                                value and limitations of simple digital
+                                motor tests.
+                            </p>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </section>
+
+        <!-- TESTS -->
         <section class="mm-tests-section">
 
             <div class="mm-tests-grid">
@@ -734,7 +1064,121 @@
             </div>
         </section>
 
-        <!-- Research section -->
+        <!-- WHAT MAKES IT DIFFERENT -->
+        <section class="mm-section">
+
+            <div class="mm-section-heading">
+                <div class="mm-section-label">THE APPROACH</div>
+                <h2>What makes MotorMonitor different?</h2>
+                <p>
+                    The project focuses on keeping testing simple,
+                    consistent and suitable for repeated sessions.
+                </p>
+            </div>
+
+            <div class="mm-feature-grid">
+
+                <div class="mm-feature-card">
+                    <div class="mm-feature-icon">📆</div>
+                    <h3>Regular testing</h3>
+                    <p>
+                        Repeating the tests weekly allows the project
+                        to examine performance across a longer period
+                        rather than relying on one session.
+                    </p>
+                </div>
+
+                <div class="mm-feature-card">
+                    <div class="mm-feature-icon">🔒</div>
+                    <h3>Participant privacy</h3>
+                    <p>
+                        Participants are identified within the research
+                        system using participant identifiers. Previous
+                        scores are not displayed during testing.
+                    </p>
+                </div>
+
+                <div class="mm-feature-card">
+                    <div class="mm-feature-icon">📈</div>
+                    <h3>Long-term analysis</h3>
+                    <p>
+                        Recorded results can be examined by the researcher
+                        to explore patterns across multiple weeks.
+                    </p>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- PROJECT TIMELINE -->
+        <section class="mm-timeline-section">
+
+            <div class="mm-section">
+                <div class="mm-section-heading">
+                    <div class="mm-section-label">PROJECT DEVELOPMENT</div>
+                    <h2>From an idea to a research project</h2>
+                    <p>
+                        The main stages involved in developing and
+                        investigating MotorMonitor.
+                    </p>
+                </div>
+
+                <div class="mm-timeline">
+
+                    <div class="mm-timeline-item">
+                        <div class="mm-timeline-marker">01</div>
+                        <div class="mm-timeline-content">
+                            <h3>Research and planning</h3>
+                            <p>
+                                Learning about Friedreich's ataxia,
+                                motor performance and existing ways
+                                of assessing movement.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="mm-timeline-item">
+                        <div class="mm-timeline-marker">02</div>
+                        <div class="mm-timeline-content">
+                            <h3>Website development</h3>
+                            <p>
+                                Building the MotorMonitor website
+                                and developing the four digital
+                                motor tests.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="mm-timeline-item">
+                        <div class="mm-timeline-marker">03</div>
+                        <div class="mm-timeline-content">
+                            <h3>Testing and refinement</h3>
+                            <p>
+                                Checking that the tests work as intended
+                                and improving the website based on
+                                testing and feedback.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="mm-timeline-item">
+                        <div class="mm-timeline-marker">04</div>
+                        <div class="mm-timeline-content">
+                            <h3>Data collection and analysis</h3>
+                            <p>
+                                Where appropriate approvals and consent
+                                are in place, collecting repeated results
+                                and exploring patterns in the data.
+                            </p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </section>
+
+        <!-- RESEARCH -->
         <section class="mm-section">
 
             <div class="mm-research">
@@ -763,7 +1207,112 @@
 
         </section>
 
-        <!-- Important notice -->
+        <!-- ABOUT THE PROJECT -->
+        <section class="mm-section">
+
+            <div class="mm-about">
+
+                <div class="mm-section-label">ABOUT THE PROJECT</div>
+
+                <h2>A Young Scientist research project</h2>
+
+                <p>
+                    MotorMonitor was developed by Sean Toomey as part
+                    of the Stripe Young Scientist & Technology Exhibition.
+                    The project combines website development, digital
+                    testing and research into motor performance.
+                </p>
+
+                <p>
+                    The aim is to investigate whether simple computer-based
+                    tasks, repeated over time, could be a useful way
+                    of collecting information about motor performance.
+                    The project also considers the challenges of
+                    keeping testing consistent and interpreting results
+                    responsibly.
+                </p>
+
+            </div>
+
+        </section>
+
+        <!-- FAQ -->
+        <section class="mm-section">
+
+            <div class="mm-section-heading">
+                <div class="mm-section-label">NEED TO KNOW?</div>
+                <h2>Frequently asked questions</h2>
+                <p>
+                    A few things participants may want to know
+                    before using MotorMonitor.
+                </p>
+            </div>
+
+            <div class="mm-faq-list">
+
+                <details class="mm-faq-item">
+                    <summary>How often should I complete the tests?</summary>
+                    <p>
+                        The project is designed around weekly testing.
+                        Try to complete each session at approximately
+                        the same time each week, following the
+                        instructions provided by the researcher.
+                    </p>
+                </details>
+
+                <details class="mm-faq-item">
+                    <summary>How long does a session take?</summary>
+                    <p>
+                        The four tests are designed to be short.
+                        The exact time can vary depending on how
+                        quickly each participant completes them.
+                    </p>
+                </details>
+
+                <details class="mm-faq-item">
+                    <summary>Should I use the same device every week?</summary>
+                    <p>
+                        Yes. Using the same device and keeping the
+                        screen orientation consistent can help reduce
+                        differences caused by the equipment.
+                    </p>
+                </details>
+
+                <details class="mm-faq-item">
+                    <summary>Can I see my previous scores?</summary>
+                    <p>
+                        Previous scores are not displayed to participants
+                        during testing. This helps keep each session
+                        focused on the current tasks rather than
+                        comparisons with earlier results.
+                    </p>
+                </details>
+
+                <details class="mm-faq-item">
+                    <summary>Is MotorMonitor a medical diagnosis tool?</summary>
+                    <p>
+                        No. MotorMonitor is a student research prototype.
+                        It cannot diagnose Friedreich's ataxia or any
+                        other medical condition.
+                    </p>
+                </details>
+
+                <details class="mm-faq-item">
+                    <summary>What happens to the test results?</summary>
+                    <p>
+                        Results are stored for the research project
+                        and may be analysed to explore patterns
+                        across repeated sessions. Participation and
+                        data handling should follow the project's
+                        consent, privacy and oversight arrangements.
+                    </p>
+                </details>
+
+            </div>
+
+        </section>
+
+        <!-- IMPORTANT NOTICE -->
         <section class="mm-notice">
 
             <div class="mm-notice-inner">
@@ -775,6 +1324,9 @@
                     diagnose Friedreich's ataxia or determine whether
                     someone has a medical condition. Changes in
                     performance can have many possible causes.
+                    Participation should be voluntary and follow
+                    appropriate consent, privacy and research oversight
+                    arrangements.
                 </p>
             </div>
 
@@ -782,7 +1334,7 @@
 
     </main>
 
-    <!-- Footer -->
+    <!-- FOOTER -->
     <footer class="mm-footer">
 
         <strong>MotorMonitor</strong>
