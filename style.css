@@ -641,7 +641,9 @@ main section > h1 + p {
 }
 
 
-/* Reaction time button */
+/* =========================
+   Reaction time button
+   ========================= */
 
 .reaction-button {
     width: 90%;
@@ -654,7 +656,6 @@ main section > h1 + p {
     cursor: pointer;
     margin: 30px auto;
     display: block;
-    box-sizing: border-box;
 }
 
 
@@ -819,6 +820,7 @@ main section > h1 + p {
     }
 }
 
+
 /* Hero animations */
 
 .mm-hero-inner {
@@ -834,12 +836,12 @@ main section > h1 + p {
 
 /* Scroll-triggered cards */
 
-/* Cards start hidden until JavaScript reveals them */
+/* Cards stay visible by default */
 
 .mm-process-card,
 .mm-test-card {
-    opacity: 0;
-    transform: translateY(25px);
+    opacity: 1;
+    transform: translateY(0);
     transition:
         opacity 0.7s ease,
         transform 0.7s ease,
@@ -847,13 +849,25 @@ main section > h1 + p {
         border-color 0.25s ease;
 }
 
-/* Added when a card enters the screen */
+/* Hide cards only after JavaScript activates the animation system */
+
+html.mm-scroll-animations
+.mm-process-card:not(.mm-visible),
+
+html.mm-scroll-animations
+.mm-test-card:not(.mm-visible) {
+    opacity: 0;
+    transform: translateY(25px);
+}
+
+/* Reveal cards */
 
 .mm-process-card.mm-visible,
 .mm-test-card.mm-visible {
     opacity: 1;
     transform: translateY(0);
 }
+
 
 /* Test card hover */
 
