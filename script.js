@@ -1,6 +1,14 @@
+
 // ==========================================
 // MOTORTRACK - WEEKLY MOTOR TEST
 // ==========================================
+
+// Supabase connection
+const SUPABASE_URL =
+    "https://lihamiyfzlvfmmpcorlb.supabase.co";
+
+const SUPABASE_PUBLISHABLE_KEY =
+    "sb_publishable_6FLGvCfBrAmvQP9F6SbpFA_bzGdr8kd";
 
 // Current test number
 let currentTest = 0;
@@ -163,7 +171,8 @@ function targetTappingTest() {
                 taps +
                 "</strong> times.</p>";
 
-            document.getElementById("next-button").style.display = "inline-block";
+            document.getElementById("next-button").style.display =
+                "inline-block";
         }
 
     }, 1000);
@@ -185,25 +194,24 @@ function reactionTimeTest() {
 
     gameArea.innerHTML = "";
 
-    
-const button = document.createElement("button");
+    const button = document.createElement("button");
 
-button.textContent = "WAIT...";
-button.className = "start-button reaction-button";
+    button.textContent = "WAIT...";
+    button.className = "start-button reaction-button";
 
-button.style.width = "100%";
-button.style.height = "300px";
-button.style.display = "block";
-button.style.fontSize = "32px";
-button.style.margin = "0";
-button.style.boxSizing = "border-box";
+    button.style.width = "100%";
+    button.style.height = "300px";
+    button.style.display = "block";
+    button.style.fontSize = "32px";
+    button.style.margin = "0";
+    button.style.boxSizing = "border-box";
 
-gameArea.appendChild(button);
+    gameArea.appendChild(button);
+
     let startTime = null;
     let finished = false;
 
-    const delay =
-        1500 + Math.random() * 3000;
+    const delay = 1500 + Math.random() * 3000;
 
     setTimeout(function () {
 
@@ -292,7 +300,6 @@ function alternatingTapsTest() {
             } else {
                 expected = "A";
             }
-
         }
     }
 
@@ -423,85 +430,125 @@ function movingTargetTest() {
 }
 
 // ==========================================
-// FINISH THE WEEKLY TEST
+// FINISH TEST AND SAVE TO SUPABASE
 // ==========================================
 
-function finishTest() {
+async function finishTest() {
 
     document.getElementById("test-area").style.display = "none";
     document.getElementById("final-results").style.display = "block";
 
-    const today = new Date();
+    const resultsDisplay =
+        document.getElementById("results-display");
 
-    const savedProfile =
-    JSON.parse(localStorage.getItem("motorMonitorProfile"));
+    // Check login
+    const accessToken =
+        sessionStorage.getItem("motorMonitorAccessToken");
 
-const result = {
+    if (!accessToken) {
 
-    participantId: savedProfile.participantId,
+        resultsDisplay.textContent =
+            "You are not logged in. Please sign in before saving your results.";
 
-    date: today.toISOString(),
+        return;
+    }
 
-    targetTapping: sessionResults.targetTapping,
+    // Prepare scores
+    const result = {
+        target_tapping: Number(sessionResults.targetTapping),
+        reaction_time: Number(sessionResults.reactionTime),
+        alternating_taps: Number(sessionResults.alternatingTaps),
+        moving_target: Number(sessionResults.movingTarget)
+    };
 
-    reactionTime: sessionResults.reactionTime,
+    resultsDisplay.textContent = "Saving your results...";
 
-    alternatingTaps: sessionResults.alternatingTaps,
+    try {
 
-    movingTarget: sessionResults.movingTarget
+        const response = await fetch(
+            `${SUPABASE_URL}/functions/v1/sign-in-system`,
+            {
+                method: "POST",
 
-};
+                headers: {
+                    "Content-Type": "application/json",
+                    "apikey": SUPABASE_PUBLISHABLE_KEY,
+                    "Authorization": `Bearer ${accessToken}`
+                },
 
-    // Get previous results
-    let savedResults =
-        JSON.parse(localStorage.getItem("motorTrackResults")) || [];
+                body: JSON.stringify({
+                    action: "save-results",
+                    ...result
+                })
+            }
+        );
 
-    // Add this week's result
-    savedResults.push(result);
+        const data = await response.json();
 
-    // Save everything
-    localStorage.setItem(
-        "motorTrackResults",
-        JSON.stringify(savedResults)
-    );
+        if (!response.ok || !data.success) {
+            throw new Error(
+                data.error || "Could not save your results."
+            );
+        }
 
-    // Display results
-    document.getElementById("results-display").innerHTML =
+        // Display saved results
+        resultsDisplay.innerHTML = "";
 
-        "<div class='result-card'>" +
+        const card = document.createElement("div");
+        card.className = "result-card";
 
-        "<div class='result-measure'>" +
-        "<span>🎯</span>" +
-        "<div><small>Target Tapping</small>" +
-        "<strong>" +
-        result.targetTapping +
-        "</strong></div></div>" +
+        const measurements = [
+            ["🎯", "Target Tapping", result.target_tapping, "taps"],
+            ["⚡", "Reaction Time", result.reaction_time, "ms"],
+            ["🔄", "Alternating Taps", result.alternating_taps, "taps"],
+            ["✋", "Moving Target", result.moving_target, "hits"]
+        ];
 
-        "<div class='result-measure'>" +
-        "<span>⚡</span>" +
-        "<div><small>Reaction Time</small>" +
-        "<strong>" +
-        result.reactionTime +
-        " ms</strong></div></div>" +
+        measurements.forEach(function(item) {
 
-        "<div class='result-measure'>" +
-        "<span>🔄</span>" +
-        "<div><small>Alternating Taps</small>" +
-        "<strong>" +
-        result.alternatingTaps +
-        "</strong></div></div>" +
+            const measure = document.createElement("div");
+            measure.className = "result-measure";
 
-        "<div class='result-measure'>" +
-        "<span>✋</span>" +
-        "<div><small>Moving Target</small>" +
-        "<strong>" +
-        result.movingTarget +
-        "</strong></div></div>" +
+            const icon = document.createElement("span");
+            icon.textContent = item[0];
 
-        "</div>";
+            const details = document.createElement("div");
+
+            const label = document.createElement("small");
+            label.textContent = item[1];
+
+            const score = document.createElement("strong");
+            score.textContent = item[2];
+
+            const unit = document.createElement("em");
+            unit.textContent = item[3];
+
+            details.append(label, score, unit);
+            measure.append(icon, details);
+            card.appendChild(measure);
+
+        });
+
+        resultsDisplay.appendChild(card);
+
+        const confirmation = document.createElement("p");
+
+        confirmation.textContent =
+            "Your results have been successfully saved to Supabase.";
+
+        resultsDisplay.appendChild(confirmation);
+
+    } catch (error) {
+
+        console.error("RESULT SAVE ERROR:", error);
+
+        resultsDisplay.textContent =
+            "Your test finished, but saving failed: " +
+            error.message +
+            " Please sign in again and try another test.";
+    }
 }
 
 // ==========================================
 // END OF SCRIPT
 // ==========================================
- 
