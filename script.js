@@ -581,3 +581,53 @@ document.addEventListener("DOMContentLoaded", () => {
 
     cards.forEach(card => observer.observe(card));
 });
+
+/* ========================================
+   SCROLL-TRIGGERED CARD ANIMATIONS
+   ======================================== */
+
+function initialiseScrollAnimations() {
+    const cards = document.querySelectorAll(
+        ".mm-process-card, .mm-test-card"
+    );
+
+    if (!cards.length) return;
+
+    // If the browser does not support this feature,
+    // leave all cards visible.
+    if (!("IntersectionObserver" in window)) return;
+
+    // Activate the animation system
+    document.documentElement.classList.add(
+        "mm-scroll-animations"
+    );
+
+    const observer = new IntersectionObserver(
+        (entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add("mm-visible");
+                    observer.unobserve(entry.target);
+                }
+            });
+        },
+        {
+            threshold: 0.1
+        }
+    );
+
+    cards.forEach(card => {
+        observer.observe(card);
+    });
+}
+
+// Works whether this script loads before or after
+// the page has finished loading.
+if (document.readyState === "loading") {
+    document.addEventListener(
+        "DOMContentLoaded",
+        initialiseScrollAnimations
+    );
+} else {
+    initialiseScrollAnimations();
+}
