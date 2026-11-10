@@ -4,21 +4,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="MotorMonitor is a Young Scientist research project exploring motor function over time in relation to Friedreich's ataxia.">
+    <meta name="description" content="MotorMonitor is a Young Scientist research project exploring motor function over time.">
     <title>MotorMonitor | Motor Function Research</title>
 
     <link rel="stylesheet" href="style.css">
 
     <style>
         :root {
-            --mm-navy: #090d20;
-            --mm-deep: #101631;
-            --mm-card: rgba(25, 31, 65, 0.88);
-            --mm-purple: #9878ff;
-            --mm-light-purple: #c9baff;
-            --mm-text: #f0edff;
-            --mm-muted: #b7b3d3;
-            --mm-border: rgba(169, 143, 255, 0.22);
+            --navy: #0b1025;
+            --purple: #9878ff;
+            --light-purple: #c9baff;
+            --text: #f0edff;
+            --muted: #c2bfdc;
+            --card: #171d3b;
+            --border: rgba(169, 143, 255, 0.25);
         }
 
         * {
@@ -32,51 +31,34 @@
         body {
             margin: 0;
             background:
-                radial-gradient(ellipse at 15% 15%, rgba(103, 70, 190, 0.19), transparent 35%),
-                radial-gradient(ellipse at 85% 45%, rgba(56, 85, 170, 0.15), transparent 35%),
-                var(--mm-navy);
-            color: var(--mm-text);
+                radial-gradient(ellipse at 15% 15%, rgba(103,70,190,.16), transparent 35%),
+                radial-gradient(ellipse at 85% 45%, rgba(56,85,170,.12), transparent 35%),
+                var(--navy);
+            color: var(--text);
             font-family: Arial, Helvetica, sans-serif;
             line-height: 1.7;
         }
 
-        body::before {
-            content: "";
-            position: fixed;
-            inset: 0;
-            pointer-events: none;
-            z-index: -1;
-            opacity: 0.65;
-            background-image:
-                radial-gradient(2px 2px at 10% 20%, #ffffff 45%, transparent 55%),
-                radial-gradient(1px 1px at 30% 70%, #c9baff 45%, transparent 55%),
-                radial-gradient(2px 2px at 70% 15%, #ffffff 45%, transparent 55%),
-                radial-gradient(1px 1px at 85% 80%, #c9baff 45%, transparent 55%),
-                radial-gradient(1px 1px at 55% 45%, #ffffff 45%, transparent 55%),
-                radial-gradient(2px 2px at 95% 35%, #ffffff 45%, transparent 55%);
-            background-size: 320px 320px;
-        }
-
         a {
-            color: var(--mm-light-purple);
+            color: var(--light-purple);
         }
 
         .mm-header {
             position: sticky;
             top: 0;
             z-index: 100;
-            background: rgba(9, 13, 32, 0.92);
+            background: rgba(9,13,32,.95);
+            border-bottom: 1px solid var(--border);
             backdrop-filter: blur(14px);
-            border-bottom: 1px solid var(--mm-border);
         }
 
         .mm-nav {
-            max-width: 1180px;
+            max-width: 1250px;
             margin: auto;
             padding: 15px 24px;
             display: flex;
-            align-items: center;
             justify-content: space-between;
+            align-items: center;
             gap: 20px;
             flex-wrap: wrap;
         }
@@ -84,26 +66,24 @@
         .mm-logo {
             color: white;
             text-decoration: none;
-            font-size: 1.35rem;
+            font-size: 1.4rem;
             font-weight: 800;
-            letter-spacing: -0.5px;
         }
 
         .mm-logo span {
-            color: var(--mm-purple);
+            color: var(--purple);
         }
 
         .mm-nav-links {
             display: flex;
-            gap: 22px;
             flex-wrap: wrap;
+            gap: 24px;
         }
 
         .mm-nav-links a {
-            color: var(--mm-muted);
+            color: var(--muted);
             text-decoration: none;
-            font-size: 0.94rem;
-            transition: color 0.2s ease;
+            font-size: .95rem;
         }
 
         .mm-nav-links a:hover {
@@ -117,155 +97,160 @@
             padding: 0;
         }
 
-        /* HERO SECTION — RESTORED WITHOUT DNA GRAPHIC */
+        /* HERO */
 
         .mm-hero {
-            position: relative;
-            overflow: hidden;
-            min-height: 570px;
+            min-height: 700px;
             display: flex;
             align-items: center;
+            position: relative;
+            overflow: hidden;
             background:
-                radial-gradient(ellipse at 80% 45%, rgba(120, 82, 220, 0.28), transparent 38%),
-                linear-gradient(125deg, #111936 0%, #17143a 55%, #21164a 100%);
-            border-bottom: 1px solid var(--mm-border);
-        }
-
-        .mm-hero::before {
-            content: "";
-            position: absolute;
-            width: 440px;
-            height: 440px;
-            right: 8%;
-            top: 50%;
-            transform: translateY(-50%);
-            border-radius: 50%;
-            background: radial-gradient(circle, rgba(147, 111, 255, 0.18), transparent 68%);
-            filter: blur(10px);
+                radial-gradient(ellipse at 80% 45%, rgba(120,82,220,.28), transparent 40%),
+                linear-gradient(125deg, #111936, #17143a 55%, #21164a);
+            border-bottom: 1px solid var(--border);
         }
 
         .mm-hero-inner {
-            position: relative;
-            z-index: 2;
+            display: grid;
+            grid-template-columns: 1.5fr .9fr;
+            align-items: center;
+            gap: 45px;
             width: 100%;
-            max-width: 1180px;
+            max-width: 1630px;
             margin: auto;
-            padding: 85px 24px;
+            padding: 70px 35px;
         }
 
         .mm-hero-content {
-            max-width: 800px;
+            max-width: 1050px;
         }
 
         .mm-eyebrow {
             display: inline-block;
-            color: var(--mm-light-purple);
-            background: rgba(152, 120, 255, 0.13);
-            border: 1px solid var(--mm-border);
-            padding: 7px 14px;
+            color: var(--light-purple);
+            background: rgba(152,120,255,.13);
+            border: 1px solid var(--border);
+            padding: 7px 17px;
             border-radius: 30px;
-            font-size: 0.83rem;
+            font-size: .85rem;
             font-weight: 700;
             letter-spacing: 1px;
             text-transform: uppercase;
         }
 
         .mm-hero h1 {
-            font-size: clamp(2.7rem, 6vw, 4.8rem);
+            font-size: clamp(3rem, 5.5vw, 6rem);
             line-height: 1.08;
-            margin: 22px 0;
-            color: white;
             letter-spacing: -2px;
+            color: white;
+            margin: 25px 0;
         }
 
         .mm-hero h1 span {
-            color: var(--mm-purple);
+            color: var(--purple);
         }
 
         .mm-hero p {
             color: #d0cce9;
             font-size: 1.12rem;
-            max-width: 800px;
-            margin-bottom: 30px;
+            max-width: 850px;
+            margin-bottom: 32px;
         }
 
         .mm-button {
             display: inline-block;
-            padding: 13px 23px;
-            border-radius: 9px;
+            padding: 14px 27px;
+            border-radius: 10px;
             background: linear-gradient(135deg, #a48aff, #7555d9);
             color: white;
             text-decoration: none;
             font-weight: 700;
-            box-shadow: 0 8px 25px rgba(116, 81, 217, 0.28);
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            box-shadow: 0 8px 25px rgba(116,81,217,.3);
+            transition: transform .2s, box-shadow .2s;
         }
 
         .mm-button:hover {
             transform: translateY(-3px);
-            box-shadow: 0 12px 30px rgba(116, 81, 217, 0.4);
+            box-shadow: 0 12px 30px rgba(116,81,217,.45);
         }
 
+        .mm-hero-image {
+            width: 100%;
+            border: 3px solid var(--purple);
+            border-radius: 18px;
+            overflow: hidden;
+            box-shadow: 0 0 35px rgba(152,120,255,.4);
+        }
+
+        .mm-hero-image img {
+            display: block;
+            width: 100%;
+            height: 460px;
+            object-fit: cover;
+        }
+
+        /* GENERAL SECTIONS */
+
         .mm-section {
-            max-width: 1180px;
+            max-width: 1250px;
             margin: auto;
-            padding: 75px 24px;
+            padding: 80px 25px;
         }
 
         .mm-section-heading {
             text-align: center;
-            max-width: 750px;
+            max-width: 760px;
             margin: 0 auto 42px;
         }
 
-        .mm-section-heading h2 {
-            color: white;
-            font-size: clamp(1.9rem, 4vw, 2.7rem);
-            line-height: 1.2;
-            margin: 0 0 14px;
-        }
-
-        .mm-section-heading p {
-            color: var(--mm-muted);
-            margin: 0;
-        }
-
         .mm-section-tag {
-            color: var(--mm-purple);
-            font-size: 0.8rem;
+            color: var(--purple);
+            font-size: .82rem;
             font-weight: 800;
-            letter-spacing: 1.6px;
+            letter-spacing: 1.5px;
             text-transform: uppercase;
+        }
+
+        .mm-section-heading h2,
+        .mm-text-panel h2 {
+            color: white;
+            font-size: clamp(2rem, 4vw, 2.8rem);
+            line-height: 1.2;
+            margin: 12px 0;
+        }
+
+        .mm-section-heading p,
+        .mm-text-panel p {
+            color: var(--muted);
         }
 
         .mm-card-grid {
             display: grid;
-            grid-template-columns: repeat(3, minmax(0, 1fr));
+            grid-template-columns: repeat(3, 1fr);
             gap: 22px;
         }
 
         .mm-card {
-            background: var(--mm-card);
-            border: 1px solid var(--mm-border);
+            background: var(--card);
+            border: 1px solid var(--border);
             border-radius: 17px;
             padding: 27px;
-            box-shadow: 0 12px 35px rgba(0, 0, 0, 0.15);
-            transition: transform 0.25s ease, border-color 0.25s ease;
+            transition: transform .25s, border-color .25s;
         }
 
         .mm-card:hover {
             transform: translateY(-5px);
-            border-color: rgba(169, 143, 255, 0.55);
+            border-color: var(--purple);
         }
 
         .mm-card h3 {
             color: white;
             margin: 0 0 10px;
-            font-size: 1.2rem;
         }
 
         .mm-card p {
-            color: var(--mm-muted);
+            color: var(--muted);
             margin: 0;
         }
 
@@ -276,10 +261,13 @@
             place-items: center;
             border-radius: 12px;
             margin-bottom: 18px;
-            background: rgba(152, 120, 255, 0.16);
-            color: var(--mm-light-purple);
-            font-size: 1.4rem;
+            background: rgba(152,120,255,.16);
+            color: var(--light-purple);
+            font-size: 1.3rem;
+            font-weight: bold;
         }
+
+        /* WHY SECTION */
 
         .mm-two-column {
             display: grid;
@@ -288,35 +276,14 @@
             gap: 45px;
         }
 
-        .mm-text-panel h2 {
-            color: white;
-            font-size: 2.2rem;
-            line-height: 1.2;
-            margin: 0 0 18px;
-        }
-
-        .mm-text-panel p {
-            color: var(--mm-muted);
-        }
-
-        .mm-highlight {
-            color: var(--mm-light-purple);
-            font-weight: 700;
-        }
-
         .mm-science-panel {
-            position: relative;
-            overflow: hidden;
             min-height: 300px;
-            padding: 30px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border: 1px solid var(--mm-border);
+            display: grid;
+            place-items: center;
+            padding: 25px;
+            border: 1px solid var(--border);
             border-radius: 20px;
-            background:
-                radial-gradient(circle at 50% 50%, rgba(135, 95, 230, 0.22), transparent 65%),
-                #141a38;
+            background: radial-gradient(circle, rgba(135,95,230,.22), transparent 70%), #141a38;
         }
 
         .mm-science-panel svg {
@@ -324,17 +291,16 @@
             max-width: 360px;
         }
 
-        .mm-test-card {
-            min-height: 190px;
+        .mm-highlight {
+            color: var(--light-purple);
+            font-weight: bold;
         }
 
-        .mm-test-card h3 {
-            color: var(--mm-light-purple);
-        }
+        /* FEATURES */
 
         .mm-feature-grid {
             display: grid;
-            grid-template-columns: repeat(2, minmax(0, 1fr));
+            grid-template-columns: repeat(2, 1fr);
             gap: 20px;
         }
 
@@ -342,14 +308,13 @@
             display: flex;
             gap: 16px;
             padding: 23px;
-            background: var(--mm-card);
-            border: 1px solid var(--mm-border);
+            background: var(--card);
+            border: 1px solid var(--border);
             border-radius: 15px;
         }
 
         .mm-feature-icon {
-            flex-shrink: 0;
-            color: var(--mm-purple);
+            color: var(--purple);
             font-size: 1.5rem;
         }
 
@@ -359,14 +324,16 @@
         }
 
         .mm-feature p {
-            color: var(--mm-muted);
+            color: var(--muted);
             margin: 0;
         }
+
+        /* TIMELINE */
 
         .mm-timeline {
             max-width: 800px;
             margin: auto;
-            border-left: 2px solid rgba(152, 120, 255, 0.5);
+            border-left: 2px solid rgba(152,120,255,.5);
             padding-left: 30px;
         }
 
@@ -374,8 +341,8 @@
             position: relative;
             margin-bottom: 30px;
             padding: 22px;
-            background: var(--mm-card);
-            border: 1px solid var(--mm-border);
+            background: var(--card);
+            border: 1px solid var(--border);
             border-radius: 14px;
         }
 
@@ -387,8 +354,8 @@
             width: 14px;
             height: 14px;
             border-radius: 50%;
-            background: var(--mm-purple);
-            box-shadow: 0 0 15px rgba(152, 120, 255, 0.7);
+            background: var(--purple);
+            box-shadow: 0 0 15px rgba(152,120,255,.7);
         }
 
         .mm-timeline-item h3 {
@@ -397,42 +364,43 @@
         }
 
         .mm-timeline-item p {
-            color: var(--mm-muted);
+            color: var(--muted);
             margin: 0;
         }
+
+        /* RESEARCH */
 
         .mm-research-panel {
             padding: 50px;
             text-align: center;
-            border: 1px solid var(--mm-border);
+            border: 1px solid var(--border);
             border-radius: 22px;
-            background:
-                radial-gradient(ellipse at 50% 0%, rgba(139, 103, 230, 0.24), transparent 65%),
-                #141a38;
+            background: radial-gradient(ellipse at 50% 0%, rgba(139,103,230,.24), transparent 65%), #141a38;
         }
 
         .mm-research-panel h2 {
             color: white;
             font-size: 2rem;
-            margin: 0 0 15px;
         }
 
         .mm-research-panel p {
-            max-width: 700px;
+            max-width: 750px;
             margin: 0 auto 25px;
-            color: var(--mm-muted);
+            color: var(--muted);
         }
 
+        /* ABOUT */
+
         .mm-about {
-            background: rgba(21, 26, 55, 0.55);
-            border-top: 1px solid var(--mm-border);
-            border-bottom: 1px solid var(--mm-border);
+            background: rgba(21,26,55,.65);
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
         }
 
         .mm-about-inner {
-            max-width: 1180px;
+            max-width: 1250px;
             margin: auto;
-            padding: 65px 24px;
+            padding: 65px 25px;
         }
 
         .mm-about h2 {
@@ -441,9 +409,11 @@
         }
 
         .mm-about p {
-            color: var(--mm-muted);
+            color: var(--muted);
             max-width: 850px;
         }
+
+        /* FAQ */
 
         .mm-faq {
             max-width: 850px;
@@ -453,8 +423,8 @@
         .mm-faq details {
             margin-bottom: 13px;
             padding: 19px 22px;
-            background: var(--mm-card);
-            border: 1px solid var(--mm-border);
+            background: var(--card);
+            border: 1px solid var(--border);
             border-radius: 12px;
         }
 
@@ -465,40 +435,52 @@
         }
 
         .mm-faq details p {
-            color: var(--mm-muted);
+            color: var(--muted);
             margin-bottom: 0;
         }
 
+        /* NOTICE AND FOOTER */
+
         .mm-notice {
-            max-width: 1180px;
+            max-width: 1200px;
             margin: 0 auto 65px;
             padding: 20px 24px;
-            border: 1px solid rgba(190, 160, 255, 0.35);
+            border: 1px solid rgba(190,160,255,.35);
             border-radius: 12px;
-            background: rgba(107, 78, 170, 0.13);
-            color: var(--mm-muted);
+            background: rgba(107,78,170,.13);
+            color: var(--muted);
         }
 
         .mm-notice strong {
-            color: var(--mm-light-purple);
+            color: var(--light-purple);
         }
 
         .mm-footer {
             padding: 35px 24px;
             text-align: center;
-            border-top: 1px solid var(--mm-border);
-            background: rgba(7, 10, 25, 0.8);
-            color: var(--mm-muted);
+            border-top: 1px solid var(--border);
+            background: rgba(7,10,25,.8);
+            color: var(--muted);
         }
 
         .mm-footer a {
-            color: var(--mm-light-purple);
+            color: var(--light-purple);
             text-decoration: none;
         }
 
+        /* MOBILE */
+
         @media (max-width: 850px) {
-            .mm-card-grid {
-                grid-template-columns: repeat(2, minmax(0, 1fr));
+            .mm-hero-inner {
+                grid-template-columns: 1fr;
+            }
+
+            .mm-hero-image {
+                max-width: 550px;
+            }
+
+            .mm-hero-image img {
+                height: 340px;
             }
 
             .mm-two-column {
@@ -513,15 +495,15 @@
 
             .mm-nav-links {
                 justify-content: center;
-                gap: 13px;
-            }
-
-            .mm-hero {
-                min-height: 500px;
+                gap: 14px;
             }
 
             .mm-hero-inner {
-                padding: 65px 22px;
+                padding: 55px 22px;
+            }
+
+            .mm-hero h1 {
+                font-size: 2.8rem;
             }
 
             .mm-card-grid,
@@ -576,10 +558,14 @@
     <!-- HERO -->
     <section class="mm-hero">
         <div class="mm-hero-inner">
+
             <div class="mm-hero-content">
                 <span class="mm-eyebrow">Young Scientist Research Project</span>
 
-                <h1>Understanding motor function <span>over time.</span></h1>
+                <h1>
+                    Understanding motor function
+                    <span>over time.</span>
+                </h1>
 
                 <p>
                     MotorMonitor is a research project exploring how simple,
@@ -589,6 +575,14 @@
 
                 <a href="profile.html" class="mm-button">Get Started</a>
             </div>
+
+            <div class="mm-hero-image">
+                <img
+                    src="motormonitor-dna-frame.png"
+                    alt="Glowing blue and purple DNA double helix"
+                >
+            </div>
+
         </div>
     </section>
 
@@ -610,7 +604,7 @@
             <article class="mm-card mm-process-card">
                 <div class="mm-card-icon">02</div>
                 <h3>Complete the motor tests</h3>
-                <p>Carry out four short activities that measure different aspects of motor performance.</p>
+                <p>Carry out four short activities measuring different aspects of motor performance.</p>
             </article>
 
             <article class="mm-card mm-process-card">
@@ -642,10 +636,10 @@
 
             <div class="mm-science-panel" aria-hidden="true">
                 <svg viewBox="0 0 360 260" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <circle cx="180" cy="130" r="90" stroke="#7057d9" stroke-width="1.5" opacity="0.5"/>
-                    <circle cx="180" cy="130" r="65" stroke="#9878ff" stroke-width="1.5" opacity="0.5"/>
-                    <circle cx="180" cy="130" r="35" fill="#9878ff" opacity="0.13"/>
-                    <path d="M65 130 H295 M180 15 V245" stroke="#c9baff" stroke-width="1" opacity="0.4"/>
+                    <circle cx="180" cy="130" r="90" stroke="#7057d9" stroke-width="1.5" opacity=".5"/>
+                    <circle cx="180" cy="130" r="65" stroke="#9878ff" stroke-width="1.5" opacity=".5"/>
+                    <circle cx="180" cy="130" r="35" fill="#9878ff" opacity=".13"/>
+                    <path d="M65 130 H295 M180 15 V245" stroke="#c9baff" opacity=".4"/>
                     <path d="M90 165 C120 165 125 80 160 100 S210 190 240 125 S270 95 290 95"
                           stroke="#b9a2ff" stroke-width="4" stroke-linecap="round"/>
                     <circle cx="90" cy="165" r="6" fill="#b9a2ff"/>
@@ -657,7 +651,7 @@
         </div>
     </section>
 
-    <!-- FOUR MOTOR TESTS -->
+    <!-- FOUR TESTS -->
     <section class="mm-section">
         <div class="mm-section-heading">
             <span class="mm-section-tag">The activities</span>
@@ -692,7 +686,7 @@
         </div>
     </section>
 
-    <!-- DIFFERENT FEATURES -->
+    <!-- FEATURES -->
     <section class="mm-section">
         <div class="mm-section-heading">
             <span class="mm-section-tag">Project design</span>
@@ -713,7 +707,7 @@
                 <div class="mm-feature-icon">◈</div>
                 <div>
                     <h3>Privacy-conscious design</h3>
-                    <p>Participants are identified using study accounts rather than public scoreboards.</p>
+                    <p>Participants use study accounts rather than public scoreboards.</p>
                 </div>
             </div>
 
@@ -790,13 +784,13 @@
             <p>
                 MotorMonitor was developed to investigate how accessible
                 digital technology could be used to study motor performance.
-                It combines website development, simple interactive tests
-                and research into Friedreich's ataxia.
+                It combines website development, interactive tests and
+                research into Friedreich's ataxia.
             </p>
             <p>
                 The aim is to explore the potential of repeated observations
-                while recognising that a small school research project
-                cannot replace clinical assessment or medical research.
+                while recognising that a school research project cannot
+                replace clinical assessment or medical research.
             </p>
         </div>
     </section>
@@ -811,12 +805,12 @@
         <div class="mm-faq">
             <details>
                 <summary>How often should I complete the tests?</summary>
-                <p>The project is designed around weekly testing sessions, following the instructions provided by the researcher.</p>
+                <p>The project is designed around weekly testing sessions, following the researcher's instructions.</p>
             </details>
 
             <details>
                 <summary>Should I use the same device each time?</summary>
-                <p>Yes. Using the same device and keeping the conditions as consistent as possible can help make weekly observations more comparable.</p>
+                <p>Yes. Using the same device and keeping conditions consistent can help make weekly observations more comparable.</p>
             </details>
 
             <details>
@@ -839,9 +833,10 @@
     <!-- NOTICE -->
     <div class="mm-notice">
         <strong>Important research notice:</strong>
-        MotorMonitor is an educational research prototype. It is not a medical
-        device and does not provide diagnosis, treatment or clinical advice.
-        Participation should follow the researcher's approved study instructions.
+        MotorMonitor is an educational research prototype. It is not a
+        medical device and does not provide diagnosis, treatment or
+        clinical advice. Participation should follow the researcher's
+        approved study instructions.
     </div>
 
 </main>
