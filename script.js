@@ -1,4 +1,3 @@
-
 // ==========================================
 // MOTORTRACK - WEEKLY MOTOR TEST
 // ==========================================
@@ -34,7 +33,6 @@ const tests = [
 // ==========================================
 
 function startTest() {
-
     currentTest = 0;
 
     sessionResults = {
@@ -55,7 +53,6 @@ function startTest() {
 // ==========================================
 
 function runCurrentTest() {
-
     const test = tests[currentTest];
 
     document.getElementById("next-button").style.display = "none";
@@ -82,7 +79,6 @@ function runCurrentTest() {
 // ==========================================
 
 function nextTest() {
-
     currentTest++;
 
     if (currentTest >= tests.length) {
@@ -98,7 +94,6 @@ function nextTest() {
 // ==========================================
 
 function targetTappingTest() {
-
     document.getElementById("test-title").textContent =
         "🎯 Target Tapping";
 
@@ -132,7 +127,6 @@ function targetTappingTest() {
     gameArea.appendChild(target);
 
     function moveTarget() {
-
         const maxX = gameArea.clientWidth - 90;
         const maxY = gameArea.clientHeight - 90;
 
@@ -144,23 +138,19 @@ function targetTappingTest() {
     }
 
     target.onclick = function () {
-
         taps++;
-
         moveTarget();
     };
 
     moveTarget();
 
     const timer = setInterval(function () {
-
         timeLeft--;
 
         document.getElementById("test-instruction").textContent =
             "Time left: " + timeLeft + " seconds";
 
         if (timeLeft <= 0) {
-
             clearInterval(timer);
 
             sessionResults.targetTapping = taps;
@@ -174,7 +164,6 @@ function targetTappingTest() {
             document.getElementById("next-button").style.display =
                 "inline-block";
         }
-
     }, 1000);
 }
 
@@ -183,7 +172,6 @@ function targetTappingTest() {
 // ==========================================
 
 function reactionTimeTest() {
-
     document.getElementById("test-title").textContent =
         "⚡ Reaction Time";
 
@@ -214,22 +202,18 @@ function reactionTimeTest() {
     const delay = 1500 + Math.random() * 3000;
 
     setTimeout(function () {
-
         if (finished) return;
 
         button.textContent = "TAP NOW!";
         button.style.background = "#22c55e";
 
         startTime = performance.now();
-
     }, delay);
 
     button.onclick = function () {
-
         if (finished) return;
 
         if (startTime === null) {
-
             document.getElementById("test-instruction").textContent =
                 "Too early! Wait for TAP NOW.";
 
@@ -259,7 +243,6 @@ function reactionTimeTest() {
 // ==========================================
 
 function alternatingTapsTest() {
-
     document.getElementById("test-title").textContent =
         "🔄 Alternating Taps";
 
@@ -290,9 +273,7 @@ function alternatingTapsTest() {
     gameArea.appendChild(buttonB);
 
     function press(letter) {
-
         if (letter === expected) {
-
             correct++;
 
             if (expected === "A") {
@@ -312,14 +293,12 @@ function alternatingTapsTest() {
     };
 
     const timer = setInterval(function () {
-
         timeLeft--;
 
         document.getElementById("test-instruction").textContent =
             "Time left: " + timeLeft + " seconds";
 
         if (timeLeft <= 0) {
-
             clearInterval(timer);
 
             sessionResults.alternatingTaps = correct;
@@ -333,7 +312,6 @@ function alternatingTapsTest() {
             document.getElementById("next-button").style.display =
                 "inline-block";
         }
-
     }, 1000);
 }
 
@@ -342,7 +320,6 @@ function alternatingTapsTest() {
 // ==========================================
 
 function movingTargetTest() {
-
     document.getElementById("test-title").textContent =
         "✋ Moving Target";
 
@@ -376,7 +353,6 @@ function movingTargetTest() {
     gameArea.appendChild(target);
 
     function moveTarget() {
-
         const maxX = gameArea.clientWidth - 80;
         const maxY = gameArea.clientHeight - 80;
 
@@ -388,29 +364,23 @@ function movingTargetTest() {
     }
 
     target.onclick = function () {
-
         hits++;
-
         moveTarget();
     };
 
     moveTarget();
 
     const movement = setInterval(function () {
-
         moveTarget();
-
     }, 700);
 
     const timer = setInterval(function () {
-
         timeLeft--;
 
         document.getElementById("test-instruction").textContent =
             "Time left: " + timeLeft + " seconds";
 
         if (timeLeft <= 0) {
-
             clearInterval(timer);
             clearInterval(movement);
 
@@ -425,7 +395,6 @@ function movingTargetTest() {
             document.getElementById("next-button").style.display =
                 "inline-block";
         }
-
     }, 1000);
 }
 
@@ -433,23 +402,49 @@ function movingTargetTest() {
 // FINISH TEST AND SAVE TO SUPABASE
 // ==========================================
 
+let saveInProgress = false;
+
 async function finishTest() {
+    if (saveInProgress) return;
 
-    document.getElementById("test-area").style.display = "none";
-    document.getElementById("final-results").style.display = "block";
+    saveInProgress = true;
 
-    const resultsDisplay =
-        document.getElementById("results-display");
+    const testArea = document.getElementById("test-area");
+    const finalResults = document.getElementById("final-results");
+    const resultsDisplay = document.getElementById("results-display");
 
-    // Check login
+    if (testArea) {
+        testArea.style.display = "none";
+    }
+
+    if (finalResults) {
+        finalResults.style.display = "block";
+    }
+
+    function showSaveMessage(message) {
+        if (resultsDisplay) {
+            resultsDisplay.textContent = message;
+        } else if (finalResults) {
+            const messageElement = document.createElement("p");
+            messageElement.textContent = message;
+            messageElement.setAttribute("role", "status");
+            finalResults.appendChild(messageElement);
+        }
+    }
+
+    // Find the participant's login token
     const accessToken =
-        sessionStorage.getItem("motorMonitorAccessToken");
+        sessionStorage.getItem("motorMonitorAccessToken") ||
+        localStorage.getItem("motorMonitorAccessToken");
 
     if (!accessToken) {
+        console.error("MotorMonitor: no login token found.");
 
-        resultsDisplay.textContent =
-            "You are not logged in. Please sign in before saving your results.";
+        showSaveMessage(
+            "Your test is complete, but your results could not be saved because your sign-in session was not found. Please sign in again."
+        );
 
+        saveInProgress = false;
         return;
     }
 
@@ -461,10 +456,26 @@ async function finishTest() {
         moving_target: Number(sessionResults.movingTarget)
     };
 
-    resultsDisplay.textContent = "Saving your results...";
+    const validScores = Object.values(result).every(
+        value => Number.isFinite(value) && value >= 0
+    );
+
+    if (!validScores) {
+        console.error("MotorMonitor: invalid scores.", result);
+
+        showSaveMessage(
+            "Your test is complete, but the scores were invalid and could not be saved."
+        );
+
+        saveInProgress = false;
+        return;
+    }
+
+    showSaveMessage("Saving your results securely...");
+
+    console.log("MotorMonitor: sending results to Supabase.");
 
     try {
-
         const response = await fetch(
             `${SUPABASE_URL}/functions/v1/sign-in-system`,
             {
@@ -483,108 +494,65 @@ async function finishTest() {
             }
         );
 
-        const data = await response.json();
+        const responseText = await response.text();
 
-        if (!response.ok || !data.success) {
+        let data = {};
+
+        try {
+            data = responseText ? JSON.parse(responseText) : {};
+        } catch {
             throw new Error(
-                data.error || "Could not save your results."
+                `Supabase returned an unreadable response (HTTP ${response.status}).`
             );
         }
 
-        // Display saved results
-        resultsDisplay.innerHTML = "";
+        console.log(
+            "MotorMonitor Supabase response:",
+            response.status,
+            data
+        );
 
-        const card = document.createElement("div");
-        card.className = "result-card";
+        if (!response.ok) {
+            throw new Error(
+                data.error ||
+                data.message ||
+                `Supabase request failed (HTTP ${response.status}).`
+            );
+        }
 
-        const measurements = [
-            ["🎯", "Target Tapping", result.target_tapping, "taps"],
-            ["⚡", "Reaction Time", result.reaction_time, "ms"],
-            ["🔄", "Alternating Taps", result.alternating_taps, "taps"],
-            ["✋", "Moving Target", result.moving_target, "hits"]
-        ];
+        if (data.success !== true) {
+            throw new Error(
+                data.error ||
+                data.message ||
+                "Supabase did not confirm that the results were saved."
+            );
+        }
 
-        measurements.forEach(function(item) {
+        // Show confirmation only after Supabase confirms success
+        showSaveMessage(
+            "Your weekly test has been completed successfully. Your results have been securely recorded for research purposes. Your previous scores will not be displayed. Thank you for participating."
+        );
 
-            const measure = document.createElement("div");
-            measure.className = "result-measure";
-
-            const icon = document.createElement("span");
-            icon.textContent = item[0];
-
-            const details = document.createElement("div");
-
-            const label = document.createElement("small");
-            label.textContent = item[1];
-
-            const score = document.createElement("strong");
-            score.textContent = item[2];
-
-            const unit = document.createElement("em");
-            unit.textContent = item[3];
-
-            details.append(label, score, unit);
-            measure.append(icon, details);
-            card.appendChild(measure);
-
-        });
-
-        resultsDisplay.appendChild(card);
-
-        const confirmation = document.createElement("p");
-
-        confirmation.textContent =
-            "Your results have been successfully saved to Supabase.";
-
-        resultsDisplay.appendChild(confirmation);
+        console.log(
+            "MotorMonitor: Supabase confirmed the results were saved."
+        );
 
     } catch (error) {
+        console.error("MOTORMONITOR RESULT SAVE ERROR:", error);
 
-        console.error("RESULT SAVE ERROR:", error);
+        showSaveMessage(
+            "Your test is complete, but your results could not be confirmed as saved. Please check your internet connection and sign in again. If the problem continues, tell the researcher. Error: " +
+            error.message
+        );
 
-        resultsDisplay.textContent =
-            "Your test finished, but saving failed: " +
-            error.message +
-            " Please sign in again and try another test.";
+    } finally {
+        saveInProgress = false;
     }
 }
 
 // ==========================================
-// END OF SCRIPT
-// ==========================================
-
-// ========================================
 // SCROLL-TRIGGERED CARD ANIMATIONS
-// ========================================
-
-document.addEventListener("DOMContentLoaded", () => {
-    const cards = document.querySelectorAll(
-        ".mm-process-card, .mm-test-card"
-    );
-
-    // Show cards immediately if reduced motion is enabled
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-        cards.forEach(card => card.classList.add("mm-visible"));
-        return;
-    }
-
-    const observer = new IntersectionObserver((entries, observer) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add("mm-visible");
-                observer.unobserve(entry.target);
-            }
-        });
-    }, {
-        threshold: 0.15
-    });
-
-    cards.forEach(card => observer.observe(card));
-});
-
-/* ========================================
-   SCROLL-TRIGGERED CARD ANIMATIONS
-   ======================================== */
+// ==========================================
 
 function initialiseScrollAnimations() {
     const cards = document.querySelectorAll(
@@ -593,11 +561,8 @@ function initialiseScrollAnimations() {
 
     if (!cards.length) return;
 
-    // If the browser does not support this feature,
-    // leave all cards visible.
     if (!("IntersectionObserver" in window)) return;
 
-    // Activate the animation system
     document.documentElement.classList.add(
         "mm-scroll-animations"
     );
@@ -621,8 +586,6 @@ function initialiseScrollAnimations() {
     });
 }
 
-// Works whether this script loads before or after
-// the page has finished loading.
 if (document.readyState === "loading") {
     document.addEventListener(
         "DOMContentLoaded",
