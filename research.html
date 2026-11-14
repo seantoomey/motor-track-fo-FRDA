@@ -1,56 +1,114 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MotorMonitor | Research</title>
+<link rel="stylesheet" href="style.css">
 
-    <title>MotorTrack | Research</title>
+<style>
+    :root {
+        --mm-navy: #090d20;
+        --mm-deep: #101631;
+        --mm-card: rgba(25, 31, 65, 0.88);
+        --mm-purple: #9878ff;
+        --mm-light-purple: #c9baff;
+        --mm-text: #f0edff;
+        --mm-muted: #b7b3d3;
+        --mm-border: rgba(169, 143, 255, 0.22);
+    }
 
-    <link rel="stylesheet" href="style.css">
+    body {
+        background:
+            radial-gradient(ellipse at 15% 15%, rgba(103, 70, 190, 0.19), transparent 35%),
+            radial-gradient(ellipse at 85% 45%, rgba(56, 85, 170, 0.15), transparent 35%),
+            var(--mm-navy) !important;
+        color: var(--mm-text) !important;
+    }
+
+    header {
+        background: rgba(9, 13, 32, 0.95) !important;
+        border-bottom: 1px solid var(--mm-border);
+    }
+
+    nav {
+        background: transparent !important;
+    }
+
+    .logo {
+        color: var(--mm-light-purple) !important;
+    }
+
+    .nav-links a {
+        color: var(--mm-muted) !important;
+    }
+
+    .nav-links a:hover {
+        color: var(--mm-light-purple) !important;
+    }
+
+    main {
+        color: var(--mm-text);
+    }
+
+    main section {
+        background: var(--mm-card) !important;
+        border: 1px solid var(--mm-border);
+        border-radius: 18px;
+        color: var(--mm-text) !important;
+    }
+
+    h1, h2, h3 {
+        color: white !important;
+    }
+
+    p {
+        color: var(--mm-muted);
+    }
+
+    a {
+        color: var(--mm-light-purple);
+    }
+
+    footer {
+        background: rgba(7, 10, 25, 0.8) !important;
+        border-top: 1px solid var(--mm-border);
+        color: var(--mm-muted) !important;
+    }
+
+    @media (max-width: 600px) {
+        main section {
+            margin: 20px;
+            padding: 25px;
+        }
+    }
+</style>
 </head>
 
 <body>
 
-    <header>
-        <nav>
+<header>
+    <nav>
+        <div class="logo">MotorMonitor</div>
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="test.html">Weekly Test</a>
+            <a href="research.html">Research</a>
+        </div>
+    </nav>
+</header>
 
-            <div class="logo">MotorTrack</div>
+<main>
+    <section>
+        <h1>Research</h1>
+        <!-- Add your research here -->
+    </section>
+</main>
 
-            <div class="nav-links">
-                <a href="index.html">Home</a>
-                <a href="test.html">Weekly Test</a>
-                <a href="research.html">Research</a>
-            </div>
-
-        </nav>
-    </header>
-
-
-    <main>
-
-        <section>
-            <h1>Research</h1>
-
-            <!-- Add your research here -->
-
-        </section>
-
-    </main>
-
-
-    <footer>
-
-        <p>
-            MotorTrack — Young Scientist & Technology Exhibition Project
-        </p>
-
-        <p>
-            Research prototype • Not for medical diagnosis
-        </p>
-
-    </footer>
+<footer>
+    <p>MotorMonitor — Young Scientist & Technology Exhibition Project</p>
+    <p>Research prototype • Not for medical diagnosis</p>
+</footer>
 
 </body>
-
 </html>
