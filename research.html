@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,7 +10,6 @@
 <style>
     :root {
         --mm-navy: #090d20;
-        --mm-deep: #101631;
         --mm-card: rgba(25, 31, 65, 0.88);
         --mm-purple: #9878ff;
         --mm-light-purple: #c9baff;
@@ -56,10 +56,18 @@
         border: 1px solid var(--mm-border);
         border-radius: 18px;
         color: var(--mm-text) !important;
+
+        /* Centre Research inside the box */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        min-height: 250px;
     }
 
     h1, h2, h3 {
         color: white !important;
+        margin: 0;
     }
 
     p {
