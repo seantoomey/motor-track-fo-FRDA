@@ -15,7 +15,37 @@
                 radial-gradient(ellipse at 85% 45%, rgba(56, 85, 170, 0.15), transparent 35%),
                 #090d20 !important;
             color: #f0edff;
+            margin: 0;
         }
+
+        /* HEADER AND NAVIGATION */
+
+        header {
+            background: #090d20 !important;
+            border: none !important;
+            border-bottom: 1px solid rgba(169, 143, 255, 0.22) !important;
+            box-shadow: none !important;
+        }
+
+        header nav {
+            background: transparent !important;
+            border: none !important;
+            box-shadow: none !important;
+        }
+
+        header .logo {
+            color: #c9baff !important;
+        }
+
+        header .nav-links a {
+            color: #b7b3d3 !important;
+        }
+
+        header .nav-links a:hover {
+            color: #c9baff !important;
+        }
+
+        /* MAIN PAGE */
 
         .test-page {
             max-width: 1000px;
@@ -41,17 +71,19 @@
         .test-header h1 {
             font-size: 52px;
             line-height: 1.1;
-            color: #ffffff;
+            color: #ffffff !important;
             margin: 0 0 18px;
         }
 
         .test-header p {
             max-width: 650px;
             margin: 0 auto;
-            color: #b7b3d3;
+            color: #b7b3d3 !important;
             font-size: 17px;
             line-height: 1.7;
         }
+
+        /* PROGRESS */
 
         .test-progress {
             display: flex;
@@ -74,11 +106,13 @@
             box-shadow: 0 0 12px rgba(152, 120, 255, 0.5);
         }
 
+        /* TEST CARD */
+
         .test-card {
-            background: rgba(25, 31, 65, 0.88);
+            background: rgba(25, 31, 65, 0.88) !important;
             border-radius: 28px;
             padding: 50px;
-            border: 1px solid rgba(169, 143, 255, 0.22);
+            border: 1px solid rgba(169, 143, 255, 0.22) !important;
             box-shadow: 0 20px 60px rgba(0, 0, 0, 0.25);
             text-align: center;
         }
@@ -97,29 +131,31 @@
         }
 
         .test-card h2 {
-            color: #ffffff;
+            color: #ffffff !important;
             font-size: 30px;
             margin: 0 0 12px;
         }
 
         .test-card p {
-            color: #b7b3d3;
+            color: #b7b3d3 !important;
             line-height: 1.7;
             font-size: 16px;
         }
+
+        /* INSTRUCTIONS */
 
         .instructions-box {
             max-width: 650px;
             margin: 30px auto;
             padding: 25px 30px;
-            background: rgba(9, 13, 32, 0.65);
-            border: 1px solid rgba(169, 143, 255, 0.2);
+            background: rgba(9, 13, 32, 0.65) !important;
+            border: 1px solid rgba(169, 143, 255, 0.2) !important;
             border-radius: 18px;
             text-align: left;
         }
 
         .instructions-box h3 {
-            color: #c9baff;
+            color: #c9baff !important;
             margin: 0 0 15px;
             font-size: 17px;
         }
@@ -127,7 +163,7 @@
         .instructions-box ul {
             margin: 0;
             padding-left: 22px;
-            color: #b7b3d3;
+            color: #b7b3d3 !important;
             line-height: 1.9;
         }
 
@@ -135,10 +171,12 @@
             padding-left: 4px;
         }
 
+        /* BUTTONS */
+
         .test-button {
             border: none;
             background: linear-gradient(135deg, #9878ff, #7656df);
-            color: white;
+            color: white !important;
             padding: 16px 32px;
             border-radius: 13px;
             font-size: 16px;
@@ -157,6 +195,8 @@
             transform: translateY(0);
         }
 
+        /* GAME AREA */
+
         #game-area {
             position: relative;
             margin-top: 30px;
@@ -167,20 +207,38 @@
             overflow: hidden;
         }
 
+        /* COMPLETION MESSAGE */
+
         .complete-message {
             margin: 30px auto;
             padding: 25px;
             max-width: 700px;
-            background: rgba(9, 13, 32, 0.65);
-            border: 1px solid rgba(169, 143, 255, 0.2);
+            background: rgba(9, 13, 32, 0.65) !important;
+            border: 1px solid rgba(169, 143, 255, 0.2) !important;
             border-radius: 18px;
         }
 
         .complete-message h3 {
-            color: #c9baff;
+            color: #c9baff !important;
             font-size: 20px;
             margin-bottom: 15px;
         }
+
+        /* FOOTER */
+
+        footer {
+            background: #090d20 !important;
+            border: none !important;
+            border-top: 1px solid rgba(169, 143, 255, 0.22) !important;
+            box-shadow: none !important;
+            color: #b7b3d3 !important;
+        }
+
+        footer p {
+            color: #b7b3d3 !important;
+        }
+
+        /* MOBILE */
 
         @media (max-width: 750px) {
             .test-page {
@@ -260,8 +318,6 @@
 <main>
     <section class="test-page">
 
-        <!-- HEADER -->
-
         <div class="test-header">
             <div class="test-label">
                 Friedreich's Ataxia Research Project
@@ -314,31 +370,14 @@
                     </p>
 
                     <ul>
-                        <li>
-                            Use the same device for every weekly test.
-                        </li>
-
-                        <li>
-                            Keep your screen orientation the same.
-                        </li>
-
-                        <li>
-                            Complete the tests in a quiet environment.
-                        </li>
-
-                        <li>
-                            Follow the same testing instructions each week.
-                        </li>
-
-                        <li>
-                            Try to complete your test at approximately
-                            the same time each week.
-                        </li>
-
-                        <li>
-                            Avoid switching devices during the study.
-                            If you need to change devices, let the researcher know.
-                        </li>
+                        <li>Use the same device for every weekly test.</li>
+                        <li>Keep your screen orientation the same.</li>
+                        <li>Complete the tests in a quiet environment.</li>
+                        <li>Follow the same testing instructions each week.</li>
+                        <li>Try to complete your test at approximately
+                            the same time each week.</li>
+                        <li>Avoid switching devices during the study.
+                            If you need to change devices, let the researcher know.</li>
                     </ul>
 
                     <p>
@@ -352,9 +391,7 @@
                 <button
                     class="test-button"
                     onclick="startTest()">
-
                     Start Weekly Test →
-
                 </button>
 
             </div>
@@ -367,9 +404,7 @@
                     🎯
                 </div>
 
-                <h2 id="test-title">
-                    Test
-                </h2>
+                <h2 id="test-title">Test</h2>
 
                 <p id="test-instruction">
                     Follow the instructions below.
@@ -384,9 +419,7 @@
                     class="test-button"
                     onclick="nextTest()"
                     style="display:none;">
-
                     Next Test →
-
                 </button>
 
             </div>
@@ -424,9 +457,7 @@
                 <button
                     class="test-button"
                     onclick="location.href='index.html'">
-
                     Return Home →
-
                 </button>
 
             </div>
