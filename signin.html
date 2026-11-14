@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -12,7 +13,276 @@
         content="Sign in to your anonymous MotorMonitor research profile."
     >
 
-    <link rel="stylesheet" href="style.css">
+    <style>
+        /* MAIN PAGE */
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            font-family: Arial, Helvetica, sans-serif;
+            background: #090d20;
+            color: #f4f1ff;
+        }
+
+        /* NAVIGATION */
+
+        header {
+            width: 100%;
+            background: #090d20;
+            border-bottom: 1px solid rgba(152, 120, 255, 0.25);
+        }
+
+        nav {
+            max-width: 1260px;
+            min-height: 98px;
+            margin: auto;
+            padding: 20px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 25px;
+        }
+
+        .logo {
+            color: #c9baff;
+            font-size: 30px;
+            font-weight: 800;
+            white-space: nowrap;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 35px;
+            flex-wrap: wrap;
+        }
+
+        .nav-links a {
+            color: #ded8f5;
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: 600;
+            transition: color 0.2s ease;
+        }
+
+        .nav-links a:hover {
+            color: #9878ff;
+        }
+
+        /* MAIN SECTION */
+
+        main {
+            width: 100%;
+            padding: 0 25px 55px;
+        }
+
+        .hero {
+            max-width: 1260px;
+            margin: 0 auto;
+            padding: 65px 70px;
+            background:
+                radial-gradient(
+                    circle at top right,
+                    rgba(111, 79, 190, 0.22),
+                    transparent 45%
+                ),
+                #111832;
+            border: 1px solid rgba(152, 120, 255, 0.2);
+            border-radius: 0 0 18px 18px;
+        }
+
+        .hero-text {
+            max-width: 800px;
+        }
+
+        .small-title {
+            color: #bba6ff;
+            font-size: 14px;
+            font-weight: 800;
+            letter-spacing: 2px;
+            margin-bottom: 20px;
+        }
+
+        h1 {
+            color: #ffffff;
+            font-size: 56px;
+            margin: 0 0 20px;
+        }
+
+        .description {
+            color: #c9c4df;
+            font-size: 18px;
+            line-height: 1.7;
+            max-width: 750px;
+            margin-bottom: 35px;
+        }
+
+        /* LOGIN BOX */
+
+        .profile-box {
+            width: 100%;
+            max-width: 540px;
+            padding: 32px;
+            margin-top: 25px;
+            background: rgba(25, 31, 65, 0.95);
+            border: 1px solid rgba(152, 120, 255, 0.3);
+            border-radius: 18px;
+            color: #f4f1ff;
+            box-shadow: 0 12px 35px rgba(0, 0, 0, 0.2);
+        }
+
+        .profile-box h2 {
+            color: #d5c9ff;
+            font-size: 19px;
+            margin: 10px 0;
+        }
+
+        .profile-box p {
+            color: #d0cbe4;
+            line-height: 1.6;
+        }
+
+        .profile-box a:not(.start-button) {
+            color: #bba6ff;
+            font-weight: 700;
+            text-decoration: none;
+        }
+
+        .profile-box a:not(.start-button):hover {
+            color: #ffffff;
+        }
+
+        /* INPUT FIELDS */
+
+        .profile-box input {
+            display: block;
+            width: 100%;
+            height: 48px;
+            padding: 12px 15px;
+            margin: 10px 0 22px;
+            background: #090f27;
+            color: #ffffff;
+            border: 1px solid rgba(152, 120, 255, 0.45);
+            border-radius: 10px;
+            font-size: 16px;
+            outline: none;
+        }
+
+        .profile-box input::placeholder {
+            color: #9992b5;
+        }
+
+        .profile-box input:focus {
+            border-color: #9878ff;
+            box-shadow: 0 0 0 3px rgba(152, 120, 255, 0.15);
+        }
+
+        /* BUTTONS */
+
+        .start-button {
+            display: inline-block;
+            padding: 15px 30px;
+            background: linear-gradient(135deg, #9878ff, #7656df);
+            color: #ffffff;
+            border: 1px solid rgba(201, 186, 255, 0.35);
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: 700;
+            text-decoration: none;
+            cursor: pointer;
+            box-shadow: 0 8px 20px rgba(91, 70, 190, 0.3);
+            transition: 0.2s ease;
+        }
+
+        .start-button:hover {
+            background: linear-gradient(135deg, #aa91ff, #8569f0);
+            transform: translateY(-2px);
+        }
+
+        .start-button:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        /* ERROR MESSAGE */
+
+        #error-message {
+            color: #ffaaaa;
+            background: rgba(180, 50, 70, 0.15);
+            border: 1px solid rgba(255, 120, 140, 0.3);
+            border-radius: 9px;
+            padding: 12px;
+            margin-top: 15px;
+        }
+
+        #participant-number {
+            color: #c9baff;
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        /* FOOTER */
+
+        footer {
+            width: 100%;
+            padding: 25px 20px;
+            text-align: center;
+            background: #090d20;
+            border-top: 1px solid rgba(152, 120, 255, 0.25);
+            color: #aaa4c8;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        footer p {
+            margin: 5px;
+        }
+
+        /* MOBILE */
+
+        @media (max-width: 700px) {
+
+            nav {
+                flex-direction: column;
+                padding: 22px 15px;
+                gap: 20px;
+            }
+
+            .nav-links {
+                justify-content: center;
+                gap: 16px;
+            }
+
+            .nav-links a {
+                font-size: 14px;
+            }
+
+            main {
+                padding: 0 12px 30px;
+            }
+
+            .hero {
+                padding: 40px 22px;
+            }
+
+            h1 {
+                font-size: 42px;
+            }
+
+            .description {
+                font-size: 16px;
+            }
+
+            .profile-box {
+                padding: 22px;
+            }
+        }
+    </style>
 </head>
 
 <body>
@@ -255,7 +525,6 @@ signInButton.addEventListener("click", async function() {
 
         }
 
-
         // STORE THE AUTHENTICATION SESSION
 
         sessionStorage.setItem(
@@ -277,7 +546,6 @@ signInButton.addEventListener("click", async function() {
             "motorMonitorParticipantNumber",
             data.participant_number
         );
-
 
         // DISPLAY SUCCESS
 
